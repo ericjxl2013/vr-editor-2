@@ -1,0 +1,2286 @@
+{
+  "data": {
+    "24427267": {
+      "v": 2,
+      "data": {
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "user_id": 12,
+        "source_asset_id": null,
+        "source": true,
+        "tags": [],
+        "name": "scripts",
+        "revision": 1,
+        "preload": false,
+        "meta": null,
+        "data": null,
+        "type": "folder",
+        "file": null,
+        "region": "eu-west-1",
+        "path": [],
+        "task": null,
+        "item_id": "24427267",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d",
+        "checkpoint_id": "0db501aa-5b2a-49e1-a103-0fade60e116a",
+        "i18n": {}
+      }
+    },
+    "24427268": {
+      "v": 2,
+      "data": {
+        "data": {
+          "addressu": "repeat",
+          "addressv": "repeat",
+          "minfilter": "linear_mip_linear",
+          "magfilter": "linear",
+          "anisotropy": 1,
+          "rgbm": false,
+          "mipmaps": false
+        },
+        "file": {
+          "filename": "Concrete_AO.jpg",
+          "size": 22771,
+          "hash": "a7351b038fae962c51e5cac4af75aaae",
+          "variants": {
+            "dxt": {
+              "filename": "Concrete_AO-dxt.dds",
+              "hash": "a9eacdc574b0fca5835ba3d599bcfd03",
+              "size": 131200,
+              "sizeGzip": 17486,
+              "opt": 4
+            },
+            "etc1": {
+              "filename": "Concrete_AO-etc1.dds",
+              "hash": "95a06ee59e8ebe92ad5e409283195104",
+              "size": 131200,
+              "sizeGzip": 21402,
+              "opt": 4
+            },
+            "pvr": {
+              "filename": "Concrete_AO-pvr.dds",
+              "hash": "e2d10daa53a77db49169e96eeb9a21e8",
+              "size": 65664,
+              "sizeGzip": 10935,
+              "opt": 4
+            }
+          }
+        },
+        "has_thumbnail": true,
+        "meta": {
+          "compress": {
+            "alpha": false,
+            "dxt": true,
+            "pvr": true,
+            "pvrBpp": 2,
+            "etc1": true,
+            "etc2": false
+          },
+          "format": "jpeg",
+          "type": "Grayscale",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "depth": 8,
+          "srgb": false,
+          "interlaced": false
+        },
+        "name": "plastic_ao.jpg",
+        "path": [
+          24427291,
+          24427282
+        ],
+        "preload": true,
+        "region": "eu-west-1",
+        "revision": 1,
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "source": false,
+        "source_asset_id": null,
+        "tags": [],
+        "task": null,
+        "type": "texture",
+        "user_id": 12,
+        "item_id": "24427268",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d",
+        "immutable_backup": "cc728aa7-b4ce-491b-91a8-d2fa54cd97d2",
+        "same_as_backup": 0,
+        "checkpoint_id": "0db501aa-5b2a-49e1-a103-0fade60e116a",
+        "i18n": {}
+      }
+    },
+    "24427269": {
+      "v": 2,
+      "data": {
+        "data": null,
+        "file": {
+          "size": 1048656,
+          "hash": "a930902f47e3f9f8015f1e6ee838272e",
+          "filename": "Helipad_posz.hdr"
+        },
+        "has_thumbnail": false,
+        "meta": {
+          "format": "hdr",
+          "type": "TrueColor",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "depth": 16,
+          "srgb": false
+        },
+        "name": "Helipad_posz",
+        "path": [
+          24427295,
+          24427270
+        ],
+        "preload": false,
+        "region": "eu-west-1",
+        "revision": 1,
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "source": true,
+        "source_asset_id": null,
+        "tags": [],
+        "task": null,
+        "type": "texture",
+        "user_id": 12,
+        "item_id": "24427269",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d",
+        "immutable_backup": "d3983832-5a8e-4f71-a62f-c8814337262d",
+        "same_as_backup": 0,
+        "checkpoint_id": "0db501aa-5b2a-49e1-a103-0fade60e116a",
+        "i18n": {}
+      }
+    },
+    "24427270": {
+      "v": 2,
+      "data": {
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "user_id": 12,
+        "source_asset_id": null,
+        "source": true,
+        "tags": [],
+        "name": "source",
+        "revision": 1,
+        "preload": false,
+        "meta": null,
+        "data": null,
+        "type": "folder",
+        "file": null,
+        "region": "eu-west-1",
+        "path": [
+          24427295
+        ],
+        "task": null,
+        "item_id": "24427270",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d",
+        "checkpoint_id": "0db501aa-5b2a-49e1-a103-0fade60e116a",
+        "i18n": {}
+      }
+    },
+    "24427271": {
+      "v": 2,
+      "data": {
+        "data": null,
+        "file": {
+          "filename": "playcanvas.FBX",
+          "size": 314385,
+          "hash": "256f0ad1adcc6802908536339925ad83"
+        },
+        "meta": {
+          "textures": [],
+          "materials": [
+            {
+              "name": "mat_02",
+              "textures": []
+            },
+            {
+              "name": "mat_01",
+              "textures": []
+            }
+          ],
+          "mappings": [
+            0,
+            1
+          ],
+          "animation": null
+        },
+        "name": "playcanvas.FBX",
+        "path": [
+          24427291,
+          24427293
+        ],
+        "preload": false,
+        "region": "eu-west-1",
+        "revision": 1,
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "source": true,
+        "source_asset_id": null,
+        "tags": [],
+        "task": null,
+        "type": "scene",
+        "user_id": 12,
+        "item_id": "24427271",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d",
+        "immutable_backup": "005498ed-4c60-4a57-beb1-9dbfe03d042a",
+        "same_as_backup": 0,
+        "checkpoint_id": "0db501aa-5b2a-49e1-a103-0fade60e116a",
+        "i18n": {}
+      }
+    },
+    "24427272": {
+      "v": 2,
+      "data": {
+        "data": {
+          "addressu": "repeat",
+          "addressv": "repeat",
+          "minfilter": "linear_mip_linear",
+          "magfilter": "linear",
+          "anisotropy": 4,
+          "rgbm": false,
+          "mipmaps": true
+        },
+        "file": {
+          "filename": "metal_gloss.png",
+          "size": 144486,
+          "hash": "b9ac8efefdc1a6506d97c68f73a18ba7",
+          "variants": {
+            "etc1": {
+              "filename": "metal_gloss-etc1.dds",
+              "hash": "5e48e4c23adbe5d54979f10f530f0998",
+              "size": 174904,
+              "sizeGzip": 91450,
+              "opt": 0
+            },
+            "dxt": {
+              "filename": "metal_gloss-dxt.dds",
+              "hash": "0e4ce25519d69b288ef1234f535d70bb",
+              "size": 174904,
+              "sizeGzip": 106869,
+              "opt": 0
+            },
+            "pvr": {
+              "filename": "metal_gloss-pvr.dds",
+              "hash": "2720d87c17c5ed05c81299fafa9828dc",
+              "size": 87616,
+              "sizeGzip": 57542,
+              "opt": 0
+            }
+          }
+        },
+        "has_thumbnail": true,
+        "meta": {
+          "compress": {
+            "alpha": false,
+            "dxt": true,
+            "pvr": true,
+            "pvrBpp": 2,
+            "etc1": true,
+            "etc2": false
+          },
+          "format": "png",
+          "type": "Grayscale",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "depth": 8,
+          "srgb": false,
+          "interlaced": false
+        },
+        "name": "metal_gloss.png",
+        "path": [
+          24427291,
+          24427282
+        ],
+        "preload": true,
+        "region": "eu-west-1",
+        "revision": 1,
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "source": false,
+        "source_asset_id": null,
+        "tags": [],
+        "task": null,
+        "type": "texture",
+        "user_id": 12,
+        "item_id": "24427272",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d",
+        "immutable_backup": "0874ca2c-9af2-4e38-af7d-ca0765640a64",
+        "same_as_backup": 0,
+        "checkpoint_id": "0db501aa-5b2a-49e1-a103-0fade60e116a",
+        "i18n": {}
+      }
+    },
+    "24427273": {
+      "v": 2,
+      "data": {
+        "data": {
+          "addressu": "repeat",
+          "addressv": "repeat",
+          "minfilter": "linear_mip_linear",
+          "magfilter": "linear",
+          "anisotropy": 1,
+          "rgbm": false,
+          "mipmaps": false
+        },
+        "file": {
+          "filename": "gold_AO.jpg",
+          "size": 3710,
+          "hash": "f477f87a42440f89b204eb9d8c03d534",
+          "variants": {
+            "etc1": {
+              "filename": "gold_AO-etc1.dds",
+              "hash": "751d593a75690db18e6235231c329a13",
+              "size": 32896,
+              "sizeGzip": 7268,
+              "opt": 4
+            },
+            "dxt": {
+              "filename": "gold_AO-dxt.dds",
+              "hash": "3d7cd6f44974cb8d5118f60f7754934d",
+              "size": 32896,
+              "sizeGzip": 6867,
+              "opt": 4
+            },
+            "pvr": {
+              "filename": "gold_AO-pvr.dds",
+              "hash": "35fd2c1374106cb493c22dccfb398891",
+              "size": 16512,
+              "sizeGzip": 4771,
+              "opt": 4
+            }
+          }
+        },
+        "has_thumbnail": true,
+        "meta": {
+          "compress": {
+            "alpha": false,
+            "dxt": true,
+            "pvr": true,
+            "pvrBpp": 2,
+            "etc1": true,
+            "etc2": false
+          },
+          "format": "jpeg",
+          "type": "Grayscale",
+          "width": 256,
+          "height": 256,
+          "alpha": false,
+          "depth": 8,
+          "srgb": false,
+          "interlaced": false
+        },
+        "name": "metal_ao.jpg",
+        "path": [
+          24427291,
+          24427282
+        ],
+        "preload": true,
+        "region": "eu-west-1",
+        "revision": 1,
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "source": false,
+        "source_asset_id": null,
+        "tags": [],
+        "task": null,
+        "type": "texture",
+        "user_id": 12,
+        "item_id": "24427273",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d",
+        "immutable_backup": "ef576d1e-0f96-44e0-bb70-67fa96dcf956",
+        "same_as_backup": 0,
+        "checkpoint_id": "0db501aa-5b2a-49e1-a103-0fade60e116a",
+        "i18n": {}
+      }
+    },
+    "24427274": {
+      "v": 2,
+      "data": {
+        "data": {
+          "addressu": "repeat",
+          "addressv": "repeat",
+          "minfilter": "linear_mip_linear",
+          "magfilter": "linear",
+          "anisotropy": 4,
+          "rgbm": false,
+          "mipmaps": true
+        },
+        "file": {
+          "filename": "metal_normals.png",
+          "hash": "57cdeee226dce10037fec2500df191ab",
+          "size": 184208,
+          "variants": {}
+        },
+        "has_thumbnail": true,
+        "meta": {
+          "compress": {
+            "alpha": false,
+            "dxt": false,
+            "pvr": false,
+            "pvrBpp": 4,
+            "etc1": false,
+            "etc2": false
+          },
+          "format": "png",
+          "type": "Palette",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "depth": 8,
+          "srgb": true,
+          "interlaced": false
+        },
+        "name": "metal_normals.png",
+        "path": [
+          24427291,
+          24427282
+        ],
+        "preload": true,
+        "region": "eu-west-1",
+        "revision": 1,
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "source": false,
+        "source_asset_id": null,
+        "tags": [],
+        "task": null,
+        "type": "texture",
+        "user_id": 12,
+        "item_id": "24427274",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d",
+        "immutable_backup": "3e83444b-1a3b-4a75-925a-cd26ce55eac9",
+        "same_as_backup": 0,
+        "checkpoint_id": "0db501aa-5b2a-49e1-a103-0fade60e116a",
+        "i18n": {}
+      }
+    },
+    "24427275": {
+      "v": 6,
+      "data": {
+        "data": {
+          "textures": [
+            24427299,
+            24427283,
+            24427294,
+            24427279,
+            24427296,
+            24427300
+          ],
+          "magFilter": 1,
+          "minFilter": 5,
+          "anisotropy": 1,
+          "name": "Helipad",
+          "rgbm": true
+        },
+        "file": {
+          "filename": "Helipad.dds",
+          "size": 524456,
+          "hash": "d1228e2b3712c9210ba40f8e252cbb40"
+        },
+        "has_thumbnail": false,
+        "meta": null,
+        "name": "Helipad",
+        "path": [
+          24427295
+        ],
+        "preload": false,
+        "region": "eu-west-1",
+        "revision": 1,
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "source": false,
+        "source_asset_id": null,
+        "tags": [],
+        "task": null,
+        "type": "cubemap",
+        "user_id": 12,
+        "item_id": "24427275",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d",
+        "immutable_backup": "d87d7d46-f2eb-4bc2-b3bd-48228ac97761",
+        "same_as_backup": 0,
+        "checkpoint_id": "0db501aa-5b2a-49e1-a103-0fade60e116a",
+        "i18n": {}
+      }
+    },
+    "24427276": {
+      "v": 2,
+      "data": {
+        "data": {
+          "addressu": "repeat",
+          "addressv": "repeat",
+          "minfilter": "linear_mip_linear",
+          "magfilter": "linear",
+          "anisotropy": 4,
+          "rgbm": false,
+          "mipmaps": true
+        },
+        "file": {
+          "filename": "plastic_gloss.png",
+          "hash": "7199fd82d8a349f3f42c76f3108e9424",
+          "size": 186205,
+          "variants": {
+            "dxt": {
+              "filename": "plastic_gloss-dxt.dds",
+              "hash": "6df3d92e41ab0c542c84ade453d25a32",
+              "size": 174904,
+              "sizeGzip": 122070,
+              "opt": 0
+            },
+            "etc1": {
+              "filename": "plastic_gloss-etc1.dds",
+              "hash": "a1096851f2a1ffe7d6346b9955091041",
+              "size": 174904,
+              "sizeGzip": 124749,
+              "opt": 0
+            },
+            "pvr": {
+              "filename": "plastic_gloss-pvr.dds",
+              "hash": "8ba2785bf5565329a1d99dc06a2636ea",
+              "size": 87616,
+              "sizeGzip": 61408,
+              "opt": 0
+            }
+          }
+        },
+        "has_thumbnail": true,
+        "meta": {
+          "compress": {
+            "alpha": false,
+            "dxt": true,
+            "pvr": true,
+            "pvrBpp": 2,
+            "etc1": true,
+            "etc2": false
+          },
+          "format": "png",
+          "type": "Grayscale",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "depth": 8,
+          "srgb": false,
+          "interlaced": false
+        },
+        "name": "plastic_gloss.png",
+        "path": [
+          24427291,
+          24427282
+        ],
+        "preload": true,
+        "region": "eu-west-1",
+        "revision": 1,
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "source": false,
+        "source_asset_id": null,
+        "tags": [],
+        "task": null,
+        "type": "texture",
+        "user_id": 12,
+        "item_id": "24427276",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d",
+        "immutable_backup": "91274ab3-49c5-4719-8378-8438543057a9",
+        "same_as_backup": 0,
+        "checkpoint_id": "0db501aa-5b2a-49e1-a103-0fade60e116a",
+        "i18n": {}
+      }
+    },
+    "24427277": {
+      "v": 2,
+      "data": {
+        "data": {
+          "shader": "blinn",
+          "ambient": [
+            0,
+            0,
+            0
+          ],
+          "ambientTint": false,
+          "aoMap": 24427273,
+          "aoMapVertexColor": false,
+          "aoMapChannel": "r",
+          "aoMapUv": 0,
+          "aoMapTiling": [
+            1,
+            1
+          ],
+          "aoMapOffset": [
+            0,
+            0
+          ],
+          "occludeSpecular": 1,
+          "diffuse": [
+            1,
+            1,
+            1
+          ],
+          "diffuseMap": null,
+          "diffuseMapVertexColor": false,
+          "diffuseMapChannel": "rgb",
+          "diffuseMapUv": 0,
+          "diffuseMapTiling": [
+            1,
+            1
+          ],
+          "diffuseMapOffset": [
+            0,
+            0
+          ],
+          "diffuseMapTint": false,
+          "specular": [
+            0.23,
+            0.23,
+            0.23
+          ],
+          "specularMapVertexColor": false,
+          "specularMapChannel": "rgb",
+          "specularMapUv": 0,
+          "specularMap": 24427272,
+          "specularMapTiling": [
+            1,
+            1
+          ],
+          "specularMapOffset": [
+            0,
+            0
+          ],
+          "specularMapTint": false,
+          "specularAntialias": true,
+          "useMetalness": true,
+          "metalnessMap": null,
+          "metalnessMapVertexColor": false,
+          "metalnessMapChannel": "r",
+          "metalnessMapUv": 0,
+          "metalnessMapTiling": [
+            1,
+            1
+          ],
+          "metalnessMapOffset": [
+            0,
+            0
+          ],
+          "metalnessMapTint": false,
+          "metalness": 1,
+          "conserveEnergy": true,
+          "shininess": 84.78,
+          "glossMap": 24427272,
+          "glossMapVertexColor": false,
+          "glossMapChannel": "r",
+          "glossMapUv": 0,
+          "glossMapTiling": [
+            1,
+            1
+          ],
+          "glossMapOffset": [
+            0,
+            0
+          ],
+          "fresnelModel": 0,
+          "fresnelFactor": 0,
+          "emissive": [
+            0,
+            0,
+            0
+          ],
+          "emissiveMap": null,
+          "emissiveMapVertexColor": false,
+          "emissiveMapChannel": "rgb",
+          "emissiveMapUv": 0,
+          "emissiveMapTiling": [
+            1,
+            1
+          ],
+          "emissiveMapOffset": [
+            0,
+            0
+          ],
+          "emissiveMapTint": false,
+          "emissiveIntensity": 1,
+          "normalMap": 24427274,
+          "normalMapTiling": [
+            0.5,
+            0.5
+          ],
+          "normalMapOffset": [
+            0,
+            0
+          ],
+          "normalMapUv": 0,
+          "bumpMapFactor": 0.5,
+          "heightMap": null,
+          "heightMapChannel": "r",
+          "heightMapUv": 0,
+          "heightMapTiling": [
+            1,
+            1
+          ],
+          "heightMapOffset": [
+            0,
+            0
+          ],
+          "heightMapFactor": 1,
+          "alphaTest": 0,
+          "opacity": 1,
+          "opacityMap": null,
+          "opacityMapVertexColor": false,
+          "opacityMapChannel": "r",
+          "opacityMapUv": 0,
+          "opacityMapTiling": [
+            1,
+            1
+          ],
+          "opacityMapOffset": [
+            0,
+            0
+          ],
+          "reflectivity": 1,
+          "refraction": 0,
+          "refractionIndex": 0.6666666666666666,
+          "sphereMap": null,
+          "cubeMap": null,
+          "cubeMapProjection": 0,
+          "cubeMapProjectionBox": {
+            "center": [
+              0,
+              0,
+              0
+            ],
+            "halfExtents": [
+              0.5,
+              0.5,
+              0.5
+            ]
+          },
+          "lightMap": null,
+          "lightMapVertexColor": false,
+          "lightMapChannel": "rgb",
+          "lightMapUv": 1,
+          "lightMapTiling": [
+            1,
+            1
+          ],
+          "lightMapOffset": [
+            0,
+            0
+          ],
+          "depthTest": true,
+          "depthWrite": true,
+          "cull": 1,
+          "blendType": 3,
+          "shadowSampleType": 1,
+          "useFog": true,
+          "useLighting": true,
+          "useSkybox": true,
+          "useGammaTonemap": true
+        },
+        "file": null,
+        "meta": null,
+        "name": "metal-silver",
+        "path": [
+          24427291,
+          24427289
+        ],
+        "preload": true,
+        "region": "eu-west-1",
+        "revision": 1,
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "source": false,
+        "source_asset_id": null,
+        "tags": [],
+        "task": null,
+        "type": "material",
+        "user_id": 12,
+        "item_id": "24427277",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d",
+        "checkpoint_id": "0db501aa-5b2a-49e1-a103-0fade60e116a",
+        "i18n": {}
+      }
+    },
+    "24427278": {
+      "v": 2,
+      "data": {
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "user_id": 12,
+        "source_asset_id": null,
+        "source": false,
+        "tags": [],
+        "name": "keyboard-input.js",
+        "revision": 1,
+        "preload": true,
+        "meta": null,
+        "data": {
+          "scripts": {
+            "keyboardInput": {
+              "attributesOrder": [],
+              "attributes": {}
+            }
+          },
+          "loading": false,
+          "loadingType": 0
+        },
+        "type": "script",
+        "file": {
+          "filename": "keyboard-input.js",
+          "size": 864,
+          "hash": "7b3fc2b203b3f5003bef93063da1d4b3"
+        },
+        "region": "eu-west-1",
+        "path": [
+          24427267
+        ],
+        "task": null,
+        "item_id": "24427278",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d",
+        "immutable_backup": "7096ca86-5050-48e3-8375-3a9f0b02ade0",
+        "same_as_backup": 0,
+        "checkpoint_id": "0db501aa-5b2a-49e1-a103-0fade60e116a",
+        "i18n": {}
+      }
+    },
+    "24427279": {
+      "v": 2,
+      "data": {
+        "data": {
+          "addressu": "repeat",
+          "addressv": "repeat",
+          "minfilter": "linear_mip_linear",
+          "magfilter": "linear",
+          "anisotropy": 1,
+          "rgbm": true,
+          "mipmaps": true
+        },
+        "file": {
+          "filename": "Helipad_negy.png",
+          "hash": "1ee3f6bfb70d50783c2f0f0588aebc55",
+          "size": 465542
+        },
+        "has_thumbnail": true,
+        "meta": {
+          "format": "png",
+          "type": "TrueColorAlpha",
+          "width": 512,
+          "height": 512,
+          "alpha": true,
+          "depth": 8,
+          "srgb": true,
+          "compress": {
+            "alpha": true,
+            "dxt": false,
+            "pvr": false,
+            "pvrBpp": 4,
+            "etc1": false,
+            "etc2": false
+          }
+        },
+        "name": "Helipad_negy",
+        "path": [
+          24427295
+        ],
+        "preload": false,
+        "region": "eu-west-1",
+        "revision": 1,
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "source": false,
+        "source_asset_id": "24427285",
+        "tags": [],
+        "task": null,
+        "type": "texture",
+        "user_id": 12,
+        "item_id": "24427279",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d",
+        "immutable_backup": "fa72904c-8542-4333-8686-cb1231542674",
+        "same_as_backup": 0,
+        "checkpoint_id": "0db501aa-5b2a-49e1-a103-0fade60e116a",
+        "i18n": {}
+      }
+    },
+    "24427280": {
+      "v": 2,
+      "data": {
+        "data": {
+          "mapping": [
+            {
+              "material": 24427277
+            },
+            {
+              "material": 24427287
+            }
+          ],
+          "area": 0
+        },
+        "file": {
+          "hash": "0cfed5d9572ee501322b5d44364a4e9a",
+          "filename": "playcanvas.json",
+          "size": 122080
+        },
+        "meta": {
+          "meshes": 2,
+          "meshInstances": 2,
+          "nodes": 3,
+          "skins": 0,
+          "vertices": 1136,
+          "triangles": 1532,
+          "attributes": {
+            "position": 2,
+            "normal": 2,
+            "texCoord0": 2,
+            "color": 1,
+            "texCoord1": 1
+          }
+        },
+        "name": "playcanvas.json",
+        "path": [
+          24427291,
+          24427293
+        ],
+        "preload": true,
+        "region": "eu-west-1",
+        "revision": 1,
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "source": false,
+        "source_asset_id": "24427271",
+        "tags": [],
+        "task": null,
+        "type": "model",
+        "user_id": 12,
+        "item_id": "24427280",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d",
+        "immutable_backup": "b547e6e5-0c10-49f5-914e-2cb3e1edbf44",
+        "same_as_backup": 0,
+        "checkpoint_id": "0db501aa-5b2a-49e1-a103-0fade60e116a",
+        "i18n": {}
+      }
+    },
+    "24427281": {
+      "v": 2,
+      "data": {
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "user_id": 12,
+        "source_asset_id": null,
+        "source": false,
+        "tags": [],
+        "name": "orbit-camera.js",
+        "revision": 1,
+        "preload": true,
+        "meta": null,
+        "data": {
+          "order": 100,
+          "scripts": {
+            "orbitCamera": {
+              "attributesOrder": [
+                "distanceMax",
+                "distanceMin",
+                "pitchAngleMax",
+                "pitchAngleMin",
+                "inertiaFactor",
+                "focusEntity",
+                "frameOnStart"
+              ],
+              "attributes": {
+                "distanceMax": {
+                  "type": "number",
+                  "default": 0,
+                  "title": "Distance Max",
+                  "description": "Setting this at 0 will give an infinite distance limit"
+                },
+                "distanceMin": {
+                  "type": "number",
+                  "default": 2,
+                  "title": "Distance Min"
+                },
+                "pitchAngleMax": {
+                  "type": "number",
+                  "default": 90,
+                  "title": "Pitch Angle Max (degrees)"
+                },
+                "pitchAngleMin": {
+                  "type": "number",
+                  "default": -90,
+                  "title": "Pitch Angle Min (degrees)"
+                },
+                "focusEntity": {
+                  "type": "entity",
+                  "title": "Focus Entity",
+                  "description": "Entity for the camera to focus on. If blank, then the camera will use the whole scene"
+                },
+                "frameOnStart": {
+                  "type": "boolean",
+                  "default": true,
+                  "title": "Frame on Start",
+                  "description": "Frames the entity or scene at the start of the application.\""
+                },
+                "inertiaFactor": {
+                  "type": "number",
+                  "default": 0,
+                  "title": "Inertia Factor",
+                  "description": "Higher value means that the camera will continue moving after the user has stopped dragging. 0 is fully responsive."
+                }
+              }
+            }
+          },
+          "loading": false,
+          "loadingType": 0
+        },
+        "type": "script",
+        "file": {
+          "filename": "orbit-camera.js",
+          "size": 11265,
+          "hash": "75b6addcb5f0434c1aeb338e8479e999"
+        },
+        "region": "eu-west-1",
+        "path": [
+          24427267
+        ],
+        "task": null,
+        "item_id": "24427281",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d",
+        "immutable_backup": "f88b8142-5424-43d1-b032-02dac7eb5088",
+        "same_as_backup": 0,
+        "checkpoint_id": "0db501aa-5b2a-49e1-a103-0fade60e116a",
+        "i18n": {}
+      }
+    },
+    "24427282": {
+      "v": 2,
+      "data": {
+        "data": null,
+        "file": null,
+        "meta": null,
+        "name": "textures",
+        "path": [
+          24427291
+        ],
+        "preload": false,
+        "region": "eu-west-1",
+        "revision": 1,
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "source": true,
+        "source_asset_id": null,
+        "tags": [],
+        "task": null,
+        "type": "folder",
+        "user_id": 12,
+        "item_id": "24427282",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d",
+        "checkpoint_id": "0db501aa-5b2a-49e1-a103-0fade60e116a",
+        "i18n": {}
+      }
+    },
+    "24427283": {
+      "v": 2,
+      "data": {
+        "data": {
+          "addressu": "repeat",
+          "addressv": "repeat",
+          "minfilter": "linear_mip_linear",
+          "magfilter": "linear",
+          "anisotropy": 1,
+          "rgbm": true,
+          "mipmaps": true
+        },
+        "file": {
+          "filename": "Helipad_negx.png",
+          "hash": "ad3dcc195356ed24941a5f127f06f917",
+          "size": 421202
+        },
+        "has_thumbnail": true,
+        "meta": {
+          "format": "png",
+          "type": "TrueColorAlpha",
+          "width": 512,
+          "height": 512,
+          "alpha": true,
+          "depth": 8,
+          "srgb": true,
+          "compress": {
+            "alpha": true,
+            "dxt": false,
+            "pvr": false,
+            "pvrBpp": 4,
+            "etc1": false,
+            "etc2": false
+          }
+        },
+        "name": "Helipad_negx",
+        "path": [
+          24427295
+        ],
+        "preload": false,
+        "region": "eu-west-1",
+        "revision": 1,
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "source": false,
+        "source_asset_id": "24427288",
+        "tags": [],
+        "task": null,
+        "type": "texture",
+        "user_id": 12,
+        "item_id": "24427283",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d",
+        "immutable_backup": "4cc52ed7-3265-4298-87d3-e2d509070201",
+        "same_as_backup": 0,
+        "checkpoint_id": "0db501aa-5b2a-49e1-a103-0fade60e116a",
+        "i18n": {}
+      }
+    },
+    "24427284": {
+      "v": 2,
+      "data": {
+        "data": {
+          "addressu": "repeat",
+          "addressv": "repeat",
+          "minfilter": "linear_mip_linear",
+          "magfilter": "linear",
+          "anisotropy": 4,
+          "rgbm": false,
+          "mipmaps": true
+        },
+        "file": {
+          "filename": "plastic_normals.png",
+          "hash": "678c550832ef5cef593c51a798f97f4f",
+          "size": 210587,
+          "variants": {}
+        },
+        "has_thumbnail": true,
+        "meta": {
+          "compress": {
+            "alpha": false,
+            "dxt": false,
+            "pvr": false,
+            "pvrBpp": 4,
+            "etc1": false,
+            "etc2": false
+          },
+          "format": "png",
+          "type": "TrueColor",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "depth": 8,
+          "srgb": true,
+          "interlaced": false
+        },
+        "name": "plastic_normals.png",
+        "path": [
+          24427291,
+          24427282
+        ],
+        "preload": true,
+        "region": "eu-west-1",
+        "revision": 1,
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "source": false,
+        "source_asset_id": null,
+        "tags": [],
+        "task": null,
+        "type": "texture",
+        "user_id": 12,
+        "item_id": "24427284",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d",
+        "immutable_backup": "1eea81cd-b643-453b-afe4-79fb58e76a3d",
+        "same_as_backup": 0,
+        "checkpoint_id": "0db501aa-5b2a-49e1-a103-0fade60e116a",
+        "i18n": {}
+      }
+    },
+    "24427285": {
+      "v": 2,
+      "data": {
+        "data": null,
+        "file": {
+          "size": 1048656,
+          "hash": "1eeff978b2b781a22b007d4f8b1f60fa",
+          "filename": "Helipad_negy.hdr"
+        },
+        "has_thumbnail": false,
+        "meta": {
+          "format": "hdr",
+          "type": "TrueColor",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "depth": 16,
+          "srgb": false
+        },
+        "name": "Helipad_negy",
+        "path": [
+          24427295,
+          24427270
+        ],
+        "preload": false,
+        "region": "eu-west-1",
+        "revision": 1,
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "source": true,
+        "source_asset_id": null,
+        "tags": [],
+        "task": null,
+        "type": "texture",
+        "user_id": 12,
+        "item_id": "24427285",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d",
+        "immutable_backup": "dc399863-488c-4bf9-bce0-67c0f4f68670",
+        "same_as_backup": 0,
+        "checkpoint_id": "0db501aa-5b2a-49e1-a103-0fade60e116a",
+        "i18n": {}
+      }
+    },
+    "24427286": {
+      "v": 2,
+      "data": {
+        "data": null,
+        "file": {
+          "size": 1048656,
+          "hash": "bd21ba4a8795d15e06b411803af4671b",
+          "filename": "Helipad_posy.hdr"
+        },
+        "has_thumbnail": false,
+        "meta": {
+          "format": "hdr",
+          "type": "TrueColor",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "depth": 16,
+          "srgb": false
+        },
+        "name": "Helipad_posy",
+        "path": [
+          24427295,
+          24427270
+        ],
+        "preload": false,
+        "region": "eu-west-1",
+        "revision": 1,
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "source": true,
+        "source_asset_id": null,
+        "tags": [],
+        "task": null,
+        "type": "texture",
+        "user_id": 12,
+        "item_id": "24427286",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d",
+        "immutable_backup": "1a72208d-9854-4dd2-8f10-c3261489d48b",
+        "same_as_backup": 0,
+        "checkpoint_id": "0db501aa-5b2a-49e1-a103-0fade60e116a",
+        "i18n": {}
+      }
+    },
+    "24427287": {
+      "v": 14,
+      "data": {
+        "data": {
+          "shader": "blinn",
+          "ambient": [
+            0,
+            0,
+            0
+          ],
+          "ambientTint": false,
+          "aoMap": 24427268,
+          "aoMapVertexColor": false,
+          "aoMapChannel": "r",
+          "aoMapUv": 1,
+          "aoMapTiling": [
+            1,
+            1
+          ],
+          "aoMapOffset": [
+            0,
+            0
+          ],
+          "occludeSpecular": 1,
+          "diffuse": [
+            0.9568627450980393,
+            0.43529411764705883,
+            0.058823529411764705
+          ],
+          "diffuseMap": null,
+          "diffuseMapVertexColor": false,
+          "diffuseMapChannel": "rgb",
+          "diffuseMapUv": 0,
+          "diffuseMapTiling": [
+            1,
+            1
+          ],
+          "diffuseMapOffset": [
+            0,
+            0
+          ],
+          "diffuseMapTint": false,
+          "specular": [
+            0.23,
+            0.23,
+            0.23
+          ],
+          "specularMapVertexColor": false,
+          "specularMapChannel": "rgb",
+          "specularMapUv": 0,
+          "specularMap": null,
+          "specularMapTiling": [
+            1,
+            1
+          ],
+          "specularMapOffset": [
+            0,
+            0
+          ],
+          "specularMapTint": false,
+          "specularAntialias": true,
+          "useMetalness": true,
+          "metalnessMap": null,
+          "metalnessMapVertexColor": false,
+          "metalnessMapChannel": "r",
+          "metalnessMapUv": 0,
+          "metalnessMapTiling": [
+            1,
+            1
+          ],
+          "metalnessMapOffset": [
+            0,
+            0
+          ],
+          "metalnessMapTint": false,
+          "metalness": 0,
+          "conserveEnergy": true,
+          "shininess": 100,
+          "glossMap": 24427276,
+          "glossMapVertexColor": false,
+          "glossMapChannel": "r",
+          "glossMapUv": 0,
+          "glossMapTiling": [
+            1,
+            1
+          ],
+          "glossMapOffset": [
+            0,
+            0
+          ],
+          "fresnelModel": 0,
+          "fresnelFactor": 0,
+          "emissive": [
+            0.9647058823529412,
+            0.12549019607843137,
+            0.12549019607843137
+          ],
+          "emissiveMap": null,
+          "emissiveMapVertexColor": false,
+          "emissiveMapChannel": "rgb",
+          "emissiveMapUv": 0,
+          "emissiveMapTiling": [
+            1,
+            1
+          ],
+          "emissiveMapOffset": [
+            0,
+            0
+          ],
+          "emissiveMapTint": false,
+          "emissiveIntensity": 0.07,
+          "normalMap": 24427284,
+          "normalMapTiling": [
+            1,
+            1
+          ],
+          "normalMapOffset": [
+            0,
+            0
+          ],
+          "normalMapUv": 0,
+          "bumpMapFactor": 0.7,
+          "heightMap": null,
+          "heightMapChannel": "r",
+          "heightMapUv": 0,
+          "heightMapTiling": [
+            1,
+            1
+          ],
+          "heightMapOffset": [
+            0,
+            0
+          ],
+          "heightMapFactor": 1,
+          "alphaTest": 0,
+          "opacity": 1,
+          "opacityMap": null,
+          "opacityMapVertexColor": false,
+          "opacityMapChannel": "r",
+          "opacityMapUv": 0,
+          "opacityMapTiling": [
+            1,
+            1
+          ],
+          "opacityMapOffset": [
+            0,
+            0
+          ],
+          "reflectivity": 1,
+          "refraction": 0,
+          "refractionIndex": 0.6666666666666666,
+          "sphereMap": null,
+          "cubeMap": null,
+          "cubeMapProjection": 0,
+          "cubeMapProjectionBox": {
+            "center": [
+              0,
+              0,
+              0
+            ],
+            "halfExtents": [
+              0.5,
+              0.5,
+              0.5
+            ]
+          },
+          "lightMap": null,
+          "lightMapVertexColor": false,
+          "lightMapChannel": "rgb",
+          "lightMapUv": 1,
+          "lightMapTiling": [
+            1,
+            1
+          ],
+          "lightMapOffset": [
+            0,
+            0
+          ],
+          "depthTest": true,
+          "depthWrite": true,
+          "cull": 1,
+          "blendType": 3,
+          "shadowSampleType": 1,
+          "useFog": true,
+          "useLighting": true,
+          "useSkybox": true,
+          "useGammaTonemap": true
+        },
+        "file": null,
+        "meta": null,
+        "name": "plastic-orange",
+        "path": [
+          24427291,
+          24427289
+        ],
+        "preload": true,
+        "region": "eu-west-1",
+        "revision": 1,
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "source": false,
+        "source_asset_id": null,
+        "tags": [],
+        "task": null,
+        "type": "material",
+        "user_id": 12,
+        "item_id": "24427287",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d",
+        "checkpoint_id": "0db501aa-5b2a-49e1-a103-0fade60e116a",
+        "i18n": {}
+      }
+    },
+    "24427288": {
+      "v": 2,
+      "data": {
+        "data": null,
+        "file": {
+          "size": 1048656,
+          "hash": "ede32f5b1b3bd9c3c49af7b0348f9022",
+          "filename": "Helipad_negx.hdr"
+        },
+        "has_thumbnail": false,
+        "meta": {
+          "format": "hdr",
+          "type": "TrueColor",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "depth": 16,
+          "srgb": false
+        },
+        "name": "Helipad_negx",
+        "path": [
+          24427295,
+          24427270
+        ],
+        "preload": false,
+        "region": "eu-west-1",
+        "revision": 1,
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "source": true,
+        "source_asset_id": null,
+        "tags": [],
+        "task": null,
+        "type": "texture",
+        "user_id": 12,
+        "item_id": "24427288",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d",
+        "immutable_backup": "90bfd1c4-49c5-497d-a1a1-02ca37f76f57",
+        "same_as_backup": 0,
+        "checkpoint_id": "0db501aa-5b2a-49e1-a103-0fade60e116a",
+        "i18n": {}
+      }
+    },
+    "24427289": {
+      "v": 2,
+      "data": {
+        "data": null,
+        "file": null,
+        "meta": null,
+        "name": "materials",
+        "path": [
+          24427291
+        ],
+        "preload": false,
+        "region": "eu-west-1",
+        "revision": 1,
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "source": true,
+        "source_asset_id": null,
+        "tags": [],
+        "task": null,
+        "type": "folder",
+        "user_id": 12,
+        "item_id": "24427289",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d",
+        "checkpoint_id": "0db501aa-5b2a-49e1-a103-0fade60e116a",
+        "i18n": {}
+      }
+    },
+    "24427290": {
+      "v": 2,
+      "data": {
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "user_id": 12,
+        "source_asset_id": null,
+        "source": false,
+        "tags": [],
+        "name": "mouse-input.js",
+        "revision": 1,
+        "preload": true,
+        "meta": null,
+        "data": {
+          "order": 100,
+          "scripts": {
+            "mouseInput": {
+              "attributesOrder": [
+                "orbitSensitivity",
+                "distanceSensitivity"
+              ],
+              "attributes": {
+                "orbitSensitivity": {
+                  "type": "number",
+                  "default": 0.3,
+                  "title": "Orbit Sensitivity",
+                  "description": "How fast the camera moves around the orbit. Higher is faster"
+                },
+                "distanceSensitivity": {
+                  "type": "number",
+                  "default": 0.15,
+                  "title": "Distance Sensitivity",
+                  "description": "How fast the camera moves in and out. Higher is faster"
+                }
+              }
+            }
+          },
+          "loading": false,
+          "loadingType": 0
+        },
+        "type": "script",
+        "file": {
+          "filename": "mouse-input.js",
+          "size": 4175,
+          "hash": "f64305f0f63b3cecbf1278656130dd3c"
+        },
+        "region": "eu-west-1",
+        "path": [
+          24427267
+        ],
+        "task": null,
+        "item_id": "24427290",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d",
+        "immutable_backup": "49c23d20-2809-49ec-9b1d-0ad564140848",
+        "same_as_backup": 0,
+        "checkpoint_id": "0db501aa-5b2a-49e1-a103-0fade60e116a",
+        "i18n": {}
+      }
+    },
+    "24427291": {
+      "v": 2,
+      "data": {
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "user_id": 12,
+        "source_asset_id": null,
+        "source": true,
+        "tags": [],
+        "name": "cube",
+        "revision": 1,
+        "preload": false,
+        "meta": null,
+        "data": null,
+        "type": "folder",
+        "file": null,
+        "region": "eu-west-1",
+        "path": [],
+        "task": null,
+        "item_id": "24427291",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d",
+        "checkpoint_id": "0db501aa-5b2a-49e1-a103-0fade60e116a",
+        "i18n": {}
+      }
+    },
+    "24427292": {
+      "v": 2,
+      "data": {
+        "data": null,
+        "file": {
+          "size": 1048656,
+          "hash": "3fe601d208cc3152aa80df3d257cef80",
+          "filename": "Helipad_posx.hdr"
+        },
+        "has_thumbnail": false,
+        "meta": {
+          "format": "hdr",
+          "type": "TrueColor",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "depth": 16,
+          "srgb": false
+        },
+        "name": "Helipad_posx",
+        "path": [
+          24427295,
+          24427270
+        ],
+        "preload": false,
+        "region": "eu-west-1",
+        "revision": 1,
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "source": true,
+        "source_asset_id": null,
+        "tags": [],
+        "task": null,
+        "type": "texture",
+        "user_id": 12,
+        "item_id": "24427292",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d",
+        "immutable_backup": "b1263cb1-badc-407a-ab86-b49083466132",
+        "same_as_backup": 0,
+        "checkpoint_id": "0db501aa-5b2a-49e1-a103-0fade60e116a",
+        "i18n": {}
+      }
+    },
+    "24427293": {
+      "v": 2,
+      "data": {
+        "data": null,
+        "file": null,
+        "meta": null,
+        "name": "model",
+        "path": [
+          24427291
+        ],
+        "preload": false,
+        "region": "eu-west-1",
+        "revision": 1,
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "source": true,
+        "source_asset_id": null,
+        "tags": [],
+        "task": null,
+        "type": "folder",
+        "user_id": 12,
+        "item_id": "24427293",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d",
+        "checkpoint_id": "0db501aa-5b2a-49e1-a103-0fade60e116a",
+        "i18n": {}
+      }
+    },
+    "24427294": {
+      "v": 2,
+      "data": {
+        "data": {
+          "addressu": "repeat",
+          "addressv": "repeat",
+          "minfilter": "linear_mip_linear",
+          "magfilter": "linear",
+          "anisotropy": 1,
+          "rgbm": true,
+          "mipmaps": true
+        },
+        "file": {
+          "filename": "Helipad_posy.png",
+          "hash": "b4db4d7dc90e3e34e74a251f1f201eab",
+          "size": 185811
+        },
+        "has_thumbnail": true,
+        "meta": {
+          "format": "png",
+          "type": "TrueColorAlpha",
+          "width": 512,
+          "height": 512,
+          "alpha": true,
+          "depth": 8,
+          "srgb": true,
+          "compress": {
+            "alpha": true,
+            "dxt": false,
+            "pvr": false,
+            "pvrBpp": 4,
+            "etc1": false,
+            "etc2": false
+          }
+        },
+        "name": "Helipad_posy",
+        "path": [
+          24427295
+        ],
+        "preload": false,
+        "region": "eu-west-1",
+        "revision": 1,
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "source": false,
+        "source_asset_id": "24427286",
+        "tags": [],
+        "task": null,
+        "type": "texture",
+        "user_id": 12,
+        "item_id": "24427294",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d",
+        "immutable_backup": "32ac1ea0-4bba-4c82-9ef1-1c4837b76be0",
+        "same_as_backup": 0,
+        "checkpoint_id": "0db501aa-5b2a-49e1-a103-0fade60e116a",
+        "i18n": {}
+      }
+    },
+    "24427295": {
+      "v": 2,
+      "data": {
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "user_id": 12,
+        "source_asset_id": null,
+        "source": true,
+        "tags": [],
+        "name": "cubemap",
+        "revision": 1,
+        "preload": false,
+        "meta": null,
+        "data": null,
+        "type": "folder",
+        "file": null,
+        "region": "eu-west-1",
+        "path": [],
+        "task": null,
+        "item_id": "24427295",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d",
+        "checkpoint_id": "0db501aa-5b2a-49e1-a103-0fade60e116a",
+        "i18n": {}
+      }
+    },
+    "24427296": {
+      "v": 2,
+      "data": {
+        "data": {
+          "addressu": "repeat",
+          "addressv": "repeat",
+          "minfilter": "linear_mip_linear",
+          "magfilter": "linear",
+          "anisotropy": 1,
+          "rgbm": true,
+          "mipmaps": true
+        },
+        "file": {
+          "filename": "Helipad_posz.png",
+          "hash": "ed7ddf73b69555d1aef880e581214856",
+          "size": 458870
+        },
+        "has_thumbnail": true,
+        "meta": {
+          "format": "png",
+          "type": "TrueColorAlpha",
+          "width": 512,
+          "height": 512,
+          "alpha": true,
+          "depth": 8,
+          "srgb": true,
+          "compress": {
+            "alpha": true,
+            "dxt": false,
+            "pvr": false,
+            "pvrBpp": 4,
+            "etc1": false,
+            "etc2": false
+          }
+        },
+        "name": "Helipad_posz",
+        "path": [
+          24427295
+        ],
+        "preload": false,
+        "region": "eu-west-1",
+        "revision": 1,
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "source": false,
+        "source_asset_id": "24427269",
+        "tags": [],
+        "task": null,
+        "type": "texture",
+        "user_id": 12,
+        "item_id": "24427296",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d",
+        "immutable_backup": "8168aad9-d0f8-4261-832c-9ff86b5f44b1",
+        "same_as_backup": 0,
+        "checkpoint_id": "0db501aa-5b2a-49e1-a103-0fade60e116a",
+        "i18n": {}
+      }
+    },
+    "24427297": {
+      "v": 2,
+      "data": {
+        "data": null,
+        "file": {
+          "size": 1048656,
+          "hash": "138247409255fdc939818c81de19e233",
+          "filename": "Helipad_negz.hdr"
+        },
+        "has_thumbnail": false,
+        "meta": {
+          "format": "hdr",
+          "type": "TrueColor",
+          "width": 512,
+          "height": 512,
+          "alpha": false,
+          "depth": 16,
+          "srgb": false
+        },
+        "name": "Helipad_negz",
+        "path": [
+          24427295,
+          24427270
+        ],
+        "preload": false,
+        "region": "eu-west-1",
+        "revision": 1,
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "source": true,
+        "source_asset_id": null,
+        "tags": [],
+        "task": null,
+        "type": "texture",
+        "user_id": 12,
+        "item_id": "24427297",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d",
+        "immutable_backup": "b7b5ed14-17b3-4d61-9c0a-5877dfb8a93e",
+        "same_as_backup": 0,
+        "checkpoint_id": "0db501aa-5b2a-49e1-a103-0fade60e116a",
+        "i18n": {}
+      }
+    },
+    "24427298": {
+      "v": 2,
+      "data": {
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "user_id": 12,
+        "source_asset_id": null,
+        "source": false,
+        "tags": [],
+        "name": "touch-input.js",
+        "revision": 1,
+        "preload": true,
+        "meta": null,
+        "data": {
+          "order": 100,
+          "scripts": {
+            "touchInput": {
+              "attributesOrder": [
+                "orbitSensitivity",
+                "distanceSensitivity"
+              ],
+              "attributes": {
+                "orbitSensitivity": {
+                  "type": "number",
+                  "default": 0.4,
+                  "title": "Orbit Sensitivity",
+                  "description": "How fast the camera moves around the orbit. Higher is faster"
+                },
+                "distanceSensitivity": {
+                  "type": "number",
+                  "default": 0.2,
+                  "title": "Distance Sensitivity",
+                  "description": "How fast the camera moves in and out. Higher is faster"
+                }
+              }
+            }
+          },
+          "loading": false,
+          "loadingType": 0
+        },
+        "type": "script",
+        "file": {
+          "filename": "touch-input.js",
+          "size": 5069,
+          "hash": "dd352842782199b1bafbbb962802f6ab"
+        },
+        "region": "eu-west-1",
+        "path": [
+          24427267
+        ],
+        "task": null,
+        "item_id": "24427298",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d",
+        "immutable_backup": "863927cd-ae98-4042-9296-1ee5270d7ad7",
+        "same_as_backup": 0,
+        "checkpoint_id": "0db501aa-5b2a-49e1-a103-0fade60e116a",
+        "i18n": {}
+      }
+    },
+    "24427299": {
+      "v": 2,
+      "data": {
+        "data": {
+          "addressu": "repeat",
+          "addressv": "repeat",
+          "minfilter": "linear_mip_linear",
+          "magfilter": "linear",
+          "anisotropy": 1,
+          "rgbm": true,
+          "mipmaps": true
+        },
+        "file": {
+          "filename": "Helipad_posx.png",
+          "hash": "cac1dd195a385d5871816e5f6c99a714",
+          "size": 442652
+        },
+        "has_thumbnail": true,
+        "meta": {
+          "format": "png",
+          "type": "TrueColorAlpha",
+          "width": 512,
+          "height": 512,
+          "alpha": true,
+          "depth": 8,
+          "srgb": true,
+          "compress": {
+            "alpha": true,
+            "dxt": false,
+            "pvr": false,
+            "pvrBpp": 4,
+            "etc1": false,
+            "etc2": false
+          }
+        },
+        "name": "Helipad_posx",
+        "path": [
+          24427295
+        ],
+        "preload": false,
+        "region": "eu-west-1",
+        "revision": 1,
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "source": false,
+        "source_asset_id": "24427292",
+        "tags": [],
+        "task": null,
+        "type": "texture",
+        "user_id": 12,
+        "item_id": "24427299",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d",
+        "immutable_backup": "f792aa98-b90c-452e-93b1-bd3146d53f89",
+        "same_as_backup": 0,
+        "checkpoint_id": "0db501aa-5b2a-49e1-a103-0fade60e116a",
+        "i18n": {}
+      }
+    },
+    "24427300": {
+      "v": 2,
+      "data": {
+        "data": {
+          "addressu": "repeat",
+          "addressv": "repeat",
+          "minfilter": "linear_mip_linear",
+          "magfilter": "linear",
+          "anisotropy": 1,
+          "rgbm": true,
+          "mipmaps": true
+        },
+        "file": {
+          "filename": "Helipad_negz.png",
+          "hash": "98b3170f573dad6dff21623ffb347d80",
+          "size": 414309
+        },
+        "has_thumbnail": true,
+        "meta": {
+          "format": "png",
+          "type": "TrueColorAlpha",
+          "width": 512,
+          "height": 512,
+          "alpha": true,
+          "depth": 8,
+          "srgb": true,
+          "compress": {
+            "alpha": true,
+            "dxt": false,
+            "pvr": false,
+            "pvrBpp": 4,
+            "etc1": false,
+            "etc2": false
+          }
+        },
+        "name": "Helipad_negz",
+        "path": [
+          24427295
+        ],
+        "preload": false,
+        "region": "eu-west-1",
+        "revision": 1,
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "source": false,
+        "source_asset_id": "24427297",
+        "tags": [],
+        "task": null,
+        "type": "texture",
+        "user_id": 12,
+        "item_id": "24427300",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d",
+        "immutable_backup": "b2b7e448-a168-4873-9286-db815c23baa0",
+        "same_as_backup": 0,
+        "checkpoint_id": "0db501aa-5b2a-49e1-a103-0fade60e116a",
+        "i18n": {}
+      }
+    },
+    "24427515": {
+      "v": 2,
+      "data": {
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "user_id": 196751,
+        "source_asset_id": null,
+        "source": false,
+        "tags": [],
+        "name": "ammo.wasm.wasm",
+        "revision": 1,
+        "preload": true,
+        "meta": null,
+        "data": {
+          "moduleName": "Ammo",
+          "glueScriptId": 24427517,
+          "fallbackScriptId": 24427516
+        },
+        "type": "wasm",
+        "file": {
+          "filename": "ammo.wasm.wasm",
+          "size": 693917,
+          "hash": "714bbc915c66105b24e2d31544d10099"
+        },
+        "region": "eu-west-1",
+        "path": [
+          24427518
+        ],
+        "task": null,
+        "i18n": {},
+        "has_thumbnail": false,
+        "item_id": "24427515",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d"
+      }
+    },
+    "24427516": {
+      "v": 2,
+      "data": {
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "user_id": 196751,
+        "source_asset_id": null,
+        "source": false,
+        "tags": [],
+        "name": "ammo.js",
+        "revision": 1,
+        "preload": false,
+        "meta": null,
+        "data": {
+          "order": 100,
+          "scripts": {},
+          "loadingType": 0
+        },
+        "type": "script",
+        "file": {
+          "filename": "ammo.js",
+          "size": 1812192,
+          "hash": "3dd96bd0f83420f2732b009b092b3bea"
+        },
+        "region": "eu-west-1",
+        "path": [
+          24427518
+        ],
+        "task": null,
+        "i18n": {},
+        "has_thumbnail": false,
+        "item_id": "24427516",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d"
+      }
+    },
+    "24427517": {
+      "v": 2,
+      "data": {
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "user_id": 196751,
+        "source_asset_id": null,
+        "source": false,
+        "tags": [],
+        "name": "ammo.wasm.js",
+        "revision": 1,
+        "preload": false,
+        "meta": null,
+        "data": {
+          "order": 100,
+          "scripts": {},
+          "loadingType": 0
+        },
+        "type": "script",
+        "file": {
+          "filename": "ammo.wasm.js",
+          "size": 296741,
+          "hash": "1ba2a35184895b5787c7bd6bafe46dc0"
+        },
+        "region": "eu-west-1",
+        "path": [
+          24427518
+        ],
+        "task": null,
+        "i18n": {},
+        "has_thumbnail": false,
+        "item_id": "24427517",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d"
+      }
+    },
+    "24427518": {
+      "v": 1,
+      "data": {
+        "scope": {
+          "type": "project",
+          "id": 646161
+        },
+        "user_id": 196751,
+        "source_asset_id": null,
+        "source": true,
+        "tags": [],
+        "name": "Ammo",
+        "revision": 1,
+        "preload": false,
+        "meta": null,
+        "data": null,
+        "type": "folder",
+        "file": null,
+        "region": "eu-west-1",
+        "path": [],
+        "task": null,
+        "i18n": {},
+        "has_thumbnail": false,
+        "item_id": "24427518",
+        "branch_id": "7d106574-9a0e-4061-b4df-f7e51883129d"
+      }
+    }
+  },
+  "a": "bs",
+  "c": "assets"
+}

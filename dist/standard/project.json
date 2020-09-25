@@ -1,0 +1,15 @@
+{
+    "owner": {
+        "id": "user123abc",
+        "username": "ZhangSan",
+        "plan": 0,
+        "size": 0,
+        "diskAllowance": 200000000
+    },
+    "project": {
+        "id": "ca77e058",
+        "name": "新建项目",
+        "description": "项目描述",
+        "settings": {}
+    }
+}

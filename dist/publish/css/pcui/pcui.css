@@ -1,0 +1,330 @@
+﻿@font-face {
+    font-family: "pc-icon";
+    src: url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/PlayIcons-Regular.eot");
+    src: url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/PlayIcons-Regular.eot?#iefix") format("embedded-opentype"),
+        url("../fonts/PlayIcons-Regular.woff2") format("woff2"),
+        url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/PlayIcons-Regular.woff") format("woff"),
+        url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/PlayIcons-Regular.ttf") format("truetype"),
+        url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/PlayIcons-Regular.svg") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Proxima Nova Regular";
+    src: url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/proxima_nova_regular.eot");
+    src: url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/proxima_nova_regular.eot?#iefix") format("embedded-opentype"),
+        url("../fonts/proxima_nova_regular.woff2") format("woff2"),
+        url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/proxima_nova_regular.woff") format("woff"),
+        url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/proxima_nova_regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Proxima Nova Light";
+    src: url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/proxima_nova_light.eot");
+    src: url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/proxima_nova_light.eot?#iefix") format("embedded-opentype"),
+        url("../fonts/proxima_nova_light.woff2") format("woff2"),
+        url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/proxima_nova_light.woff") format("woff"),
+        url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/proxima_nova_light.ttf") format("truetype");
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Proxima Nova Bold";
+    src: url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/proxima_nova_bold.eot");
+    src: url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/proxima_nova_bold.eot?#iefix") format("embedded-opentype"),
+        url("../fonts/proxima_nova_bold.woff2") format("woff2"),
+        url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/proxima_nova_bold.woff") format("woff"),
+        url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/proxima_nova_bold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Proxima Nova Thin";
+    src: url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/proxima_nova_thin_t.eot");
+    src: url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/proxima_nova_thin_t.eot?#iefix") format("embedded-opentype"),
+        url("../fonts/proxima_nova_thin_t.woff2") format("woff2"),
+        url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/proxima_nova_thin_t.woff") format("woff"),
+        url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/proxima_nova_thin_t.ttf") format("truetype");
+    font-weight: 100;
+    font-style: normal;
+}
+
+.font-smooth,
+.font-icon,
+.pcui-panel.pcui-collapsible>.pcui-panel-header:before,
+.pcui-panel-header {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-smoothing: antialiased;
+}
+
+.font-icon,
+.pcui-panel.pcui-collapsible>.pcui-panel-header:before {
+    font-family: "pc-icon";
+}
+
+.font-thin {
+    font-family: "Proxima Nova Thin", "Helvetica Neue", Arial, Helvetica,
+        sans-serif;
+    font-weight: 100;
+    font-style: normal;
+}
+
+.font-light {
+    font-family: "Proxima Nova Light", "Helvetica Neue", Arial, Helvetica,
+        sans-serif;
+    font-weight: 200;
+    font-style: normal;
+}
+
+.font-regular {
+    font-family: "Proxima Nova Regular", "Helvetica Neue", Arial, Helvetica,
+        sans-serif;
+    font-weight: normal;
+    font-style: normal;
+}
+
+.font-bold,
+.pcui-panel-header {
+    font-family: "Proxima Nova Bold", "Helvetica Neue", Arial, Helvetica,
+        sans-serif;
+    font-weight: bold;
+    font-style: normal;
+}
+
+.noSelect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.pcui-flex {
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+}
+
+.pcui-grid {
+    display: -ms-grid;
+    display: grid;
+}
+
+.pcui-scrollable {
+    overflow: auto;
+}
+
+@-webkit-keyframes pcui-flash-animation {
+    from {
+        outline-color: #f60;
+    }
+
+    to {
+        outline-color: rgba(255, 102, 0, 0);
+    }
+}
+
+@keyframes pcui-flash-animation {
+    from {
+        outline-color: #f60;
+    }
+
+    to {
+        outline-color: rgba(255, 102, 0, 0);
+    }
+}
+
+.noSelect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.pcui-element {
+    border: 0 solid #232e30;
+}
+
+.pcui-element.flash {
+    outline: 1px solid #f60;
+    -webkit-animation: pcui-flash-animation 200ms ease-in-out forwards;
+    animation: pcui-flash-animation 200ms ease-in-out forwards;
+}
+
+.pcui-container {
+    position: relative;
+}
+
+.pcui-container.pcui-resizable>.pcui-resizable-handle {
+    position: absolute;
+    z-index: 1;
+    opacity: 0;
+    background-color: transparent;
+}
+
+.pcui-container.pcui-resizable>.pcui-resizable-handle:hover {
+    opacity: 1;
+}
+
+.pcui-container.pcui-resizable.pcui-resizable-resizing>.pcui-resizable-handle {
+    opacity: 1;
+}
+
+.pcui-container.pcui-resizable.pcui-resizable-left>.pcui-resizable-handle,
+.pcui-container.pcui-resizable.pcui-resizable-right>.pcui-resizable-handle {
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    height: auto;
+    cursor: ew-resize;
+}
+
+.pcui-container.pcui-resizable.pcui-resizable-left>.pcui-resizable-handle {
+    left: 0;
+    border-left: 3px solid #20292b;
+}
+
+.pcui-container.pcui-resizable.pcui-resizable-right>.pcui-resizable-handle {
+    right: 0;
+    border-right: 3px solid #20292b;
+}
+
+.pcui-container.pcui-resizable.pcui-resizable-top>.pcui-resizable-handle,
+.pcui-container.pcui-resizable.pcui-resizable-bottom>.pcui-resizable-handle {
+    left: 0;
+    right: 0;
+    width: auto;
+    height: 1px;
+    cursor: ns-resize;
+}
+
+.pcui-container.pcui-resizable.pcui-resizable-top>.pcui-resizable-handle {
+    top: 0;
+    border-top: 3px solid #20292b;
+}
+
+.pcui-container.pcui-resizable.pcui-resizable-bottom>.pcui-resizable-handle {
+    bottom: 0;
+    border-bottom: 3px solid #20292b;
+}
+
+.pcui-panel {
+    background-color: #364346;
+}
+
+.pcui-panel-header {
+    background-color: #293538;
+    color: #fff;
+    font-size: 12px;
+    white-space: nowrap;
+    padding-left: 10px;
+    flex-shrink: 0;
+    align-items: center;
+}
+
+.pcui-panel-content {
+    flex-grow: 1;
+}
+
+.pcui-panel.pcui-collapsible {
+    overflow: hidden;
+    transition: height 100ms, width 100ms;
+}
+
+.pcui-panel.pcui-collapsible>.pcui-panel-header {
+    cursor: pointer;
+}
+
+.pcui-panel.pcui-collapsible>.pcui-panel-header:before {
+    left: 0;
+    content: "\E179";
+    font-size: 14px;
+    margin-right: 10px;
+    text-align: center;
+    color: #f60;
+}
+
+.pcui-panel.pcui-collapsible>.pcui-panel-header:hover {
+    color: #fff;
+}
+
+.pcui-panel.pcui-collapsible>.pcui-panel-header:hover:before {
+    color: #fff;
+}
+
+.pcui-panel.pcui-collapsible.pcui-panel-normal>.pcui-panel-header:before {
+    content: "\E183";
+    font-weight: 200;
+}
+
+.pcui-panel.pcui-collapsible>.pcui-panel-content {
+    transition: visibility 100ms;
+}
+
+.pcui-panel.pcui-collapsible.pcui-collapsed>.pcui-panel-content {
+    visibility: hidden;
+}
+
+.pcui-panel.pcui-collapsible.pcui-collapsed>.pcui-panel-header:before {
+    content: "\E180";
+}
+
+.pcui-panel.pcui-collapsible.pcui-collapsed.pcui-panel-normal>.pcui-panel-header:before {
+    content: "\E184";
+}
+
+.pcui-panel.pcui-collapsible.pcui-collapsed.pcui-panel-horizontal>.pcui-panel-header {
+    width: 2048px;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+    -webkit-transform-origin: 0% 100%;
+    -moz-transform-origin: 0% 100%;
+    -ms-transform-origin: 0% 100%;
+    -o-transform-origin: 0% 100%;
+    transform-origin: 0% 100%;
+}
+
+.pcui-panel.pcui-collapsible.pcui-collapsed.pcui-panel-horizontal>.pcui-panel-header:before {
+    content: "\E177";
+}
+
+.pcui-panel.pcui-collapsible.pcui-collapsed.pcui-panel-horizontal.pcui-panel-normal>.pcui-panel-header:before {
+    content: "";
+}
+
+.pcui-panel.pcui-collapsible.pcui-collapsed.pcui-panel-horizontal>.pcui-panel-content {
+    transition: none;
+}
+
+.pcui-panel.pcui-resizable.pcui-collapsible.pcui-collapsed>.pcui-resizable-handle {
+    display: none;
+}
+
+.pcui-panel.pcui-resizable.pcui-resizable-resizing {
+    transition: none;
+}
+
+.pcui-panel.pcui-resizable.pcui-resizable-resizing>.pcui-panel-content {
+    transition: none;
+}
+
+.pcui-panel.pcui-disabled>.pcui-panel-header {
+    background-color: #303d40;
+    color: #999;
+}
+
+.pcui-hidden {
+    display: none;
+}

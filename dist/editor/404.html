@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>错误 404</title>
+
+    <style>
+        body {
+            font-family: 'courier new', monospace;
+            color: #b1b8ba;
+            background-color: #293538;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-smoothing: antialiased
+        }
+
+        .block {
+            position: absolute;
+            width: 480px;
+            height: 128px;
+            left: calc(50% - 240px);
+            top: calc(50% - 64px)
+        }
+
+        .block>.icon {
+            float: left;
+            width: 112px;
+            height: 112px;
+            margin: 8px 32px 0 0
+        }
+
+        .block>.status {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 0;
+            color: #fff
+        }
+
+        .block>.message {
+            margin: 0 16px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff
+        }
+
+        .block>a.home {
+            display: inline-block;
+            margin: 8px 2px;
+            font-weight: bold;
+            color: #f60
+        }
+
+        .block>a.home:hover {
+            color: #fff
+        }
+
+        pre.stack {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: auto;
+            color: #f60;
+            font-weight: bold;
+            background-color: #20292b;
+            padding: 8px;
+            margin: 0
+        }
+
+        button {
+            margin-top: 10px;
+            font-size: 14px;
+            background: #2c393c;
+            border: 0;
+            color: #b1b8ba;
+            width: 180px;
+            height: 32px;
+            line-height: 32px;
+            background: #f60;
+            opacity: 0.9;
+            color: #fff
+        }
+
+        button:hover {
+            cursor: pointer;
+            opacity: 1
+        }
+    </style>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+
+<body>
+    <div class='block'>
+        <img class='icon' src='404.png' />
+        <h1 class='status'>404</h1>
+        <h2 class='message'>资源不存在</h2>
+        <a class='home' href='/overview'>home</a>
+    </div>
+
+</body>
+
+</html>

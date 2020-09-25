@@ -1,0 +1,91 @@
+html,
+body {
+    margin: 0px;
+    padding: 0;
+}
+.VeryTable{
+    height: calc(100vh - 40px );
+    top: 0px;
+    width: 100%;
+}
+.TableTool{
+    width: 100%;
+    height: 30px;
+    bottom: 0;
+    border: 1px solid #DCDCDC;
+    /* background-color:#DCDCDC; */
+}
+.TableTool .add{
+    position: relative;
+    margin-left: 12px;
+    margin-right: 6px;
+    height: 30px;
+    width: 30px;
+    float: left;
+    background: url("timg.jpg") no-repeat;
+    background-size: 100% 100%;
+    padding: 0;
+    border: 0;
+}
+
+.TableTool .tablename{
+    background-color:#DCDCDC;
+    position: relative;
+    height: 30px;
+    float: left;
+    width: 90px;
+    padding: 0;
+    border:1px solid #C0C0C0;
+    line-height: 30px;
+}
+
+.TableTool .tablename2{
+    background-color:#FFFFFF;
+    position: relative;
+    height:30px;
+    float: left;
+    width: 90px;
+    padding: 0;
+    border:1px solid #C0C0C0;
+    line-height: 30px;
+}
+
+.TableTool .tableop{
+    position: absolute;
+    width: 90px;
+    background-color: #FFFFFF;
+    border:3px solid #DCDCDC;
+    left: 48px;
+    bottom: 30px;
+    text-align:center;
+}
+.TableTool input{
+    position: absolute;
+    width: 90px;
+    height: 30px;
+    left: 48px;
+    padding: 0;
+    border: 0;
+    line-height: 30px;
+}
+
+.TableTool .tablenext{
+    position: relative;
+    height: 30px;
+    width: 30px;
+    /* left: 810px; */
+    left: 5px;
+    padding: 0;
+    border: 0;
+}
+
+.TableTool .tablelast{
+    position: relative;
+    height: 30px;
+    width: 30px;
+    /* margin-right: 6px;
+    float: right; */
+    margin-left: 10px;
+    padding: 0;
+    border: 0;
+}

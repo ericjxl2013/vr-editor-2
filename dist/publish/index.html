@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>万维引擎</title>
+    <link rel="icon" href="/favicon.ico" />
+
+    <!-- <div id="test">
+    <p>this is first paragraph</p>
+    <p>this is second paragraph</p>
+  </div> -->
+
+    <!-- axios -->
+    <script src="js/axios.min.js"></script>
+    <!-- <script src="js/inflate.min.js"></script> -->
+
+    <!-- Babylon.js-->
+    <script src="babylon/pep.min.js"></script>
+    <!-- <script src="babylon/ammo.js"></script> -->
+    <script src="babylon/cannon.js"></script>
+    <script src="babylon/Oimo.js"></script>
+    <script src="babylon/babylon.js"></script>
+    <!-- <script src="babylon/babylonjs.loaders.js"></script> -->
+    <script src="babylon/babylon.gui.min.js"></script>
+    <script src="babylon/babylon.inspector.bundle.js"></script>
+
+    <!-- CSS -->
+    <!-- <link href="css/index.css" rel="stylesheet" /> -->
+
+    <style>
+        html,
+        body {
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #renderCanvas {
+            width: 100%;
+            height: 100%;
+            touch-action: none;
+        }
+
+        #fpsLabel {
+            position: absolute;
+            right: 10px;
+            top: 20px;
+            cursor: default;
+            z-index: 10;
+            background-color: #7283a0;
+            color: white;
+            padding: 5px;
+            border-radius: 3px;
+            font-family: 'Montserrat';
+            pointer-events: none;
+            user-select: none;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="renderCanvas"></canvas>
+
+    <div class="label" id="fpsLabel">FPS</div>
+
+
+
+    <script src="js/aliyun-oss-sdk.js"></script>
+    <script src="js/ossfile.js"></script>
+    <script src="veryengine.js"></script>
+    <script src="publish.js"></script>
+
+
+
+</body>
+
+</html>

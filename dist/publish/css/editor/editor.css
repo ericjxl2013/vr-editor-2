@@ -1,0 +1,2913 @@
+@font-face {
+    font-family: 'pc-icon';
+    src: url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/PlayIcons-Regular.eot");
+    src: url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/PlayIcons-Regular.eot?#iefix") format("embedded-opentype"), url("../fonts/PlayIcons-Regular.woff2") format("woff2"), url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/PlayIcons-Regular.woff") format("woff"), url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/PlayIcons-Regular.ttf") format("truetype"), url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/PlayIcons-Regular.svg") format("svg");
+    font-weight: normal;
+    font-style: normal
+}
+
+@font-face {
+    font-family: 'Proxima Nova Regular';
+    src: url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/proxima_nova_regular.eot");
+    src: url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/proxima_nova_regular.eot?#iefix") format("embedded-opentype"), url("../fonts/proxima_nova_regular.woff2") format("woff2"), url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/proxima_nova_regular.woff") format("woff"), url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/proxima_nova_regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal
+}
+
+@font-face {
+    font-family: 'Proxima Nova Light';
+    src: url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/proxima_nova_light.eot");
+    src: url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/proxima_nova_light.eot?#iefix") format("embedded-opentype"), url("../fonts/proxima_nova_light.woff2") format("woff2"), url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/proxima_nova_light.woff") format("woff"), url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/proxima_nova_light.ttf") format("truetype");
+    font-weight: 200;
+    font-style: normal
+}
+
+@font-face {
+    font-family: 'Proxima Nova Bold';
+    src: url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/proxima_nova_bold.eot");
+    src: url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/proxima_nova_bold.eot?#iefix") format("embedded-opentype"), url("../fonts/proxima_nova_bold.woff2") format("woff2"), url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/proxima_nova_bold.woff") format("woff"), url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/proxima_nova_bold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal
+}
+
+@font-face {
+    font-family: 'Proxima Nova Thin';
+    src: url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/proxima_nova_thin_t.eot");
+    src: url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/proxima_nova_thin_t.eot?#iefix") format("embedded-opentype"), url("../fonts/proxima_nova_thin_t.woff2") format("woff2"), url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/proxima_nova_thin_t.woff") format("woff"), url("https://s3-eu-west-1.amazonaws.com/static.playcanvas.com/fonts/proxima_nova_thin_t.ttf") format("truetype");
+    font-weight: 100;
+    font-style: normal
+}
+
+.font-smooth,
+.font-icon,
+#layout-toolbar>.ui-button.icon,
+#layout-toolbar>.ui-button.pc-icon,
+#layout-hierarchy .pcui-panel-content>.ui-text-field.search:after,
+#layout-hierarchy .pcui-panel-content>.ui-text-field.search>.clear,
+#layout-hierarchy>.pcui-panel-content>.search-results>.ui-list-item:before,
+.pcui-container.hierarchy-controls>.ui-button,
+#layout-assets>.pcui-panel-header>.assets-controls>.content>.ui-button,
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-button.sources:before,
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-text-field.search:after,
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-text-field.search>.clear,
+#layout-assets>.pcui-panel-header>.ui-button.store:after,
+.pcui-panel.attributes.asset-preview .asset-preview-container>.ui-button,
+.pcui-panel.attributes .ui-panel.field-tags>.content>.ui-panel>.content>.ui-button,
+.pcui-panel.attributes .ui-panel.field-tags>.content>.ui-panel>.content>.ui-panel.tags>.content>.tag>.icon,
+.pcui-panel.attributes .ui-panel.field-asset>.content>.top>.controls>.ui-button,
+.pcui-panel.attributes .ui-panel .add-entity>.icon,
+.pcui-panel.attributes .ui-list.related-assets>.ui-list-item:before,
+.pcui-panel.attributes .cubemap-viewport>.content>.face>.clear,
+.pcui-panel.attributes .ui-panel.component.entity>header>.title:before,
+.pcui-panel.attributes .ui-panel.component.entity>header>.ui-button.component-remove,
+.pcui-panel.attributes .ui-panel.component.light .ui-button.shadowUpdate,
+.pcui-panel.attributes .ui-panel.component.particlesystem>.content>.controls>.content>.ui-button,
+.pcui-panel.attributes .ui-panel.component.model>.content .add-batch-group:before,
+.pcui-panel.attributes .ui-panel.component.element>.content .add-batch-group:before,
+.pcui-panel.attributes .ui-panel.component.script>.content>.ui-text-field.add-script:before,
+.pcui-panel.attributes .ui-panel.component.script>.content>.ui-list.scripts-autocomplete>.ui-list-item.new:before,
+.pcui-panel.attributes .ui-panel.component.script>.content>.scripts>.content>.ui-panel>.ui-header>.edit,
+.pcui-panel.attributes .ui-panel.component.script>.content>.scripts>.content>.ui-panel>.ui-header>.parse,
+.pcui-panel.attributes .ui-panel.component.script>.content>.scripts>.content>.ui-panel>.ui-header>.remove,
+.pcui-panel.attributes .ui-panel.component.asset-script>.ui-header>.parse-script:before,
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.add-component:before,
+.pcui-panel.attributes .ui-panel.component>.content>.ui-panel.buttons>.content>.ui-button.large-with-icon:before,
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.large-with-icon:before,
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.override-material:before,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.loading-screen:before,
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.add-script:before,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.add-sound-slot:before,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.add-batch-group:before,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.add-clip:before,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.add-i18n-asset:before,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.audio-play,
+.pcui-panel.attributes .ui-panel.component>.content .ui-list.source-textures>.ui-list-item>.ui-button.download,
+.pcui-panel.attributes .ui-panel.component .ui-panel.component-script>.ui-header>.move-down,
+.pcui-panel.attributes .ui-panel.component .ui-panel.component-script>.ui-header>.move-up,
+.pcui-panel.attributes .ui-panel.component .ui-panel.component-script>.ui-header>.refresh,
+.pcui-panel.attributes .ui-panel.component .ui-panel.component-script>.ui-header>.remove,
+.pcui-panel.attributes .ui-panel.batching .ui-panel.batch-group .remove,
+.pcui-panel.attributes .ui-panel.localization>.content .ui-panel.locale>.ui-header>.ui-button.remove,
+.ui-panel.inspector-controls>.content>.ui-button {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-smoothing: antialiased
+}
+
+.font-icon,
+#layout-toolbar>.ui-button.icon,
+#layout-toolbar>.ui-button.pc-icon,
+#layout-hierarchy .pcui-panel-content>.ui-text-field.search:after,
+#layout-hierarchy .pcui-panel-content>.ui-text-field.search>.clear,
+#layout-hierarchy>.pcui-panel-content>.search-results>.ui-list-item:before,
+.pcui-container.hierarchy-controls>.ui-button,
+#layout-assets>.pcui-panel-header>.assets-controls>.content>.ui-button,
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-button.sources:before,
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-text-field.search:after,
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-text-field.search>.clear,
+#layout-assets>.pcui-panel-header>.ui-button.store:after,
+.pcui-panel.attributes.asset-preview .asset-preview-container>.ui-button,
+.pcui-panel.attributes .ui-panel.field-tags>.content>.ui-panel>.content>.ui-button,
+.pcui-panel.attributes .ui-panel.field-tags>.content>.ui-panel>.content>.ui-panel.tags>.content>.tag>.icon,
+.pcui-panel.attributes .ui-panel.field-asset>.content>.top>.controls>.ui-button,
+.pcui-panel.attributes .ui-panel .add-entity>.icon,
+.pcui-panel.attributes .ui-list.related-assets>.ui-list-item:before,
+.pcui-panel.attributes .cubemap-viewport>.content>.face>.clear,
+.pcui-panel.attributes .ui-panel.component.entity>header>.title:before,
+.pcui-panel.attributes .ui-panel.component.entity>header>.ui-button.component-remove,
+.pcui-panel.attributes .ui-panel.component.light .ui-button.shadowUpdate,
+.pcui-panel.attributes .ui-panel.component.particlesystem>.content>.controls>.content>.ui-button,
+.pcui-panel.attributes .ui-panel.component.model>.content .add-batch-group:before,
+.pcui-panel.attributes .ui-panel.component.element>.content .add-batch-group:before,
+.pcui-panel.attributes .ui-panel.component.script>.content>.ui-text-field.add-script:before,
+.pcui-panel.attributes .ui-panel.component.script>.content>.ui-list.scripts-autocomplete>.ui-list-item.new:before,
+.pcui-panel.attributes .ui-panel.component.script>.content>.scripts>.content>.ui-panel>.ui-header>.edit,
+.pcui-panel.attributes .ui-panel.component.script>.content>.scripts>.content>.ui-panel>.ui-header>.parse,
+.pcui-panel.attributes .ui-panel.component.script>.content>.scripts>.content>.ui-panel>.ui-header>.remove,
+.pcui-panel.attributes .ui-panel.component.asset-script>.ui-header>.parse-script:before,
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.add-component:before,
+.pcui-panel.attributes .ui-panel.component>.content>.ui-panel.buttons>.content>.ui-button.large-with-icon:before,
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.large-with-icon:before,
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.override-material:before,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.loading-screen:before,
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.add-script:before,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.add-sound-slot:before,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.add-batch-group:before,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.add-clip:before,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.add-i18n-asset:before,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.audio-play,
+.pcui-panel.attributes .ui-panel.component>.content .ui-list.source-textures>.ui-list-item>.ui-button.download,
+.pcui-panel.attributes .ui-panel.component .ui-panel.component-script>.ui-header>.move-down,
+.pcui-panel.attributes .ui-panel.component .ui-panel.component-script>.ui-header>.move-up,
+.pcui-panel.attributes .ui-panel.component .ui-panel.component-script>.ui-header>.refresh,
+.pcui-panel.attributes .ui-panel.component .ui-panel.component-script>.ui-header>.remove,
+.pcui-panel.attributes .ui-panel.batching .ui-panel.batch-group .remove,
+.pcui-panel.attributes .ui-panel.localization>.content .ui-panel.locale>.ui-header>.ui-button.remove,
+.ui-panel.inspector-controls>.content>.ui-button {
+    font-family: 'pc-icon'
+}
+
+.font-thin {
+    font-family: 'Proxima Nova Thin', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-weight: 100;
+    font-style: normal
+}
+
+.font-light {
+    font-family: 'Proxima Nova Light', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-weight: 200;
+    font-style: normal
+}
+
+.font-regular,
+#layout-hierarchy>.pcui-panel-content>.search-results>.ui-list-item,
+.ui-panel.picker-node .help {
+    font-family: 'Proxima Nova Regular', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    font-style: normal
+}
+
+.font-bold,
+#layout-hierarchy .pcui-panel-content>.ui-text-field.search:before,
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-button.sources,
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-select-field.options>.value,
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-select-field.options>ul>li,
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-text-field.search:before,
+.pcui-panel.attributes .ui-panel.component.script>.content>.ui-text-field.add-script:after,
+.pcui-panel.attributes .ui-panel.component.asset-script>.content>.ui-label.loading,
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.add-component,
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.override-material,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.loading-screen,
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.add-script,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.add-sound-slot,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.add-batch-group,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.add-clip,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.add-i18n-asset,
+.ui-panel.picker-node .help h5 {
+    font-family: 'Proxima Nova Bold', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-style: normal
+}
+
+.noSelect,
+#layout-assets,
+.pcui-panel.attributes.asset-preview .asset-preview-container>.asset-preview,
+.pcui-panel.attributes .ui-panel.field>.content>.export-model-archive:hover,
+.pcui-panel.attributes .ui-panel .ui-label.label-field,
+.pcui-panel.attributes .ui-panel.component.script>.content>.scripts>.content>.ui-panel>.ui-header>.handle,
+.pcui-panel.attributes .ui-panel.component.script>.content>.scripts>.content>.ui-panel>.ui-header>.title,
+.pcui-panel.attributes .ui-panel.component>.content>.ui-panel.scripts-order>.content>.asset>.ui-header>.handle {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.asset-icon-prefix.type-animation:before,
+.pcui-panel.attributes .ui-list.related-assets>.type-animation.ui-list-item:before {
+    content: '\E213'
+}
+
+.asset-icon-prefix.type-audio:before,
+.pcui-panel.attributes .ui-list.related-assets>.type-audio.ui-list-item:before {
+    content: '\E210'
+}
+
+.asset-icon-prefix.type-cubemap:before,
+.pcui-panel.attributes .ui-list.related-assets>.type-cubemap.ui-list-item:before {
+    content: '\E220'
+}
+
+.asset-icon-prefix.type-folder:before,
+.pcui-panel.attributes .ui-list.related-assets>.type-folder.ui-list-item:before {
+    content: '\E139'
+}
+
+.asset-icon-prefix.type-bundle:before,
+.pcui-panel.attributes .ui-list.related-assets>.type-bundle.ui-list-item:before {
+    content: '\E410'
+}
+
+.asset-icon-prefix.type-json:before,
+.pcui-panel.attributes .ui-list.related-assets>.type-json.ui-list-item:before {
+    content: '\E207'
+}
+
+.asset-icon-prefix.type-material:before,
+.pcui-panel.attributes .ui-list.related-assets>.type-material.ui-list-item:before {
+    content: '\E195'
+}
+
+.asset-icon-prefix.type-model:before,
+.pcui-panel.attributes .ui-list.related-assets>.type-model.ui-list-item:before {
+    content: '\E188'
+}
+
+.asset-icon-prefix.type-scene:before,
+.pcui-panel.attributes .ui-list.related-assets>.type-scene.ui-list-item:before {
+    content: '\E188'
+}
+
+.asset-icon-prefix.type-script:before,
+.pcui-panel.attributes .ui-list.related-assets>.type-script.ui-list-item:before {
+    content: '\E392'
+}
+
+.asset-icon-prefix.type-sprite:before,
+.pcui-panel.attributes .ui-list.related-assets>.type-sprite.ui-list-item:before {
+    content: '\E395'
+}
+
+.asset-icon-prefix.type-texture:before,
+.pcui-panel.attributes .ui-list.related-assets>.type-texture.ui-list-item:before {
+    content: '\E201'
+}
+
+.asset-icon-prefix.type-textureatlas:before,
+.pcui-panel.attributes .ui-list.related-assets>.type-textureatlas.ui-list-item:before {
+    content: '\E201'
+}
+
+.asset-icon-prefix.type-text:before,
+.pcui-panel.attributes .ui-list.related-assets>.type-text.ui-list-item:before {
+    content: '\E209'
+}
+
+.asset-icon-prefix.type-html:before,
+.pcui-panel.attributes .ui-list.related-assets>.type-html.ui-list-item:before {
+    content: '\E205'
+}
+
+.asset-icon-prefix.type-css:before,
+.pcui-panel.attributes .ui-list.related-assets>.type-css.ui-list-item:before {
+    content: '\E206'
+}
+
+.asset-icon-prefix.type-shader:before,
+.pcui-panel.attributes .ui-list.related-assets>.type-shader.ui-list-item:before {
+    content: '\E353'
+}
+
+.asset-icon-prefix.type-shader:before,
+.pcui-panel.attributes .ui-list.related-assets>.type-shader.ui-list-item:before {
+    content: '\E202'
+}
+
+.asset-icon-prefix.type-binary:before,
+.pcui-panel.attributes .ui-list.related-assets>.type-binary.ui-list-item:before {
+    content: '\E299'
+}
+
+.asset-icon-prefix.type-font:before,
+.pcui-panel.attributes .ui-list.related-assets>.type-font.ui-list-item:before {
+    content: '\E299'
+}
+
+#layout-root {
+    width: 100%;
+    height: 100%;
+    grid-template-columns: 45px auto minmax(0, 1fr) auto;
+    grid-template-rows: minmax(0, 1fr) auto 24px;
+    grid-template-areas: "toolbar hierarchy viewport attributes""toolbar hierarchy assets attributes""statusbar statusbar statusbar statusbar"
+}
+
+#layout-toolbar {
+    grid-area: toolbar
+}
+
+#layout-hierarchy {
+    grid-area: hierarchy
+}
+
+#layout-viewport {
+    grid-area: viewport
+}
+
+#layout-assets {
+    grid-area: assets
+}
+
+#layout-attributes {
+    grid-area: attributes
+}
+
+#layout-statusbar {
+    grid-area: statusbar
+}
+
+#layout-toolbar {
+    background-color: #293538
+}
+
+#layout-toolbar>.ui-button {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 45px;
+    height: 45px;
+    border: none;
+    overflow: hidden
+}
+
+#layout-toolbar>.ui-button.hidden {
+    display: none
+}
+
+#layout-toolbar>.ui-button.logo {
+    background-image: url("../../static/editor_logo.png");
+    background-size: 32px 32px;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    /* background-position: -1px -1px */
+}
+
+/* #layout-toolbar>.ui-button.logo:hover {
+    background-position: -47px -1px
+} */
+
+#layout-toolbar>.ui-button.icon,
+#layout-toolbar>.ui-button.pc-icon {
+    color: #9ba1a3;
+    line-height: 43px;
+    text-align: center;
+    background-color: #364346
+}
+
+#layout-toolbar>.ui-button.icon.active,
+#layout-toolbar>.ui-button.pc-icon.active {
+    color: #fff;
+    background-color: #20292b
+}
+
+#layout-toolbar>.ui-button.icon.active:hover,
+#layout-toolbar>.ui-button.icon.active:focus,
+#layout-toolbar>.ui-button.pc-icon.active:hover,
+#layout-toolbar>.ui-button.pc-icon.active:focus {
+    background-color: #263134
+}
+
+#layout-toolbar>.ui-button.icon.light-mapper.active,
+#layout-toolbar>.ui-button.pc-icon.light-mapper.active {
+    background-color: #364346;
+    color: #f60
+}
+
+#layout-toolbar>.ui-button.icon.light-mapper.active:hover,
+#layout-toolbar>.ui-button.icon.light-mapper.active:focus,
+#layout-toolbar>.ui-button.pc-icon.light-mapper.active:hover,
+#layout-toolbar>.ui-button.pc-icon.light-mapper.active:focus {
+    color: #fff;
+    background-color: #2c393c
+}
+
+#layout-toolbar>.ui-button.icon.disabled,
+#layout-toolbar>.ui-button.pc-icon.disabled {
+    opacity: 1;
+    color: #545f62
+}
+
+#layout-toolbar>.ui-button.icon.disabled:hover,
+#layout-toolbar>.ui-button.icon.disabled:focus,
+#layout-toolbar>.ui-button.pc-icon.disabled:hover,
+#layout-toolbar>.ui-button.pc-icon.disabled:focus {
+    color: #545f62;
+    background-color: #364346
+}
+
+#layout-toolbar>.ui-button.icon:hover,
+#layout-toolbar>.ui-button.icon:focus,
+#layout-toolbar>.ui-button.pc-icon:hover,
+#layout-toolbar>.ui-button.pc-icon:focus {
+    color: #fff;
+    background-color: #2c393c
+}
+
+#layout-toolbar>.ui-button.icon {
+    font-size: 24px
+}
+
+#layout-toolbar>.ui-button.pc-icon {
+    font-size: 20px
+}
+
+#layout-toolbar>.ui-button.push-top {
+    margin-top: auto
+}
+
+#layout-toolbar>.ui-button.bottom {
+    background-color: #293538
+}
+
+#layout-toolbar>.ui-button.help-howdoi {
+    order: 1
+}
+
+#layout-toolbar>.ui-button.help-controls {
+    order: 2
+}
+
+#layout-toolbar>.ui-button.contact {
+    order: 3
+}
+
+#layout-toolbar>.ui-button.editor-settings {
+    order: 4
+}
+
+#layout-statusbar {
+    background-color: #20292b;
+    padding: 0 8px;
+    overflow: hidden;
+    align-items: center
+}
+
+#layout-statusbar>.status {
+    font-size: 12px;
+    color: #aaa
+}
+
+#layout-statusbar>.status.error {
+    color: #fb222f
+}
+
+#layout-statusbar>.jobsProgress {
+    margin-left: auto;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 100ms, visibility 100ms
+}
+
+#layout-statusbar>.jobsProgress.active {
+    opacity: 1;
+    visibility: visible
+}
+
+#layout-statusbar>.jobsCount {
+    width: 24px;
+    font-size: 12px;
+    color: #5b7073;
+    text-align: center
+}
+
+#layout-hierarchy {
+    border-left: 1px solid #293538
+}
+
+#layout-hierarchy.pcui-collapsed .hierarchy-controls {
+    display: none
+}
+
+#layout-hierarchy .pcui-panel-content>.ui-text-field.search {
+    margin: 0;
+    width: 100%;
+    height: 26px;
+    border: none;
+    border-top: 1px solid #364346;
+    background-color: #293538
+}
+
+#layout-hierarchy .pcui-panel-content>.ui-text-field.search.active,
+#layout-hierarchy .pcui-panel-content>.ui-text-field.search:hover,
+#layout-hierarchy .pcui-panel-content>.ui-text-field.search:focus,
+#layout-hierarchy .pcui-panel-content>.ui-text-field.search.focus {
+    border-color: #20292b;
+    background-color: #20292b
+}
+
+#layout-hierarchy .pcui-panel-content>.ui-text-field.search.active:before,
+#layout-hierarchy .pcui-panel-content>.ui-text-field.search:hover:before,
+#layout-hierarchy .pcui-panel-content>.ui-text-field.search:focus:before,
+#layout-hierarchy .pcui-panel-content>.ui-text-field.search.focus:before {
+    content: '';
+    padding: 0
+}
+
+#layout-hierarchy .pcui-panel-content>.ui-text-field.search.active:after,
+#layout-hierarchy .pcui-panel-content>.ui-text-field.search:hover:after,
+#layout-hierarchy .pcui-panel-content>.ui-text-field.search:focus:after,
+#layout-hierarchy .pcui-panel-content>.ui-text-field.search.focus:after {
+    content: ''
+}
+
+#layout-hierarchy .pcui-panel-content>.ui-text-field.search>input.field {
+    line-height: 24px
+}
+
+#layout-hierarchy .pcui-panel-content>.ui-text-field.search:before {
+    content: '搜索';
+    position: absolute;
+    color: #9ba1a3;
+    line-height: 24px;
+    padding: 0 8px;
+    font-size: 12px
+}
+
+#layout-hierarchy .pcui-panel-content>.ui-text-field.search.not-empty:before {
+    padding: 0;
+    content: ''
+}
+
+#layout-hierarchy .pcui-panel-content>.ui-text-field.search:after {
+    content: '\E129';
+    line-height: 24px;
+    background-color: #293538;
+    font-size: 14px;
+    text-align: center
+}
+
+#layout-hierarchy .pcui-panel-content>.ui-text-field.search.not-empty {
+    background-color: #20292b
+}
+
+#layout-hierarchy .pcui-panel-content>.ui-text-field.search.not-empty>input.field {
+    color: #f60
+}
+
+#layout-hierarchy .pcui-panel-content>.ui-text-field.search.not-empty>.clear {
+    display: block
+}
+
+#layout-hierarchy .pcui-panel-content>.ui-text-field.search.not-empty:after {
+    content: ''
+}
+
+#layout-hierarchy .pcui-panel-content>.ui-text-field.search>.clear {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    color: #d34141;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer
+}
+
+#layout-hierarchy>.pcui-panel-content>.search-results {
+    margin: 2px;
+    border: none;
+    background-color: #364346
+}
+
+#layout-hierarchy>.pcui-panel-content>.search-results:focus {
+    outline: none;
+    border: none
+}
+
+#layout-hierarchy>.pcui-panel-content>.search-results>.ui-list-item {
+    font-size: 14px;
+    height: 24px;
+    line-height: 22px;
+    padding: 0 5px;
+    border: none
+}
+
+#layout-hierarchy>.pcui-panel-content>.search-results>.ui-list-item:before {
+    content: '\E185';
+    padding-right: 6px;
+    line-height: 24px;
+    font-size: 14px;
+    text-align: center;
+    background-color: transparent;
+    color: #5b7073
+}
+
+#layout-hierarchy>.pcui-panel-content>.search-results>.ui-list-item:hover {
+    background-color: #2c393c
+}
+
+#layout-hierarchy>.pcui-panel-content>.search-results>.ui-list-item:hover:before {
+    color: #fff
+}
+
+#layout-hierarchy>.pcui-panel-content>.search-results>.ui-list-item.selected {
+    background-color: #20292b
+}
+
+#layout-hierarchy>.pcui-panel-content>.search-results>.ui-list-item.selected:before {
+    color: #fff
+}
+
+#layout-hierarchy>.pcui-panel-content>.search-results>.ui-list-item.disabled {
+    opacity: 1
+}
+
+#layout-hierarchy>.pcui-panel-content>.search-results>.ui-list-item.disabled>span {
+    opacity: 0.4
+}
+
+#layout-hierarchy>.pcui-panel-content>.search-results>.ui-list-item.container:before {
+    content: '\E139'
+}
+
+#layout-hierarchy>.pcui-panel-content>.search-results>.ui-list-item.c-script:before {
+    content: '\E236'
+}
+
+#layout-hierarchy>.pcui-panel-content>.search-results>.ui-list-item.c-model:before {
+    content: '\E188'
+}
+
+#layout-hierarchy>.pcui-panel-content>.search-results>.ui-list-item.c-animation:before {
+    content: '\E198'
+}
+
+#layout-hierarchy>.pcui-panel-content>.search-results>.ui-list-item.c-audiosource:before {
+    content: '\E197'
+}
+
+#layout-hierarchy>.pcui-panel-content>.search-results>.ui-list-item.c-sound:before {
+    content: '\E197'
+}
+
+#layout-hierarchy>.pcui-panel-content>.search-results>.ui-list-item.c-collision:before {
+    content: '\E187'
+}
+
+#layout-hierarchy>.pcui-panel-content>.search-results>.ui-list-item.c-rigidbody:before {
+    content: '\E189'
+}
+
+#layout-hierarchy>.pcui-panel-content>.search-results>.ui-list-item.c-particlesystem:before {
+    content: '\E199'
+}
+
+#layout-hierarchy>.pcui-panel-content>.search-results>.ui-list-item.c-light:before {
+    content: '\E194'
+}
+
+#layout-hierarchy>.pcui-panel-content>.search-results>.ui-list-item.c-audiolistener:before {
+    content: '\E196'
+}
+
+#layout-hierarchy>.pcui-panel-content>.search-results>.ui-list-item.c-camera:before {
+    content: '\E212'
+}
+
+#layout-hierarchy>.pcui-panel-content>.search-results>.ui-list-item.c-screen:before {
+    content: '\E141'
+}
+
+#layout-hierarchy>.pcui-panel-content>.search-results>.ui-list-item.c-sprite:before {
+    content: '\E395'
+}
+
+#layout-hierarchy .pcui-container.progress-overlay {
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #364346;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    opacity: 1;
+    visibility: visible;
+    transition: visibility 100ms, opacity 100ms
+}
+
+#layout-hierarchy .pcui-container.progress-overlay.pcui-hidden {
+    visibility: hidden;
+    opacity: 0;
+    display: inherit
+}
+
+#layout-hierarchy .pcui-container.progress-overlay>.ui-progress {
+    flex-basis: 128px;
+    height: 4px
+}
+
+.pcui-container.hierarchy-controls {
+    margin-left: auto;
+    background-color: transparent
+}
+
+.pcui-container.hierarchy-controls>.ui-button {
+    width: 32px;
+    border: none;
+    padding: 0;
+    margin: 0;
+    color: #9ba1a3;
+    font-size: 14px;
+    text-align: center;
+    background-color: transparent
+}
+
+.pcui-container.hierarchy-controls>.ui-button.active {
+    color: #f60;
+    background-color: #20292b
+}
+
+.pcui-container.hierarchy-controls>.ui-button.disabled {
+    opacity: 1;
+    color: #545f62
+}
+
+.pcui-container.hierarchy-controls>.ui-button.disabled:hover,
+.pcui-container.hierarchy-controls>.ui-button.disabled:focus {
+    color: #545f62;
+    background-color: transparent
+}
+
+.pcui-container.hierarchy-controls>.ui-button:hover,
+.pcui-container.hierarchy-controls>.ui-button:focus {
+    color: #fff;
+    background-color: #20292b
+}
+
+#layout-assets {
+    overflow: visible;
+    background-color: #293538
+}
+
+#layout-assets.pcui-resizable.pcui-resizable-top.pcui-scrollable>.pcui-panel-content {
+    top: 0
+}
+
+#layout-assets.pcui-resizable.pcui-collapsible.pcui-collapsed {
+    height: 0 !important
+}
+
+#layout-assets.pcui-resizable.pcui-collapsible.pcui-collapsed>.pcui-panel-header {
+    width: 90px
+}
+
+#layout-assets.pcui-resizable.pcui-collapsible.pcui-collapsed>.pcui-panel-header>.assets-controls {
+    display: none
+}
+
+#layout-assets.pcui-resizable.pcui-collapsible.pcui-collapsed>.pcui-panel-header>.filters {
+    display: none
+}
+
+#layout-assets.pcui-resizable.pcui-collapsible.pcui-collapsed>.pcui-panel-header>.ui-button.store {
+    display: none
+}
+
+#layout-assets>.pcui-panel-header {
+    position: absolute;
+    top: -32px;
+    left: 4px;
+    width: 632px
+}
+
+#layout-assets>.pcui-panel-header>.pcui-panel-header-title {
+    margin-right: 16px;
+    width: 46px
+}
+
+#layout-assets>.pcui-panel-header>.assets-controls {
+    float: left;
+    background: transparent
+}
+
+#layout-assets>.pcui-panel-header>.assets-controls>.content>.ui-button {
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    border: none;
+    padding: 0;
+    margin: 0;
+    vertical-align: top;
+    font-size: 14px;
+    text-align: center;
+    color: #9ba1a3;
+    background-color: transparent
+}
+
+#layout-assets>.pcui-panel-header>.assets-controls>.content>.ui-button:hover {
+    color: #fff;
+    background-color: #20292b
+}
+
+#layout-assets>.pcui-panel-header>.assets-controls>.content>.ui-button.disabled:hover {
+    color: #9ba1a3;
+    background-color: transparent
+}
+
+#layout-assets>.pcui-panel-header>.assets-controls>.content>.ui-button.up {
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg)
+}
+
+#layout-assets>.pcui-panel-header>.filters {
+    margin-left: 8px;
+    float: right;
+    background-color: transparent
+}
+
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-button.sources {
+    width: 86px;
+    height: 32px;
+    line-height: 32px;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+    color: #9ba1a3;
+    background-color: transparent
+}
+
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-button.sources:before {
+    content: '\E352';
+    float: left;
+    font-size: 14px;
+    line-height: 34px;
+    padding-right: 4px;
+    margin-left: 8px;
+    color: #5b7073
+}
+
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-button.sources.active {
+    color: #f60;
+    background-color: #20292b
+}
+
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-button.sources.active:before {
+    color: #f60
+}
+
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-button.sources.active:hover {
+    background-color: #232d2f
+}
+
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-button.sources:hover {
+    color: #fff;
+    background-color: #263134
+}
+
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-button.sources:hover:before {
+    color: #fff
+}
+
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-select-field.options {
+    margin: 0;
+    width: 152px;
+    height: 32px;
+    line-height: 32px;
+    border: none;
+    font-size: 12px;
+    vertical-align: top;
+    background-color: transparent;
+    z-index: 2
+}
+
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-select-field.options>.value {
+    line-height: 32px
+}
+
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-select-field.options>.value:after {
+    width: 32px;
+    height: 32px;
+    line-height: 32px
+}
+
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-select-field.options>ul>li {
+    line-height: 32px
+}
+
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-select-field.options.not-empty {
+    background-color: #20292b
+}
+
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-select-field.options.not-empty>.value {
+    color: #f60
+}
+
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-select-field.options:hover {
+    background-color: #20292b
+}
+
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-text-field.search {
+    margin: 0;
+    width: 192px;
+    height: 32px;
+    border: none;
+    background-color: #293538
+}
+
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-text-field.search.active,
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-text-field.search:hover,
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-text-field.search:focus,
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-text-field.search.focus {
+    border-color: #20292b;
+    background-color: #20292b
+}
+
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-text-field.search.active:before,
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-text-field.search:hover:before,
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-text-field.search:focus:before,
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-text-field.search.focus:before {
+    content: '';
+    padding: 0
+}
+
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-text-field.search.active:after,
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-text-field.search:hover:after,
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-text-field.search:focus:after,
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-text-field.search.focus:after {
+    content: ''
+}
+
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-text-field.search>input.field {
+    line-height: 32px
+}
+
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-text-field.search:before {
+    content: '搜索';
+    position: absolute;
+    color: #9ba1a3;
+    line-height: 32px;
+    padding: 0 8px;
+    font-size: 12px
+}
+
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-text-field.search.not-empty:before {
+    padding: 0;
+    content: ''
+}
+
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-text-field.search:after {
+    content: '\E129';
+    line-height: 32px;
+    background-color: #293538;
+    font-size: 14px;
+    text-align: center
+}
+
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-text-field.search.not-empty {
+    background-color: #20292b
+}
+
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-text-field.search.not-empty>input.field {
+    color: #f60
+}
+
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-text-field.search.not-empty>.clear {
+    display: block
+}
+
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-text-field.search.not-empty:after {
+    content: ''
+}
+
+#layout-assets>.pcui-panel-header>.filters>.content>.ui-text-field.search>.clear {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    color: #d34141;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer
+}
+
+#layout-assets>.pcui-panel-header>.ui-button.store {
+    position: relative;
+    font-size: 12px;
+    min-width: 90px;
+    height: 32px;
+    line-height: 32px;
+    margin: 0;
+    background-color: #293538;
+    border-color: transparent
+}
+
+#layout-assets>.pcui-panel-header>.ui-button.store:after {
+    content: '\E169';
+    position: absolute;
+    right: 5px;
+    top: 0px;
+    font-size: 14px;
+    font-weight: 200;
+    color: #5b7073
+}
+
+#layout-assets>.pcui-panel-header>.ui-button.store:hover:after {
+    color: #f60
+}
+
+#layout-assets .ui-label.no-assets {
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    left: 0
+}
+
+#layout-assets .pcui-container.progress-overlay {
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #364346;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    opacity: 1;
+    visibility: visible;
+    transition: visibility 100ms, opacity 100ms
+}
+
+#layout-assets .pcui-container.progress-overlay.pcui-hidden {
+    visibility: hidden;
+    opacity: 0;
+    display: inherit
+}
+
+#layout-assets .pcui-container.progress-overlay>.ui-progress {
+    flex-basis: 128px;
+    height: 4px
+}
+
+.pcui-panel.attributes.pcui-collapsible.pcui-panel-horizontal.pcui-collapsed>.pcui-panel-header {
+    overflow: visible;
+    text-overflow: normal
+}
+
+.pcui-panel.attributes.pcui-collapsible.pcui-panel-horizontal.pcui-collapsed>.pcui-panel-header>.inspector-controls {
+    display: none
+}
+
+.pcui-panel.attributes>.pcui-panel-header {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: uppercase
+}
+
+.pcui-panel.attributes>.pcui-panel-content {
+    background-color: #364346
+}
+
+.pcui-panel.attributes .ui-panel.facebook:not(.pcui-collapsed) {
+    overflow: visible
+}
+
+.pcui-panel.attributes .ui-panel.facebook:not(.pcui-collapsed) .error {
+    outline: 1px solid #d34141
+}
+
+.pcui-panel.attributes .ui-panel.facebook:not(.pcui-collapsed) .facebook-version {
+    position: relative
+}
+
+.pcui-panel.attributes .ui-panel.facebook:not(.pcui-collapsed) .facebook-version .facebook-versions {
+    margin: 0;
+    padding: 0;
+    left: -1px;
+    right: -1px;
+    width: auto;
+    position: absolute;
+    z-index: 1
+}
+
+.pcui-panel.attributes .ui-panel.facebook:not(.pcui-collapsed) .facebook-version .facebook-versions .ui-list-item.focused {
+    background-color: #20292b
+}
+
+.pcui-panel.attributes.asset-preview.large .asset-preview-container {
+    padding-top: 100%
+}
+
+.pcui-panel.attributes.asset-preview.animate .asset-preview-container>.asset-preview {
+    transition: padding 100ms, width 100ms
+}
+
+.pcui-panel.attributes.asset-preview .asset-preview-container {
+    position: relative;
+    background-color: #293538;
+    height: 0;
+    padding-top: 45%
+}
+
+.pcui-panel.attributes.asset-preview .asset-preview-container:hover>.ui-button,
+.pcui-panel.attributes.asset-preview .asset-preview-container:hover>.ui-button:not(.pinned),
+.pcui-panel.attributes.asset-preview .asset-preview-container:hover>.cubeMapMipLevel {
+    display: block
+}
+
+.pcui-panel.attributes.asset-preview .asset-preview-container:hover>.ui-button.hidden,
+.pcui-panel.attributes.asset-preview .asset-preview-container:hover>.ui-button:not(.pinned).hidden,
+.pcui-panel.attributes.asset-preview .asset-preview-container:hover>.cubeMapMipLevel.hidden {
+    display: none
+}
+
+.pcui-panel.attributes.asset-preview .asset-preview-container>.asset-preview {
+    max-height: 500px
+}
+
+.pcui-panel.attributes.asset-preview .asset-preview-container>.asset-preview.flipY {
+    transform: scale(1, -1);
+    -ms-transform: scale(1, -1);
+    -moz-transform: scale(1, -1);
+    -webkit-transform: scale(1, -1)
+}
+
+.pcui-panel.attributes.asset-preview .asset-preview-container>.asset-preview {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 8px solid #293538;
+    border-top: 0;
+    box-sizing: border-box;
+    margin: auto;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat
+}
+
+.pcui-panel.attributes.asset-preview .asset-preview-container>.ui-button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 32px;
+    line-height: 32px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+    color: #b1b8ba;
+    background-color: #293538
+}
+
+.pcui-panel.attributes.asset-preview .asset-preview-container>.ui-button:not(.pinned) {
+    display: none
+}
+
+.pcui-panel.attributes.asset-preview .asset-preview-container>.ui-button:hover {
+    color: #fff;
+    background-color: #20292b
+}
+
+.pcui-panel.attributes.asset-preview .asset-preview-container>.ui-button.active {
+    color: #f60
+}
+
+.pcui-panel.attributes.asset-preview .asset-preview-container>.ui-button.box {
+    bottom: 32px
+}
+
+.pcui-panel.attributes.asset-preview .asset-preview-container>.cubeMapMipLevel {
+    position: absolute;
+    display: none;
+    bottom: 8px;
+    right: 8px;
+    margin: 0;
+    width: 20px
+}
+
+.pcui-panel.attributes .ui-panel.field>.content>.ui-label:nth-child(2) {
+    padding: 0 8px;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-weight: normal;
+    font-size: 11px;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.pcui-panel.attributes .ui-panel.field>.content>.export-model-archive {
+    cursor: pointer
+}
+
+.pcui-panel.attributes .ui-panel.field>.content>.export-model-archive:hover {
+    color: #f60;
+    text-decoration: underline
+}
+
+.pcui-panel.attributes .ui-panel.field>.content>.ui-label.error {
+    color: #ff2020
+}
+
+.pcui-panel.attributes .ui-panel.field-number>.content>.ui-button.generate-uv1,
+.pcui-panel.attributes .ui-panel.field>.content>.ui-button.generate-uv1 {
+    height: 22px;
+    line-height: 22px;
+    font-size: 12px;
+    text-transform: uppercase
+}
+
+.pcui-panel.attributes .ui-panel.field-number>.content>.ui-progress.field-progress,
+.pcui-panel.attributes .ui-panel.field>.content>.ui-progress.field-progress {
+    width: 100%;
+    height: 8px;
+    margin: 11px 3px 0 3px
+}
+
+.pcui-panel.attributes .ui-panel .ui-label.label-field {
+    -webkit-flex-shrink: 0;
+    flex-shrink: 0;
+    width: 27%;
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.pcui-panel.attributes .ui-panel .ui-label.label-infield {
+    font-size: 10px;
+    line-height: 24px;
+    vertical-align: top
+}
+
+.pcui-panel.attributes .ui-panel.field-tags {
+    line-height: 1
+}
+
+.pcui-panel.attributes .ui-panel.field-tags>.content>.ui-panel {
+    width: 100%
+}
+
+.pcui-panel.attributes .ui-panel.field-tags>.content>.ui-panel>.content {
+    padding: 2px
+}
+
+.pcui-panel.attributes .ui-panel.field-tags>.content>.ui-panel>.content>.ui-text-field {
+    width: calc(100% - 26px);
+    margin: 1px 0 1px 1px;
+    flex-shrink: 0;
+    float: left
+}
+
+.pcui-panel.attributes .ui-panel.field-tags>.content>.ui-panel>.content>.ui-select-field {
+    width: calc(100% - 2px);
+    margin: 1px 0 1px 1px
+}
+
+.pcui-panel.attributes .ui-panel.field-tags>.content>.ui-panel>.content>.ui-button {
+    margin: 1px 1px 1px 0;
+    border-left: none;
+    padding: 0;
+    width: 24px;
+    line-height: 22px;
+    text-align: center
+}
+
+.pcui-panel.attributes .ui-panel.field-tags>.content>.ui-panel>.content>.ui-button:hover {
+    color: #f60
+}
+
+.pcui-panel.attributes .ui-panel.field-tags>.content>.ui-panel>.content>.ui-panel.tags {
+    margin-top: 1px
+}
+
+.pcui-panel.attributes .ui-panel.field-tags>.content>.ui-panel>.content>.ui-panel.tags.disabled>.content>.tag {
+    opacity: .5
+}
+
+.pcui-panel.attributes .ui-panel.field-tags>.content>.ui-panel>.content>.ui-panel.tags.disabled>.content>.tag>.icon {
+    cursor: default
+}
+
+.pcui-panel.attributes .ui-panel.field-tags>.content>.ui-panel>.content>.ui-panel.tags>.content {
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-height: 188px;
+    overflow-y: auto;
+    overflow-x: hidden
+}
+
+.pcui-panel.attributes .ui-panel.field-tags>.content>.ui-panel>.content>.ui-panel.tags>.content>.tag {
+    position: relative;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-weight: normal;
+    font-size: 10px;
+    display: inline-block;
+    line-height: 21px;
+    height: 20px;
+    margin: 1px;
+    padding: 0 24px 0 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    background-color: #2c393c;
+    cursor: default
+}
+
+.pcui-panel.attributes .ui-panel.field-tags>.content>.ui-panel>.content>.ui-panel.tags>.content>.tag:hover {
+    color: #fff;
+    background-color: #20292b
+}
+
+.pcui-panel.attributes .ui-panel.field-tags>.content>.ui-panel>.content>.ui-panel.tags>.content>.tag:hover>.icon {
+    padding-left: 0
+}
+
+.pcui-panel.attributes .ui-panel.field-tags>.content>.ui-panel>.content>.ui-panel.tags>.content>.tag.partial {
+    opacity: .5
+}
+
+.pcui-panel.attributes .ui-panel.field-tags>.content>.ui-panel>.content>.ui-panel.tags>.content>.tag>.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 16px;
+    line-height: 20px;
+    padding-right: 1px;
+    font-size: 12px;
+    text-align: center;
+    cursor: pointer;
+    color: #b1b8ba;
+    border-left: 1px solid #293538;
+    background-color: #2c393c
+}
+
+.pcui-panel.attributes .ui-panel.field-tags>.content>.ui-panel>.content>.ui-panel.tags>.content>.tag>.icon:hover {
+    color: #d34141;
+    background-color: #20292b;
+    border-left-color: #20292b
+}
+
+.pcui-panel.attributes .ui-panel.field-asset>.content>.top>.controls>.ui-select-field {
+    float: right;
+    width: 48px;
+    height: 24px;
+    margin: 5px 3px 0 6px
+}
+
+.pcui-panel.attributes .ui-panel.field-asset.channel>.content>.top>.ui-label {
+    float: left;
+    width: calc(100% - 60px)
+}
+
+.pcui-panel.attributes .ui-panel.field-asset.channel>.content>.top>.ui-select-field {
+    float: right;
+    width: 48px
+}
+
+.pcui-panel.attributes .ui-panel.field-asset>.content>.ui-image-field {
+    -webkit-flex-shrink: 0;
+    flex-shrink: 0;
+    margin-right: 3px;
+    background-color: #2c393c
+}
+
+.pcui-panel.attributes .ui-panel.field-asset>.content>.ui-image-field:hover {
+    background-color: #20292b
+}
+
+.pcui-panel.attributes .ui-panel.field-asset>.content>.ui-image-field:hover:after {
+    border-bottom: 24px solid #20292b
+}
+
+.pcui-panel.attributes .ui-panel.field-asset>.content>.ui-image-field.empty:before {
+    display: block;
+    content: '';
+    width: 60px;
+    height: 60px;
+    margin: 2px;
+    background-color: #465659;
+    background-image: -moz-linear-gradient(45deg, #5b696c 25%, transparent 25%, transparent 75%, #5b696c 75%, #5b696c 100%), -moz-linear-gradient(45deg, #5b696c 25%, transparent 25%, transparent 75%, #5b696c 75%, #5b696c 100%);
+    background-image: -webkit-linear-gradient(45deg, #5b696c 25%, transparent 25%, transparent 75%, #5b696c 75%, #5b696c 100%), -webkit-linear-gradient(45deg, #5b696c 25%, transparent 25%, transparent 75%, #5b696c 75%, #5b696c 100%);
+    background-image: linear-gradient(45deg, #5b696c 25%, transparent 25%, transparent 75%, #5b696c 75%, #5b696c 100%), linear-gradient(45deg, #5b696c 25%, transparent 25%, transparent 75%, #5b696c 75%, #5b696c 100%);
+    -moz-background-size: 24px 24px;
+    background-size: 24px 24px;
+    -webkit-background-size: 25px 25px;
+    background-position: 0 0, 12px 12px
+}
+
+.pcui-panel.attributes .ui-panel.field-asset>.content>.ui-image-field:after {
+    width: 0;
+    height: 0;
+    border: none;
+    background-color: transparent;
+    border-bottom: 24px solid #2c393c;
+    border-left: 24px solid transparent
+}
+
+.pcui-panel.attributes .ui-panel.field-asset>.content>.ui-image-field>canvas.preview {
+    background-color: #2c393c
+}
+
+.pcui-panel.attributes .ui-panel.field-asset>.content>.ui-image-field.material-asset {
+    background-image: none;
+    background-color: #20292b
+}
+
+.pcui-panel.attributes .ui-panel.field-asset>.content>.top {
+    width: 100%
+}
+
+.pcui-panel.attributes .ui-panel.field-asset>.content>.top>.controls {
+    display: -webkit-flex;
+    display: flex;
+    margin-top: 10px;
+    height: 32px
+}
+
+.pcui-panel.attributes .ui-panel.field-asset>.content>.top>.controls>.ui-label {
+    padding-right: 4px;
+    line-height: 28px
+}
+
+.pcui-panel.attributes .ui-panel.field-asset>.content>.top>.controls>.ui-button {
+    color: #9ba1a3;
+    height: 28px;
+    line-height: 28px;
+    font-size: 16px;
+    text-align: center;
+    text-align: center;
+    background: transparent;
+    border: none;
+    margin-left: 0;
+    margin-right: 0
+}
+
+.pcui-panel.attributes .ui-panel.field-asset>.content>.top>.controls>.ui-button.disabled:hover {
+    color: #9ba1a3;
+    background-color: transparent
+}
+
+.pcui-panel.attributes .ui-panel.field-asset>.content>.top>.controls>.ui-button:last-child {
+    margin-right: 4px;
+    line-height: 32px
+}
+
+.pcui-panel.attributes .ui-panel.field-asset>.content>.top>.controls>.ui-button:last-child:hover {
+    color: #d34141
+}
+
+.pcui-panel.attributes .ui-panel.field-asset>.content>.top>.controls>.ui-button:last-child:hover.disabled {
+    color: #9ba1a3
+}
+
+.pcui-panel.attributes .ui-panel.field-asset>.content>.top>.controls>.ui-button:hover {
+    background-color: #20292b;
+    color: #fff
+}
+
+.pcui-panel.attributes .ui-panel.field-asset>.content>.top>.ui-label {
+    width: calc(100% - 6px);
+    height: 24px;
+    line-height: 22px;
+    margin: 3px;
+    padding: 0 28px 0 8px;
+    overflow: hidden;
+    text-overflow: clip;
+    font-family: inconsolatamedium;
+    font-size: 12px;
+    background-color: #2c393c;
+    border: 1px solid #293538;
+    box-sizing: border-box;
+    cursor: pointer
+}
+
+.pcui-panel.attributes .ui-panel.field-asset>.content>.top>.ui-label:hover {
+    background-color: #20292b;
+    color: #fff
+}
+
+.pcui-panel.attributes .ui-panel.field-asset>.content>.top>.ui-label[placeholder]:after {
+    font-size: 24px;
+    line-height: 14px;
+    height: 22px;
+    background-color: #2c393c
+}
+
+.pcui-panel.attributes .ui-panel.field-asset.active {
+    outline: 1px solid #f60;
+    z-index: 1;
+    background-color: #20292b
+}
+
+.pcui-panel.attributes .ui-panel.field-asset.active>.content>.top>.controls>.ui-label {
+    color: #f60
+}
+
+.pcui-panel.attributes .ui-panel.field-asset.active>.content>.top>.ui-label {
+    color: #f60
+}
+
+.pcui-panel.attributes .ui-panel .add-entity {
+    position: relative;
+    font-size: 12px;
+    font-family: inconsolatamedium;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-right: 20px;
+    padding-left: 8px;
+    height: 22px;
+    line-height: 22px;
+    background-color: #2c393c
+}
+
+.pcui-panel.attributes .ui-panel .add-entity[placeholder]:after {
+    font-size: 24px;
+    line-height: 14px
+}
+
+.pcui-panel.attributes .ui-panel .add-entity.null {
+    color: #5b7073
+}
+
+.pcui-panel.attributes .ui-panel .add-entity:hover {
+    cursor: pointer;
+    background-color: #20292b;
+    color: #fff
+}
+
+.pcui-panel.attributes .ui-panel .add-entity>.icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-size: 16px;
+    text-align: center
+}
+
+.pcui-panel.attributes .ui-panel .add-entity>.icon:hover {
+    color: #f60
+}
+
+.pcui-panel.attributes .ui-panel .add-entity>.icon:after {
+    content: '\E132'
+}
+
+.pcui-panel.attributes .ui-list.model-nodes>.ui-list-item {
+    height: auto;
+    line-height: 34px;
+    padding-right: 0;
+    overflow: hidden
+}
+
+.pcui-panel.attributes .ui-list.model-nodes>.ui-list-item>.ui-image-field {
+    float: right;
+    background-position: center center;
+    background-color: #20292b
+}
+
+.pcui-panel.attributes .ui-list.related-assets>.ui-list-item:before {
+    content: '\E209';
+    font-size: 14px;
+    padding-right: 8px;
+    color: #5b7073
+}
+
+.pcui-panel.attributes .cubemap-viewport>.content {
+    padding: 4px;
+    overflow: hidden;
+    background-color: #2c393c
+}
+
+.pcui-panel.attributes .cubemap-viewport>.content>.face {
+    position: relative;
+    float: left;
+    width: 25%;
+    height: 0px;
+    cursor: pointer;
+    padding-bottom: 25%;
+    font-size: 12px;
+    background-image: url("/editor/scene/img/asset-placeholder-texture.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-color: #07f;
+    color: rgba(255, 255, 255, 0.5)
+}
+
+.pcui-panel.attributes .cubemap-viewport>.content>.face:hover {
+    outline: #f60 2px solid;
+    z-index: 1
+}
+
+.pcui-panel.attributes .cubemap-viewport>.content>.face:hover>.face-name {
+    color: #fff
+}
+
+.pcui-panel.attributes .cubemap-viewport>.content>.face:hover>.clear {
+    display: block
+}
+
+.pcui-panel.attributes .cubemap-viewport>.content>.face.empty>.clear {
+    display: none
+}
+
+.pcui-panel.attributes .cubemap-viewport>.content>.face>.face-name {
+    float: left;
+    color: #b1b8ba;
+    padding: 2px 4px;
+    background-color: rgba(44, 57, 60, 0.8)
+}
+
+.pcui-panel.attributes .cubemap-viewport>.content>.face>.clear {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 22px;
+    height: 22px;
+    line-height: 20px;
+    background-color: #364346;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center
+}
+
+.pcui-panel.attributes .cubemap-viewport>.content>.face>.clear:hover {
+    color: #d34141;
+    background-color: #20292b
+}
+
+.pcui-panel.attributes .cubemap-viewport>.content>.face>.clear:after {
+    content: '\E124';
+    font-weight: 200
+}
+
+.pcui-panel.attributes .cubemap-viewport>.content>.face-top {
+    margin-left: 25%;
+    margin-right: 50%
+}
+
+.pcui-panel.attributes .cubemap-viewport>.content>.face-bottom {
+    margin-left: 25%;
+    margin-right: 50%
+}
+
+.pcui-panel.attributes .ui-panel.component {
+    outline: none
+}
+
+.pcui-panel.attributes .ui-panel.component>header {
+    text-transform: uppercase
+}
+
+.pcui-panel.attributes .ui-panel.component.pcui-collapsible>header {
+    border-top: 1px solid #293538
+}
+
+.pcui-panel.attributes .ui-panel.component.pcui-collapsible>header:hover {
+    border-top-color: #20292b;
+    background-color: #20292b
+}
+
+.pcui-panel.attributes .ui-panel.component.pcui-collapsible.pcui-collapsed>header {
+    background-color: #364346
+}
+
+.pcui-panel.attributes .ui-panel.component.pcui-collapsible.pcui-collapsed>header:hover {
+    border-top-color: #20292b;
+    background-color: #20292b
+}
+
+.pcui-panel.attributes .ui-panel.component.entity>header {
+    border-top: 1px solid #2c393c
+}
+
+.pcui-panel.attributes .ui-panel.component.entity>header>.title:before {
+    content: '\E243';
+    font-size: 14px;
+    float: left;
+    width: 24px;
+    margin-right: 4px;
+    line-height: 32px;
+    text-align: center;
+    color: #f60
+}
+
+.pcui-panel.attributes .ui-panel.component.entity>header>.component-toggle-label {
+    float: right;
+    margin: 0 8px 0 0;
+    line-height: 32px
+}
+
+.pcui-panel.attributes .ui-panel.component.entity>header>.ui-checkbox.component-toggle {
+    float: right;
+    width: 30px;
+    height: 16px;
+    margin: 7px 4px 0 0;
+    background-color: #364346
+}
+
+.pcui-panel.attributes .ui-panel.component.entity>header>.ui-button.component-remove {
+    float: right;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-size: 14px;
+    text-align: center;
+    background-color: transparent
+}
+
+.pcui-panel.attributes .ui-panel.component.entity>header>.ui-button.component-remove:hover {
+    color: #d34141;
+    background-color: #20292b
+}
+
+.pcui-panel.attributes .ui-panel.component.entity>header>.ui-button.component-remove:after {
+    content: '\E124';
+    font-weight: 200
+}
+
+.pcui-panel.attributes .ui-panel.component.entity.script>header>.title:before {
+    content: '\E236'
+}
+
+.pcui-panel.attributes .ui-panel.component.entity.model>header>.title:before {
+    content: '\E188'
+}
+
+.pcui-panel.attributes .ui-panel.component.entity.animation>header>.title:before {
+    content: '\E198'
+}
+
+.pcui-panel.attributes .ui-panel.component.entity.audiosource>header>.title:before {
+    content: '\E197'
+}
+
+.pcui-panel.attributes .ui-panel.component.entity.sound>header>.title:before {
+    content: '\E197'
+}
+
+.pcui-panel.attributes .ui-panel.component.entity.collision>header>.title:before {
+    content: '\E187'
+}
+
+.pcui-panel.attributes .ui-panel.component.entity.rigidbody>header>.title:before {
+    content: '\E189'
+}
+
+.pcui-panel.attributes .ui-panel.component.entity.particlesystem>header>.title:before {
+    content: '\E199'
+}
+
+.pcui-panel.attributes .ui-panel.component.entity.light>header>.title:before {
+    content: '\E194'
+}
+
+.pcui-panel.attributes .ui-panel.component.entity.audiolistener>header>.title:before {
+    content: '\E196'
+}
+
+.pcui-panel.attributes .ui-panel.component.entity.camera>header>.title:before {
+    content: '\E212'
+}
+
+.pcui-panel.attributes .ui-panel.component.entity.screen>header>.title:before {
+    content: '\E403'
+}
+
+.pcui-panel.attributes .ui-panel.component.entity.element>header>.title:before {
+    content: '\E378'
+}
+
+.pcui-panel.attributes .ui-panel.component.entity.button>header>.title:before {
+    content: '\E405'
+}
+
+.pcui-panel.attributes .ui-panel.component.entity.scrollview>header>.title:before {
+    content: '\E408'
+}
+
+.pcui-panel.attributes .ui-panel.component.entity.scrollbar>header>.title:before {
+    content: '\E409'
+}
+
+.pcui-panel.attributes .ui-panel.component.entity.sprite>header>.title:before {
+    content: '\E395'
+}
+
+.pcui-panel.attributes .ui-panel.component.entity.layoutgroup>header>.title:before,
+.pcui-panel.attributes .ui-panel.component.entity.layoutchild>header>.title:before {
+    content: '\E143'
+}
+
+.pcui-panel.attributes .ui-panel.component.light .ui-button.shadowUpdate {
+    font-weight: bold;
+    text-align: center;
+    line-height: 24px;
+    width: 24px;
+    height: 24px;
+    padding: 0
+}
+
+.pcui-panel.attributes .ui-panel.component.particlesystem>.content>.controls>.content>.ui-button {
+    padding: 0;
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    text-align: center
+}
+
+.pcui-panel.attributes .ui-panel.component.particlesystem>.content>.controls>.content>.ui-button.pause {
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    line-height: 20px
+}
+
+.pcui-panel.attributes .ui-panel.component.particlesystem>.content>.controls>.content>.ui-progress {
+    margin: 12px 0 0 3px
+}
+
+.pcui-panel.attributes .ui-panel.component.variants>.content>.ui-label.pvr-warning {
+    color: #d34141;
+    text-align: right;
+    font-size: 12px
+}
+
+.pcui-panel.attributes .ui-panel.component.variants>.content>.ui-label.pvr-warning:not(.hidden) {
+    display: block
+}
+
+.pcui-panel.attributes .ui-panel.component.variants>.content>.ui-panel>.content>.ui-label.size {
+    vertical-align: top;
+    font-size: 10px;
+    line-height: 24px;
+    text-align: right;
+    flex-grow: 1;
+    -webkit-flex-grow: 1;
+    color: #9ba1a3
+}
+
+.pcui-panel.attributes .ui-panel.component.variants>.content>.ui-panel>.content>.ui-checkbox.disabled {
+    background-color: #2c393c
+}
+
+.pcui-panel.attributes .ui-panel.component.variants>.content>.ui-panel>.content>.ui-checkbox.disabled:after {
+    content: none
+}
+
+.pcui-panel.attributes .ui-panel.component.model>.content .add-batch-group,
+.pcui-panel.attributes .ui-panel.component.element>.content .add-batch-group {
+    color: #f60
+}
+
+.pcui-panel.attributes .ui-panel.component.model>.content .add-batch-group:before,
+.pcui-panel.attributes .ui-panel.component.element>.content .add-batch-group:before {
+    content: '\E120';
+    padding-right: 8px;
+    color: #f60
+}
+
+.pcui-panel.attributes .ui-panel.component.script>.content {
+    padding-top: 6px
+}
+
+.pcui-panel.attributes .ui-panel.component.script>.content>.ui-text-field.add-script {
+    position: relative;
+    display: block;
+    width: calc(100% - 2px);
+    margin: 0 0 6px 0
+}
+
+.pcui-panel.attributes .ui-panel.component.script>.content>.ui-text-field.add-script:hover:before,
+.pcui-panel.attributes .ui-panel.component.script>.content>.ui-text-field.add-script:hover:after,
+.pcui-panel.attributes .ui-panel.component.script>.content>.ui-text-field.add-script:focus:before,
+.pcui-panel.attributes .ui-panel.component.script>.content>.ui-text-field.add-script:focus:after,
+.pcui-panel.attributes .ui-panel.component.script>.content>.ui-text-field.add-script.focus:before,
+.pcui-panel.attributes .ui-panel.component.script>.content>.ui-text-field.add-script.focus:after,
+.pcui-panel.attributes .ui-panel.component.script>.content>.ui-text-field.add-script.not-empty:before,
+.pcui-panel.attributes .ui-panel.component.script>.content>.ui-text-field.add-script.not-empty:after {
+    content: ''
+}
+
+.pcui-panel.attributes .ui-panel.component.script>.content>.ui-text-field.add-script:before {
+    content: '\E120';
+    position: absolute;
+    top: 0;
+    left: 8px;
+    font-weight: bold;
+    line-height: 24px
+}
+
+.pcui-panel.attributes .ui-panel.component.script>.content>.ui-text-field.add-script:after {
+    content: 'Add Script';
+    position: absolute;
+    right: auto;
+    left: 30px;
+    top: 0;
+    padding: 0;
+    line-height: 24px;
+    color: #b1b8ba;
+    font-weight: bold;
+    font-size: 12px;
+    text-transform: uppercase
+}
+
+.pcui-panel.attributes .ui-panel.component.script>.content>.ui-list.scripts-autocomplete {
+    position: absolute;
+    top: 30px;
+    left: 6px;
+    right: 6px;
+    width: auto;
+    max-height: 220px;
+    margin: 0;
+    border-top: none;
+    z-index: 1;
+    overflow-y: auto;
+    background-color: #20292b
+}
+
+.pcui-panel.attributes .ui-panel.component.script>.content>.ui-list.scripts-autocomplete>.ui-list-item {
+    color: #fff;
+    border-color: #293538
+}
+
+.pcui-panel.attributes .ui-panel.component.script>.content>.ui-list.scripts-autocomplete>.ui-list-item:hover,
+.pcui-panel.attributes .ui-panel.component.script>.content>.ui-list.scripts-autocomplete>.ui-list-item.active {
+    color: #f60
+}
+
+.pcui-panel.attributes .ui-panel.component.script>.content>.ui-list.scripts-autocomplete>.ui-list-item.selected {
+    background-color: transparent
+}
+
+.pcui-panel.attributes .ui-panel.component.script>.content>.ui-list.scripts-autocomplete>.ui-list-item.new:before {
+    content: '\E120';
+    font-size: 14px;
+    padding-right: 4px
+}
+
+.pcui-panel.attributes .ui-panel.component.script>.content>.scripts>.content>.dragPlaceholder {
+    margin-bottom: 1px;
+    background-color: #2c393c;
+    border: 4px solid #f60
+}
+
+.pcui-panel.attributes .ui-panel.component.script>.content>.scripts>.content>.dragPlaceholder:last-child {
+    margin-bottom: 0
+}
+
+.pcui-panel.attributes .ui-panel.component.script>.content>.scripts>.content>.ui-panel {
+    border-bottom: 1px solid #293538
+}
+
+.pcui-panel.attributes .ui-panel.component.script>.content>.scripts>.content>.ui-panel.dragged {
+    opacity: 0.5
+}
+
+.pcui-panel.attributes .ui-panel.component.script>.content>.scripts>.content>.ui-panel:last-child {
+    border-bottom: none
+}
+
+.pcui-panel.attributes .ui-panel.component.script>.content>.scripts>.content>.ui-panel>.ui-header {
+    background-color: #2c393c;
+    padding-left: 0;
+    white-space: normal
+}
+
+.pcui-panel.attributes .ui-panel.component.script>.content>.scripts>.content>.ui-panel>.ui-header>.handle {
+    float: left;
+    width: 12px;
+    height: 24px;
+    margin: 4px 2px;
+    cursor: move;
+    background: -webkit-radial-gradient(#495a5d 20%, transparent 55%);
+    background: -moz-radial-gradient(#495a5d 20%, transparent 55%);
+    background: radial-gradient(#495a5d 20%, rgba(0, 0, 0, 0) 55%);
+    -webkit-background-size: 6px 7px;
+    -moz-background-size: 6px 6px;
+    background-size: 6px 6px
+}
+
+.pcui-panel.attributes .ui-panel.component.script>.content>.scripts>.content>.ui-panel>.ui-header>.handle:hover {
+    background: -webkit-radial-gradient(#fff 20%, transparent 55%);
+    background: -moz-radial-gradient(#fff 20%, transparent 55%);
+    background: radial-gradient(#ffffff 20%, rgba(0, 0, 0, 0) 55%);
+    -webkit-background-size: 6px 7px;
+    -moz-background-size: 6px 6px;
+    background-size: 6px 6px
+}
+
+.pcui-panel.attributes .ui-panel.component.script>.content>.scripts>.content>.ui-panel>.ui-header>.title {
+    padding: 0 8px;
+    white-space: nowrap
+}
+
+.pcui-panel.attributes .ui-panel.component.script>.content>.scripts>.content>.ui-panel>.ui-header>.title.link {
+    color: #f60;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 192px)
+}
+
+.pcui-panel.attributes .ui-panel.component.script>.content>.scripts>.content>.ui-panel>.ui-header>.title.link:hover {
+    text-decoration: underline
+}
+
+.pcui-panel.attributes .ui-panel.component.script>.content>.scripts>.content>.ui-panel>.ui-header>.edit,
+.pcui-panel.attributes .ui-panel.component.script>.content>.scripts>.content>.ui-panel>.ui-header>.parse {
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+    text-align: center
+}
+
+.pcui-panel.attributes .ui-panel.component.script>.content>.scripts>.content>.ui-panel>.ui-header>.edit:hover,
+.pcui-panel.attributes .ui-panel.component.script>.content>.scripts>.content>.ui-panel>.ui-header>.parse:hover {
+    background-color: #20292b
+}
+
+.pcui-panel.attributes .ui-panel.component.script>.content>.scripts>.content>.ui-panel>.ui-header>.edit.error,
+.pcui-panel.attributes .ui-panel.component.script>.content>.scripts>.content>.ui-panel>.ui-header>.parse.error {
+    color: #d34141
+}
+
+.pcui-panel.attributes .ui-panel.component.script>.content>.scripts>.content>.ui-panel>.ui-header>.remove {
+    float: right;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+    text-align: center
+}
+
+.pcui-panel.attributes .ui-panel.component.script>.content>.scripts>.content>.ui-panel>.ui-header>.remove:hover {
+    color: #d34141;
+    background-color: #20292b
+}
+
+.pcui-panel.attributes .ui-panel.component.script>.content>.scripts>.content>.ui-panel>.ui-header>.remove:after {
+    content: '\E124';
+    font-weight: 200
+}
+
+.pcui-panel.attributes .ui-panel.component.script>.content>.scripts>.content>.ui-panel>.ui-header>.component-toggle-label {
+    float: right;
+    margin: 0 8px 0 0;
+    line-height: 32px
+}
+
+.pcui-panel.attributes .ui-panel.component.script>.content>.scripts>.content>.ui-panel>.ui-header>.ui-checkbox.component-toggle {
+    float: right;
+    width: 30px;
+    height: 16px;
+    margin: 7px 4px 0 0;
+    background-color: #364346
+}
+
+.pcui-panel.attributes .ui-panel.component.script>.content>.scripts>.content>.ui-panel>.ui-header>.invalid-script {
+    float: left;
+    width: 32px;
+    height: 32px;
+    line-height: 34px;
+    margin: 0 -8px 0 0;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: #f30
+}
+
+.pcui-panel.attributes .ui-panel.component.script>.content>.scripts>.content>.ui-panel>.content .label-field {
+    line-height: 24px;
+    margin-left: 6px
+}
+
+.pcui-panel.attributes .ui-panel.component.asset-script>.ui-header>.parse-script {
+    background-color: transparent;
+    border: none;
+    line-height: 32px;
+    float: right;
+    margin: 0
+}
+
+.pcui-panel.attributes .ui-panel.component.asset-script>.ui-header>.parse-script:before {
+    float: left;
+    content: '\E128';
+    font-size: 14px;
+    padding-right: 8px;
+    vertical-align: middle
+}
+
+.pcui-panel.attributes .ui-panel.component.asset-script>.ui-header>.parse-script:hover {
+    color: #f60;
+    background-color: #20292b
+}
+
+.pcui-panel.attributes .ui-panel.component.asset-script>.ui-header>.parse-script.disabled:hover {
+    color: #b1b8ba;
+    background-color: transparent
+}
+
+.pcui-panel.attributes .ui-panel.component.asset-script>.content .ui-panel.validation {
+    overflow: hidden;
+    background-color: #2c393c
+}
+
+.pcui-panel.attributes .ui-panel.component.asset-script>.content .ui-panel.validation>.content {
+    padding: 8px 8px 4px
+}
+
+.pcui-panel.attributes .ui-panel.component.asset-script>.content .ui-panel.validation>.content>.ui-label {
+    display: block;
+    color: #f30;
+    font-size: 12px;
+    margin: 0;
+    line-height: normal
+}
+
+.pcui-panel.attributes .ui-panel.component.asset-script>.content>.ui-label.loading {
+    display: block;
+    line-height: 32px;
+    margin: 0 0 3px 0;
+    padding: 0 8px;
+    font-size: 12px;
+    color: #fff;
+    background-color: #2c393c;
+    border: 1px solid #293538;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-smoothing: antialiased
+}
+
+.pcui-panel.attributes .ui-panel.component.asset-script>.content>.ui-label.loading.hidden {
+    display: none
+}
+
+.pcui-panel.attributes .ui-panel.component.asset-script>.content>.ui-panel.scripts {
+    border: 1px solid #293538;
+    background-color: transparent
+}
+
+.pcui-panel.attributes .ui-panel.component.asset-script>.content>.ui-panel.scripts.empty {
+    border: none
+}
+
+.pcui-panel.attributes .ui-panel.component.asset-script>.content>.ui-panel.scripts.empty>.content>.ui-label {
+    display: block;
+    margin-top: 0;
+    line-height: normal;
+    text-align: center
+}
+
+.pcui-panel.attributes .ui-panel.component.asset-script>.content>.ui-panel.scripts>.content>.ui-panel.script {
+    background-color: transparent;
+    border-bottom: 1px solid #293538
+}
+
+.pcui-panel.attributes .ui-panel.component.asset-script>.content>.ui-panel.scripts>.content>.ui-panel.script:last-child {
+    border-bottom: none
+}
+
+.pcui-panel.attributes .ui-panel.component.asset-script>.content>.ui-panel.scripts>.content>.ui-panel.script>.ui-header {
+    background-color: #2c393c
+}
+
+.pcui-panel.attributes .ui-panel.component.asset-script>.content>.ui-panel.scripts>.content>.ui-panel.script>.content>.validation>.content {
+    padding-top: 0
+}
+
+.pcui-panel.attributes .ui-panel.component.asset-script>.content>.ui-panel.scripts>.content>.ui-panel.script>.content>.attr {
+    display: block;
+    font-size: 12px
+}
+
+.pcui-panel.attributes .ui-panel.component.asset-script>.content>.ui-panel.scripts>.content>.ui-panel.script>.content>.attr:hover {
+    background-color: #313e41
+}
+
+.pcui-panel.attributes .ui-panel.component.asset-script>.content>.ui-panel.scripts>.content>.ui-panel.script>.content>.attr>.content {
+    padding: 0 5px
+}
+
+.pcui-panel.attributes .ui-panel.component.asset-script>.content>.ui-panel.scripts>.content>.ui-panel.script>.content>.attr>.content>.type {
+    float: right
+}
+
+.pcui-panel.attributes .ui-panel.component>.content {
+    padding: 8px 6px
+}
+
+.pcui-panel.attributes .ui-panel.component>.content .fields-divider {
+    height: 1px;
+    background-color: #2c393c;
+    margin: 4px 0
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.add-component {
+    display: block;
+    background-color: #2c393c;
+    text-transform: uppercase;
+    font-size: 12px;
+    border: none;
+    margin-top: 5px;
+    position: relative;
+    padding-left: 30px;
+    height: 26px;
+    line-height: 28px
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.add-component.hidden {
+    display: none
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.add-component:hover {
+    background-color: #20292b
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.add-component:hover:before {
+    color: #f60
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.add-component:before {
+    position: absolute;
+    top: 0px;
+    left: 8px;
+    content: '\E120';
+    font-size: 14px;
+    text-align: center
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-panel.buttons>.content {
+    display: flex
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-panel.buttons>.content>.ui-button.large-with-icon {
+    flex-grow: 1;
+    -webkit-flex-grow: 1;
+    width: 100%
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-panel.buttons>.content>.ui-button.large-with-icon.download-asset:before {
+    content: '\E228'
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-panel.buttons>.content>.ui-button.large-with-icon.edit-script:before {
+    content: '\E130'
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-panel.buttons>.content>.ui-button.large-with-icon.sprite-editor:before {
+    content: '\E395'
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-panel.buttons>.content>.ui-button.large-with-icon,
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.large-with-icon {
+    display: block;
+    text-align: center
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-panel.buttons>.content>.ui-button.large-with-icon:before,
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.large-with-icon:before {
+    content: '?';
+    line-height: 23px;
+    padding-right: 8px;
+    font-size: 16px;
+    text-align: center;
+    vertical-align: middle
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-panel.buttons>.content>.ui-button.large-with-icon.parse-script:before,
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.large-with-icon.parse-script:before {
+    content: '\E120'
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-panel.buttons>.content>.ui-button.large-with-icon.calculate-meta.hidden,
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.large-with-icon.calculate-meta.hidden {
+    display: none
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-panel.buttons>.content>.ui-button.large-with-icon.calculate-meta:before,
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.large-with-icon.calculate-meta:before {
+    content: '\E131'
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-panel.buttons>.content>.ui-button.large-with-icon.compress-asset,
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.large-with-icon.compress-asset {
+    color: #f60
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-panel.buttons>.content>.ui-button.large-with-icon.compress-asset.disabled,
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.large-with-icon.compress-asset.disabled {
+    color: #fff
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-panel.buttons>.content>.ui-button.large-with-icon.compress-asset:hover,
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.large-with-icon.compress-asset:hover {
+    color: #fff
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-panel.buttons>.content>.ui-button.large-with-icon.compress-asset:before,
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.large-with-icon.compress-asset:before {
+    content: '\E278'
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.override-material,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.loading-screen {
+    flex-grow: 1;
+    -webkit-flex-grow: 1;
+    background-color: #2c393c;
+    text-transform: uppercase;
+    font-size: 10px;
+    border: none;
+    position: relative;
+    height: 28px;
+    line-height: 30px;
+    padding-left: 28px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.override-material:hover,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.loading-screen:hover {
+    background-color: #20292b
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.override-material:hover:before,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.loading-screen:hover:before {
+    color: #f60
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.override-material:before,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.loading-screen:before {
+    position: absolute;
+    top: 0px;
+    left: 8px;
+    font-size: 14px;
+    text-align: center
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.override-material:before {
+    content: '\E184';
+    font-size: 14px;
+    font-weight: 200
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.loading-screen:before {
+    content: '\E184';
+    font-size: 14px;
+    font-weight: 200
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.loading-screen.add:before {
+    content: '\E120';
+    font-size: 14px;
+    top: 0px
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.add-script,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.add-sound-slot,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.add-batch-group,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.add-clip,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.add-i18n-asset {
+    margin: 0 0 8px 0;
+    background-color: #2c393c;
+    text-transform: uppercase;
+    font-size: 12px;
+    border: none;
+    position: relative;
+    height: 28px;
+    line-height: 30px;
+    padding-left: 28px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.add-script:hover,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.add-sound-slot:hover,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.add-batch-group:hover,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.add-clip:hover,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.add-i18n-asset:hover {
+    background-color: #20292b
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.add-script:hover:before,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.add-sound-slot:hover:before,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.add-batch-group:hover:before,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.add-clip:hover:before,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.add-i18n-asset:hover:before {
+    color: #f60
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-button.add-script:before,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.add-sound-slot:before,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.add-batch-group:before,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.add-clip:before,
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.add-i18n-asset:before {
+    position: absolute;
+    top: 0px;
+    left: 8px;
+    content: '\E120';
+    font-size: 14px;
+    text-align: center
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-panel.scripts-order {
+    border: 1px solid #293538
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-panel.scripts-order.disabled {
+    opacity: 0.5
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-panel.scripts-order>.content>.dragPlaceholder {
+    margin-bottom: 1px;
+    background-color: #2c393c;
+    border: 4px solid #f60
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-panel.scripts-order>.content>.dragPlaceholder:last-child {
+    margin-bottom: 0
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-panel.scripts-order>.content>.asset {
+    border-bottom: 1px solid #293538
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-panel.scripts-order>.content>.asset:last-child {
+    border-bottom: none
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-panel.scripts-order>.content>.asset.disabled>.ui-header:hover {
+    background-color: #2c393c
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-panel.scripts-order>.content>.asset.disabled>.ui-header:hover>.title {
+    text-decoration: none
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-panel.scripts-order>.content>.asset.disabled>.ui-header>.handle {
+    display: none
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-panel.scripts-order>.content>.asset>.ui-header {
+    padding-left: 0;
+    background-color: #2c393c;
+    cursor: pointer
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-panel.scripts-order>.content>.asset>.ui-header:hover {
+    background-color: #20292b
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-panel.scripts-order>.content>.asset>.ui-header:hover>.title {
+    text-decoration: underline
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-panel.scripts-order>.content>.asset>.ui-header>.title {
+    padding: 0 8px;
+    color: #f60
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-panel.scripts-order>.content>.asset>.ui-header>.number {
+    float: right;
+    margin-right: 8px;
+    color: #9ba1a3
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-panel.scripts-order>.content>.asset>.ui-header>.number:before {
+    content: '#'
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-panel.scripts-order>.content>.asset>.ui-header>.handle {
+    float: left;
+    width: 12px;
+    height: 24px;
+    margin: 4px 2px;
+    cursor: move;
+    background: -webkit-radial-gradient(#495a5d 20%, transparent 55%);
+    background: -moz-radial-gradient(#495a5d 20%, transparent 55%);
+    background: radial-gradient(#495a5d 20%, rgba(0, 0, 0, 0) 55%);
+    -webkit-background-size: 6px 7px;
+    -moz-background-size: 6px 6px;
+    background-size: 6px 6px
+}
+
+.pcui-panel.attributes .ui-panel.component>.content>.ui-panel.scripts-order>.content>.asset>.ui-header>.handle:hover {
+    background: -webkit-radial-gradient(#fff 20%, transparent 55%);
+    background: -moz-radial-gradient(#fff 20%, transparent 55%);
+    background: radial-gradient(#ffffff 20%, rgba(0, 0, 0, 0) 55%);
+    -webkit-background-size: 6px 7px;
+    -moz-background-size: 6px 6px;
+    background-size: 6px 6px
+}
+
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.audio-play {
+    float: left;
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    text-align: center;
+    flex-shrink: 0;
+    -webkit-flex-shrink: 0;
+    margin: 0 0 0 4px;
+    padding: 0;
+    font-size: 14px
+}
+
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.audio-play.active {
+    color: #f60;
+    background-color: #20292b
+}
+
+.pcui-panel.attributes .ui-panel.component>.content .ui-progress.audio-timeline {
+    float: left;
+    flex-grow: 1;
+    -webkit-flex-grow: 1;
+    width: calc(100% - 42px);
+    margin: 11px 0 0 8px;
+    height: 4px
+}
+
+.pcui-panel.attributes .ui-panel.component>.content .ui-button.loading-order {
+    line-height: 20px
+}
+
+.pcui-panel.attributes .ui-panel.component>.content .ui-label.no-data {
+    line-height: 24px;
+    height: 24px
+}
+
+.pcui-panel.attributes .ui-panel.component>.content .ui-list.source-textures>.ui-list-item {
+    position: relative
+}
+
+.pcui-panel.attributes .ui-panel.component>.content .ui-list.source-textures>.ui-list-item>.ui-button.download {
+    position: absolute;
+    display: block;
+    top: 0;
+    right: 0;
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-size: 16px;
+    text-align: center
+}
+
+.pcui-panel.attributes .ui-panel.component .ui-panel.components-scripts>.content>.ui-panel.component-script:first-child>.ui-header>.move-up {
+    visibility: hidden
+}
+
+.pcui-panel.attributes .ui-panel.component .ui-panel.components-scripts>.content>.ui-panel.component-script:last-child>.ui-header>.move-down {
+    visibility: hidden
+}
+
+.pcui-panel.attributes .ui-panel.component .ui-panel.component-script {
+    border-top: 1px solid #293538;
+    border-left: 1px solid #293538;
+    border-right: 1px solid #293538
+}
+
+.pcui-panel.attributes .ui-panel.component .ui-panel.component-script:last-child {
+    border-bottom: 1px solid #293538
+}
+
+.pcui-panel.attributes .ui-panel.component .ui-panel.component-script>.ui-header {
+    background-color: #2c393c;
+    overflow: hidden;
+    height: 32px;
+    line-height: 32px
+}
+
+.pcui-panel.attributes .ui-panel.component .ui-panel.component-script>.ui-header>.title {
+    max-width: calc(100% - 128px)
+}
+
+.pcui-panel.attributes .ui-panel.component .ui-panel.component-script>.ui-header>.title>.link {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    color: #f60;
+    cursor: pointer
+}
+
+.pcui-panel.attributes .ui-panel.component .ui-panel.component-script>.ui-header>.title>.link:hover {
+    text-decoration: underline
+}
+
+.pcui-panel.attributes .ui-panel.component .ui-panel.component-script>.ui-header>.move-down,
+.pcui-panel.attributes .ui-panel.component .ui-panel.component-script>.ui-header>.move-up,
+.pcui-panel.attributes .ui-panel.component .ui-panel.component-script>.ui-header>.refresh,
+.pcui-panel.attributes .ui-panel.component .ui-panel.component-script>.ui-header>.remove {
+    float: right;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+    text-align: center
+}
+
+.pcui-panel.attributes .ui-panel.component .ui-panel.component-script>.ui-header>.move-down:hover,
+.pcui-panel.attributes .ui-panel.component .ui-panel.component-script>.ui-header>.move-up:hover,
+.pcui-panel.attributes .ui-panel.component .ui-panel.component-script>.ui-header>.refresh:hover,
+.pcui-panel.attributes .ui-panel.component .ui-panel.component-script>.ui-header>.remove:hover {
+    color: #f60;
+    background-color: #20292b
+}
+
+.pcui-panel.attributes .ui-panel.component .ui-panel.component-script>.ui-header>.refresh:after {
+    content: '\E128'
+}
+
+.pcui-panel.attributes .ui-panel.component .ui-panel.component-script>.ui-header>.move-up:after {
+    content: '\E161'
+}
+
+.pcui-panel.attributes .ui-panel.component .ui-panel.component-script>.ui-header>.move-down:after {
+    content: '\E163'
+}
+
+.pcui-panel.attributes .ui-panel.component .ui-panel.component-script>.ui-header>.remove:hover {
+    color: #d34141
+}
+
+.pcui-panel.attributes .ui-panel.component .ui-panel.component-script>.ui-header>.remove:after {
+    content: '\E124';
+    font-weight: 200
+}
+
+.pcui-panel.attributes .ui-panel.component .ui-panel.component-script>.content {
+    padding: 0 3px
+}
+
+.pcui-panel.attributes .ui-label.asset-loading-error {
+    display: block;
+    text-align: center;
+    font-weight: 100;
+    font-size: 12px;
+    color: #f66
+}
+
+.pcui-panel.attributes .ui-label.asset-loading-error.hidden {
+    display: none
+}
+
+.pcui-panel.attributes .ui-panel.batching>.content {
+    padding-top: 8px
+}
+
+.pcui-panel.attributes .ui-panel.batching .ui-panel.batch-group {
+    margin-bottom: 2px;
+    transition: none
+}
+
+.pcui-panel.attributes .ui-panel.batching .ui-panel.batch-group>.ui-header>.title {
+    width: calc(100% - 32px)
+}
+
+.pcui-panel.attributes .ui-panel.batching .ui-panel.batch-group>.content {
+    padding-top: 8px 6px;
+    transition: none
+}
+
+.pcui-panel.attributes .ui-panel.batching .ui-panel.batch-group .ui-text-field.error {
+    border-color: #fb222f
+}
+
+.pcui-panel.attributes .ui-panel.batching .ui-panel.batch-group .remove {
+    float: right;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-size: 14px;
+    text-align: center;
+    background-color: transparent
+}
+
+.pcui-panel.attributes .ui-panel.batching .ui-panel.batch-group .remove:hover {
+    background-color: #20292b
+}
+
+.pcui-panel.attributes .ui-panel.batching .ui-panel.batch-group .remove:after {
+    content: '\E124';
+    font-weight: 200
+}
+
+.pcui-panel.attributes .ui-panel.localization>.content .add-locale {
+    margin-bottom: 10px
+}
+
+.pcui-panel.attributes .ui-panel.localization>.content .add-locale.error {
+    outline: 1px solid #fb222f
+}
+
+.pcui-panel.attributes .ui-panel.localization>.content .ui-panel.locale {
+    margin-bottom: 10px
+}
+
+.pcui-panel.attributes .ui-panel.localization>.content .ui-panel.locale>.ui-header {
+    text-transform: initial
+}
+
+.pcui-panel.attributes .ui-panel.localization>.content .ui-panel.locale>.ui-header>.ui-button.remove {
+    float: right;
+    border-color: transparent;
+    background: transparent
+}
+
+.pcui-panel.attributes .ui-panel.localization>.content .ui-panel.locale>.content {
+    border: 1px solid #2c393c
+}
+
+.ui-panel.inspector-controls {
+    margin-left: auto;
+    background-color: transparent
+}
+
+.ui-panel.inspector-controls>.content {
+    background-color: transparent;
+    min-width: 32px;
+    height: 32px;
+    overflow: hidden
+}
+
+.ui-panel.inspector-controls>.content>.ui-button {
+    float: right;
+    margin: 0;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    border: none;
+    padding: 0;
+    color: #9ba1a3;
+    font-size: 14px;
+    text-align: center;
+    background-color: transparent
+}
+
+.ui-panel.inspector-controls>.content>.ui-button.active {
+    color: #f60;
+    background-color: #20292b
+}
+
+.ui-panel.inspector-controls>.content>.ui-button.disabled {
+    opacity: 1;
+    color: #545f62
+}
+
+.ui-panel.inspector-controls>.content>.ui-button.disabled:hover,
+.ui-panel.inspector-controls>.content>.ui-button.disabled:focus {
+    color: #545f62;
+    background-color: transparent
+}
+
+.ui-panel.inspector-controls>.content>.ui-button:hover,
+.ui-panel.inspector-controls>.content>.ui-button:focus {
+    color: #fff;
+    background-color: #20292b
+}
+
+.ui-panel.inspector-controls>.content>.ui-button.back {
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg)
+}
+
+.ui-panel.picker-node>.content {
+    padding: 0 !important
+}
+
+.ui-panel.picker-node>.content>.field-asset {
+    border-top: 1px solid #2b3638
+}
+
+.ui-panel.picker-node>.content>.field-asset:last-child {
+    border-bottom: 1px solid #2b3638
+}
+
+.ui-panel.picker-node>.content>.field-asset>.content {
+    padding: 0px 6px;
+    background-color: #364346
+}
+
+.ui-panel.picker-node>.content>.field-asset>.content>.ui-image-field {
+    background-color: #364346;
+    border-color: transparent
+}
+
+.ui-panel.picker-node>.content>.field-asset>.content>.ui-image-field:after {
+    display: none
+}
+
+.ui-panel.picker-node>.content>.field-asset>.content>.ui-image-field>canvas.preview {
+    background-color: transparent
+}
+
+.ui-panel.picker-node>.content>.field-asset>.content>.top .ui-button {
+    display: none
+}
+
+.ui-panel.picker-node>.content>.field-asset>.content>.top .ui-label {
+    background-color: #364346;
+    border-color: transparent
+}
+
+.ui-panel.picker-node>.content>.field-asset>.content>.top .ui-label:after {
+    display: none
+}
+
+.ui-panel.picker-node>.content>.field-asset>.content>.top>.ui-label {
+    color: white;
+    left: -8px;
+    font-size: 14px
+}
+
+.ui-panel.picker-node>.content>.field-asset:not(.disabled):hover>.content {
+    cursor: pointer;
+    background-color: #20292b
+}
+
+.ui-panel.picker-node>.content>.field-asset:not(.disabled):hover>.content>.ui-image-field {
+    pointer-events: none;
+    background-color: #20292b
+}
+
+.ui-panel.picker-node>.content>.field-asset:not(.disabled):hover>.content>.top .ui-label {
+    pointer-events: none;
+    background-color: #20292b
+}
+
+.ui-panel.picker-node>.content>.field-asset.disabled>.content {
+    pointer-events: none;
+    opacity: 0.25
+}
+
+.ui-panel.picker-node .help {
+    font-size: 12px;
+    padding: 8px 20px;
+    background-color: #2f3c3f;
+    margin: 0;
+    color: white
+}
+
+.ui-panel.picker-node .help h5 {
+    font-size: 12px;
+    margin: 0;
+    color: #f60
+}
