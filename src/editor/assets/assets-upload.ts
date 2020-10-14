@@ -2,7 +2,6 @@ import { VeryEngine } from '../../engine';
 import { Observer } from '../../lib';
 import { Config } from '../global';
 import { UUid } from '../utility/uuid';
-import { uploadFile, getJsonConfig, uploadJsonAsset, upLoadJsonConfig } from '../../tools/ossfile';
 import { BabylonLoader } from '../middleware/loader/babylonLoader';
 
 
@@ -94,7 +93,9 @@ export class AssetsUpload {
             if (args.filename) {
                 form.filename = args.filename;
             }
-
+            if (args.name) {
+                form.name = args.name;
+            }
             // file
             if (args.file && args.file.size) {
                 form.file = args.file, (args.filename || args.name);
@@ -109,9 +110,6 @@ export class AssetsUpload {
                 console.error('\'type\' required for upload request');
             }
             formData.type = args.type;
-            if (args.name) {
-                formData.name = args.name;
-            }
             if (args.tags) {
                 formData.tags = args.tags.join('\n');
             }
@@ -140,7 +138,7 @@ export class AssetsUpload {
             // 单独处理创建表格或者文件夹类，不需要等待所有文件上传完毕后再修改asset josn
             if (fileCount == 0) {
                 fileCount = 1;
-                var assetJson = await getJsonConfig(Config.projectID, 'assets');
+                var assetJson = await ossfile.getJsonConfig(Config.projectID, 'assets');
                 assetFile = JSON.parse(assetJson);
             }
             var form: any = {};
@@ -173,7 +171,7 @@ export class AssetsUpload {
                         var assetID = UUid.createAssetID();
 
                         // TODO: 上传文件入口，异常处理？？？
-                        await uploadFile(form.file, Config.projectID, assetID, form.name, hash);
+                        await ossfile.uploadFile(form.file, Config.projectID, assetID, form.name, hash);
 
                         var createdAt = UUid.createdAtTime();
                         assetData = {
@@ -458,7 +456,7 @@ export class AssetsUpload {
                     else if (form.type === 'table') {
                         var assetID = UUid.createAssetID();
                         var createdAt = UUid.createdAtTime();
-                        await uploadJsonAsset(Config.tableStandard, form.projectID, assetID, 'table');
+                        await ossfile.uploadJsonAsset(Config.tableStandard, form.projectID, assetID, 'table');
 
                         var createdAt = UUid.createdAtTime();
                         assetData = {
@@ -510,11 +508,11 @@ export class AssetsUpload {
                 var assetData: any = {};
                 if (form.type === 'texture' && form.file) {
                     var hash = await UUid.getmd5(form.file);
-                    await uploadFile(form.file, Config.projectID, form.assetID, form.name, hash);
-                    assetFile.assets[form.assetID].modifiedAt = UUid.createdAtTime();
-                    assetFile.assets[form.assetID].file['size'] = form.file.size;
-                    assetFile.assets[form.assetID].file['hash'] = hash;
-                    assetData = assetFile.assets[form.assetID];
+                    await ossfile.uploadFile(form.file, Config.projectID, form.assetId, form.name, hash);
+                    assetFile.assets[form.assetId].modifiedAt = UUid.createdAtTime();
+                    assetFile.assets[form.assetId].file['size'] = form.file.size;
+                    assetFile.assets[form.assetId].file['hash'] = hash;
+                    assetData = assetFile.assets[form.assetId];
                 } else if (form.type === 'model') {
                     // 待定，先不覆盖，直接上传新的数据
                 }
@@ -532,7 +530,7 @@ export class AssetsUpload {
             fileIndex++;
             if (fileIndex === fileCount) {
                 console.log('所有文件上传完成');
-                upLoadJsonConfig(JSON.stringify(assetFile), Config.projectID, 'assets');
+                ossfile.upLoadJsonConfig(JSON.stringify(assetFile), Config.projectID, 'assets');
                 fileIndex = 0; fileCount = 0;
                 assetFile = {};
             }
@@ -708,7 +706,7 @@ export class AssetsUpload {
             VeryEngine.assets.append(fileInput);
 
             var onChange = function () {
-                getJsonConfig(Config.projectID, 'assets').then(assetJsonStr => {
+                ossfile.getJsonConfig(Config.projectID, 'assets').then(assetJsonStr => {
                     assetFile = JSON.parse(assetJsonStr);
                     editor.call('assets:upload:files', fileInput.files);
                     // 上传文件以后，开始做一些处理
