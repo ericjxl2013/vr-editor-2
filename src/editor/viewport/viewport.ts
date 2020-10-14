@@ -75,10 +75,17 @@ export class Viewport {
 
         camera.attachControl(this._canvas, true);
 
+        let backupWidth = this._canvas.width;
+
+        let updateSize = () => {
+            self._engine.resize();
+        }
 
         this._engine.runRenderLoop(() => {
-            if (this._canvas.width !== this._canvas.clientWidth) {
+            if (this._canvas.width !== this._canvas.clientWidth || this._canvas.height !== this._canvas.clientHeight || this._canvas.width !== backupWidth) {
+                backupWidth = this._canvas.width;
                 this._engine.resize();
+                setInterval(updateSize, 100);
             }
 
             // this._engine.clear()
@@ -105,6 +112,53 @@ export class Viewport {
 
 
         this.expandControl();
+
+        // GUI
+        // var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
+
+        // var createRectangle = function () {
+        //     var rect1 = new BABYLON.GUI.Rectangle();
+        //     rect1.width = 0.2;
+        //     rect1.height = "40px";
+        //     rect1.cornerRadius = 20;
+        //     rect1.color = "Orange";
+        //     rect1.thickness = 4;
+        //     rect1.background = "green";
+        //     advancedTexture.addControl(rect1);
+        //     return rect1;
+        // }
+
+        // createRectangle().horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
+        // createRectangle().horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
+
+        // createRectangle().verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+        // createRectangle().verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
+
+        // console.warn(advancedTexture);
+        // console.warn(Btn1);
+
+        // let questionParent = new BABYLON.GUI.Rectangle('question-parent');
+        // questionParent.width = "800px";
+        // questionParent.height = "600px";
+        // questionParent.background = '#ffffff00';
+        // questionParent.color = '#ffffff00';
+        // questionParent.thickness = 0;
+        // gui.addControl(questionParent);
+
+        // let guide7Btn = BABYLON.GUI.Button.CreateSimpleButton("guide7-btn", "下一步");
+        // guide7Btn.cornerRadius = 10;
+        // guide7Btn.color = "white";
+        // guide7Btn.background = "#ffffff00";
+        // guide7Btn.top = "-50px";
+        // // guide7Btn.left = "-50px";
+        // guide7Btn.width = "500px";
+        // guide7Btn.height = "200px";
+        // guide7Btn.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_CENTER;
+        // guide7Btn.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_CENTER;
+        // guide7Btn.children[0].color = "white";
+        // guide7Btn.children[0].fontSize = 38;
+        // questionParent.addControl(guide7Btn);
+
     }
 
 
@@ -119,6 +173,8 @@ export class Viewport {
 
         // 去掉Babylon的蓝色边框
         this._canvas.style.outline = 'none';
+        this._canvas.style.width = '100%';
+        this._canvas.style.height = '100%';
         // add canvas
         editor.call('layout.viewport').prepend(this.canvas);
 
@@ -149,6 +205,41 @@ export class Viewport {
         this._scene.preventDefaultOnPointerUp = false;
         // this._scene.clearColor = new BABYLON.Color4(0, 0, 0, 1);
         GizmosCenter.init(this._scene);
+
+        // 编辑器
+        editor.call('hotkey:register', 'open:inspector', {
+            key: 'q',
+            ctrl: true,
+            alt: true,
+            callback: function () {
+                // editor.call('save:scene');
+                self.toggleDebug();
+            }
+        });
+        // this._scene.onKeyboardObservable.add(kbInfo => {
+        //     if (kbInfo.type === BABYLON.KeyboardEventTypes.KEYDOWN) {
+        //         console.log(kbInfo.event.key);
+        //         if (kbInfo.event.key === 'q' && kbInfo.event.ctrlKey && kbInfo.event.altKey) { //Ctrl + Q
+        //             console.log('Ctrl + Alt + Q');
+        //             this.toggleDebug();
+        //         }
+        //     }
+        // });
+        // this._scene.debugLayer.show({ embedMode: true });
+    }
+
+    private toggleDebug(): void {
+        if (this._engine) {
+            // Always showing the debug layer, because you can close it by itself
+            var scene = this._engine.scenes[0];
+            if (scene.debugLayer.isVisible()) {
+                scene.debugLayer.hide();
+            }
+            else {
+                // 此处修改了babylon.d.ts文件
+                scene.debugLayer.show({ embedMode: true });
+            }
+        }
     }
 
 

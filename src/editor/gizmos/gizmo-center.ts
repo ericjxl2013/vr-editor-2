@@ -46,7 +46,12 @@ export class GizmosCenter {
                     // 记录原始父物体；
                     node = items[items.length - 1].node;
                 }
-                GizmosCenter.attach(node);
+                if(node instanceof BABYLON.Node) {
+                    GizmosCenter.attach(node);
+                } else {
+                    GizmosCenter.attach(null);
+                    return;
+                }
                 // Camera Gizmo处理
                 if (node && node instanceof VeryCamera) {
                     let tempGizmo = editor.call('gizmo:get', node.id);

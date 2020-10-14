@@ -1,4 +1,5 @@
 import { Element } from "./element";
+import { TopElement } from "./top";
 
 export class TextAreaField extends Element {
 
@@ -119,7 +120,7 @@ export class TextAreaField extends Element {
     } else if (this.blurOnEnter && evt.keyCode === 13 && !evt.shiftKey) {
       let focused: boolean = false;
 
-      let parent: Nullable<Element> = this.parent;
+      let parent: Nullable<Element> | Nullable<TopElement> = this.parent;
       while (parent) {
         if (parent.element && parent.element.focus) {
           parent.element.focus();

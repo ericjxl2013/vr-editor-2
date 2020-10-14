@@ -1,0 +1,34 @@
+{
+    "3e8d0d21-726a-427d-bf34-7baaebdff54c": {
+        "name": "2D画布",
+        "type": "2d-gui",
+        "subtype": "root",
+        "resource_id": "4e8d0d21-726a-427d-bf34-7baaebdff54c",
+        "babylon_id": "",
+        "asset_id": "",
+        "parent": "799f7762-3ef2-4564-a59b-c0ae959a90ce",
+        "parent_gui": "",
+        "position": [
+            0,
+            0,
+            0
+        ],
+        "rotation": [
+            0,
+            0,
+            0
+        ],
+        "scale": [
+            1,
+            1,
+            1
+        ],
+        "children": [],
+        "enabled": true,
+        "checkCollisions": false,
+        "pickable": true,
+        "isVisible": true,
+        "tags": [],
+        "material_id": ""
+    }
+}

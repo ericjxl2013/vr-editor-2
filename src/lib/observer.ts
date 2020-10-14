@@ -117,7 +117,6 @@ export class Observer extends Events {
 
     // TODO: 若设置值为object，需要再parse
     public set(path: string, value: any): void {
-        // console.warn(path + ' : ' + value);
         let oldValue = this._data[path];
         // console.warn(path);
         // console.warn(value);

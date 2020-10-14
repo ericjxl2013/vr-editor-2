@@ -4,8 +4,9 @@ import { CameraGizmo, LightGizmo } from '../gizmos';
 import { Config } from '../global';
 import { VeryLight } from '../middleware';
 import { BabylonLoader } from '../middleware/loader/babylonLoader';
-import {Tools } from '../utility';
-import {getJsonAsset,getUrl} from "../../tools/ossfile";
+import { Tools } from '../utility';
+import { getJsonAsset, getUrl } from "../../tools/ossfile";
+import { GUIManager } from '../gui';
 
 export class ViewportApplication {
 
@@ -19,7 +20,6 @@ export class ViewportApplication {
         var entitiesIndex: { [key: string]: any } = {};
         var unknowns = {};
         var gizmos: { [key: string]: any } = {};
-
 
         editor.method('gizmo:get', (id: string) => {
             return (id in gizmos) ? gizmos[id] : null;
@@ -107,16 +107,17 @@ export class ViewportApplication {
                     cameraWraper.scaling = BABYLON.Vector3.FromArray(entity.get('scale'));
                 }
 
-
                 if (entity.has('checkCollisions')) {
-                    if (cameraWraper.camera instanceof BABYLON.FreeCamera) {
-                        cameraWraper.camera.checkCollisions = entity.get('checkCollisions');
-                    }
+                    // if (cameraWraper.camera instanceof BABYLON.FreeCamera) {
+                    //     cameraWraper.camera.checkCollisions = entity.get('checkCollisions');
+                    // }
+                    cameraWraper.checkCollisions = entity.get('checkCollisions');
                 }
                 if (entity.has('applyGravity')) {
-                    if (cameraWraper.camera instanceof BABYLON.FreeCamera) {
-                        cameraWraper.camera.applyGravity = entity.get('applyGravity');
-                    }
+                    // if (cameraWraper.camera instanceof BABYLON.FreeCamera) {
+                    //     cameraWraper.camera.applyGravity = entity.get('applyGravity');
+                    // }
+                    cameraWraper.applyGravity = entity.get('applyGravity');
                 }
                 if (entity.has('viewport')) {
                     // 编辑器条件下不用管
@@ -175,6 +176,7 @@ export class ViewportApplication {
                 empty.rotation = Tools.eulerAngleToRadian(BABYLON.Vector3.FromArray(entity.get('rotation')));
                 empty.scaling = BABYLON.Vector3.FromArray(entity.get('scale'));
                 empty.isEnabled(entity.get('enabled'));
+                entitiesIndex[entity.get('resource_id')] = empty;
                 childAndParent(entity, empty);
             } else if (entity.get('type') === 'primitive') {
                 if (entity.get('subtype') && entity.get('subtype') === 'box') {
@@ -323,6 +325,174 @@ export class ViewportApplication {
                 // 模型异步加载，因为mesh需要先加载.babylon文件；
                 // console.warn('scene创建mesh：' + entity.get('name'));
                 editor.call('scene:mesh:create', entity);
+            } else if (entity.get('type') === '2d-gui') {
+                if (entity.get('subtype') && entity.get('subtype') === 'root') {
+                    let canvas2D = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI(entity.get('name'));
+                    GUIManager.add2DCanvas(entity.get('resource_id'), canvas2D);
+                    entity.node = canvas2D;
+                    set2DGUITransform(canvas2D.rootContainer, entity);
+                    GUIManager.addUniqueIDIndex(canvas2D.uniqueId, entity.get('resource_id'));
+                    entitiesIndex[entity.get('resource_id')] = canvas2D.rootContainer;
+
+                    childAndParent(entity, canvas2D.rootContainer);
+                } else if (entity.get('subtype') && entity.get('subtype') === 'panel') {
+                    let panel = new BABYLON.GUI.Rectangle(entity.get('name'));
+                    entity.node = panel;
+                    set2DGUITransform(panel, entity);
+                    if (entity.has('gui.color')) {
+                        panel.color = Tools.rgba2hsvString(entity.get('gui.color'));
+                    }
+                    if (entity.has('gui.background')) {
+                        panel.background = Tools.rgba2hsvString(entity.get('gui.background'));
+                    }
+                    if (entity.has('gui.thickness')) {
+                        panel.thickness = entity.get('gui.thickness')
+                    }
+                    if (entity.has('gui.cornerRadius')) {
+                        panel.cornerRadius = entity.get('gui.cornerRadius')
+                    }
+                    entitiesIndex[entity.get('resource_id')] = panel;
+
+                    childAndParent(entity, panel);
+
+                } else if (entity.get('subtype') && entity.get('subtype') === 'button') {
+                    let btn = BABYLON.GUI.Button.CreateImageWithCenterTextButton(entity.get('name'), '', '');
+                    entity.node = btn;
+                    set2DGUITransform(btn, entity);
+                    if (entity.has('gui.color')) {
+                        btn.color = Tools.rgba2hsvString(entity.get('gui.color'));
+                    }
+                    if (entity.has('gui.background')) {
+                        btn.background = Tools.rgba2hsvString(entity.get('gui.background'));
+                    }
+                    if (entity.has('gui.thickness')) {
+                        btn.thickness = entity.get('gui.thickness')
+                    }
+                    if (entity.has('gui.cornerRadius')) {
+                        btn.cornerRadius = entity.get('gui.cornerRadius')
+                    }
+                    if (entity.has('gui.text')) {
+                        btn.textBlock!.text = entity.get('gui.text')
+                    }
+                    if (entity.has('gui.fontSize')) {
+                        btn.fontSize = entity.get('gui.fontSize');
+                        btn.textBlock!.fontSize = entity.get('gui.fontSize');
+                    }
+                    if (entity.has('gui.textColor')) {
+                        btn.textBlock!.color = Tools.rgba2hsvString(entity.get('gui.textColor'));
+                    }
+                    if (entity.has('gui.source') && entity.get('gui.source')) {
+                        let asset = editor.call('assets:get', entity.get('gui.source'));
+                        if (asset) {
+                            getUrl(Config.projectID, asset.get('id'), asset.get('name'), asset.get('file.hash')).then(response => {
+                                btn.image!.source = response;
+                            });
+                        }
+                    }
+                    entitiesIndex[entity.get('resource_id')] = btn;
+
+                    childAndParent(entity, btn);
+
+                } else if (entity.get('subtype') && entity.get('subtype') === 'image') {
+                    let img = new BABYLON.GUI.Image(entity.get('name'), '');
+                    entity.node = img;
+                    set2DGUITransform(img, entity);
+                    if (entity.has('gui.color')) {
+                        img.color = Tools.rgba2hsvString(entity.get('gui.color'));
+                    }
+                    if (entity.has('gui.source') && entity.get('gui.source')) {
+                        let asset = editor.call('assets:get', entity.get('gui.source'));
+                        if (asset) {
+                            getUrl(Config.projectID, asset.get('id'), asset.get('name'), asset.get('file.hash')).then(response => {
+                                img.source = response;
+                            });
+                        }
+                    }
+
+                    entitiesIndex[entity.get('resource_id')] = img;
+
+                    childAndParent(entity, img);
+
+                } else if (entity.get('subtype') && entity.get('subtype') === 'text') {
+                    let text = new BABYLON.GUI.TextBlock(entity.get('name'), '');
+                    entity.node = text;
+                    set2DGUITransform(text, entity);
+                    if (entity.has('gui.color')) {
+                        text.color = Tools.rgba2hsvString(entity.get('gui.color'));
+                    }
+                    if (entity.has('gui.fontSize')) {
+                        text.fontSize = entity.get('gui.fontSize');
+                    }
+                    if (entity.has('gui.text')) {
+                        text.text = entity.get('gui.text');
+                    }
+                    if (entity.has('gui.textWrapping')) {
+                        text.textWrapping = entity.get('gui.textWrapping');
+                    }
+                    if (entity.has('gui.textHorizontalAlignment')) {
+                        text.textHorizontalAlignment = entity.get('gui.textHorizontalAlignment');
+                    }
+                    if (entity.has('gui.textVerticalAlignment')) {
+                        text.textVerticalAlignment = entity.get('gui.textVerticalAlignment');
+                    }
+                    entitiesIndex[entity.get('resource_id')] = text;
+
+                    childAndParent(entity, text);
+
+                } else if (entity.get('subtype') && entity.get('subtype') === 'input') {
+                    let input = new BABYLON.GUI.InputText(entity.get('name'), '');
+                    entity.node = input;
+                    set2DGUITransform(input, entity);
+                    if (entity.has('gui.color')) {
+                        input.color = Tools.rgba2hsvString(entity.get('gui.color'));
+                    }
+                    if (entity.has('gui.background')) {
+                        input.background = Tools.rgba2hsvString(entity.get('gui.background'));
+                    }
+                    if (entity.has('gui.thickness')) {
+                        input.thickness = entity.get('gui.thickness')
+                    }
+                    if (entity.has('gui.fontSize')) {
+                        input.fontSize = entity.get('gui.fontSize');
+                    }
+                    if (entity.has('gui.placeholderColor')) {
+                        input.placeholderColor = Tools.rgba2hsvString(entity.get('gui.placeholderColor'));
+                    }
+                    if (entity.has('gui.placeholderText')) {
+                        input.placeholderText = entity.get('gui.placeholderText');
+                    }
+                    if (entity.has('gui.focusedBackground')) {
+                        input.focusedBackground = Tools.rgba2hsvString(entity.get('gui.focusedBackground'));
+                    }
+                    if (entity.has('gui.text')) {
+                        input.text = entity.get('gui.text');
+                    }
+                    entitiesIndex[entity.get('resource_id')] = input;
+
+                    childAndParent(entity, input);
+
+                } else if (entity.get('subtype') && entity.get('subtype') === 'checkbox') {
+                    let checkbox = new BABYLON.GUI.RadioButton(entity.get('name'));
+                    entity.node = checkbox;
+                    set2DGUITransform(checkbox, entity);
+                    if (entity.has('gui.color')) {
+                        checkbox.color = Tools.rgba2hsvString(entity.get('gui.color'));
+                    }
+                    if (entity.has('gui.background')) {
+                        checkbox.background = Tools.rgba2hsvString(entity.get('gui.background'));
+                    }
+                    if (entity.has('gui.thickness')) {
+                        checkbox.thickness = entity.get('gui.thickness')
+                    }
+                    if (entity.has('gui.isChecked')) {
+                        checkbox.isChecked = entity.get('gui.isChecked')
+                    }
+                    entitiesIndex[entity.get('resource_id')] = checkbox;
+
+                    childAndParent(entity, checkbox);
+
+                }
+
             }
 
 
@@ -332,7 +502,7 @@ export class ViewportApplication {
 
 
 
-        let childAndParent = (entity: Observer, node: Nullable<BABYLON.Node>) => {
+        let childAndParent = (entity: Observer, node: Nullable<BABYLON.Node> | Nullable<BABYLON.GUI.Control>) => {
             // children
             let children = entity.get('children');
             for (var i = 0; i < children.length; i++) {
@@ -342,7 +512,7 @@ export class ViewportApplication {
                 };
 
                 if (entitiesIndex[children[i]]) {
-                    insertChild(node, entitiesIndex[children[i]], i);
+                    insertChild(node, entitiesIndex[children[i]], i, entity.get('resource_id'));
                 }
             }
 
@@ -353,17 +523,28 @@ export class ViewportApplication {
                 // child
                 var details = childIndex[entity.get('resource_id')];
                 if (details && details.parent) {
-                    insertChild(details.parent, node, details.index);
+                    insertChild(details.parent, node, details.index, entity.get('resource_id'));
                 }
             }
         }
 
-        let insertChild = (parent: Nullable<BABYLON.Node>, node: Nullable<BABYLON.Node>, index: number) => {
+        let insertChild = (parent: Nullable<BABYLON.Node> | Nullable<BABYLON.GUI.Control>, node: Nullable<BABYLON.Node> | Nullable<BABYLON.GUI.Control>, index: number, resource_id: string) => {
             // try to insert the node at the right index
             // 但是babylon不支持直接操作children列表，_children为private类型，可以通过修改.d.ts文件获取，但是也没必要；
-            if (node !== null) {
-                node.parent = parent;
+
+            if (node && node instanceof BABYLON.Node) {
+                if (parent === null || parent instanceof BABYLON.Node) {
+                    node.parent = parent;
+                }
+            } else if (node && node instanceof BABYLON.GUI.Control) {
+                if (parent instanceof BABYLON.GUI.Container) {
+                    parent.addControl(node);
+                    let last = parent.children.pop();
+                    parent.children.splice(index, 0, last!);
+                    GUIManager.addUniqueIDIndex(node.uniqueId, resource_id);
+                }
             }
+
 
             // for (var i = 0, len = parent._children.length; i < len; i++) {
             //     var child = parent._children[i];
@@ -380,6 +561,63 @@ export class ViewportApplication {
             // // the node can be safely added to the end of the child list
             // parent.addChild(node);
         }
+
+        let set2DGUITransform = (control: BABYLON.GUI.Control, entity: Observer) => {
+            if (entity.has('gui.isVisible')) {
+                control.isVisible = entity.get('gui.isVisible');
+            }
+            if (entity.has('gui.x')) {
+                if (entity.has('gui.xType') && entity.get('gui.xType') === 1) {
+                    control.left = entity.get('gui.x') + '%';
+                } else {
+                    control.left = entity.get('gui.x') + 'px';
+                }
+            }
+            if (entity.has('gui.y')) {
+                if (entity.has('gui.yType') && entity.get('gui.yType') === 1) {
+                    control.top = entity.get('gui.y') + '%';
+                } else {
+                    control.top = entity.get('gui.y') + 'px';
+                }
+            }
+            if (entity.has('gui.width')) {
+                if (entity.has('gui.widthType') && entity.get('gui.widthType') === 1) {
+                    control.width = entity.get('gui.width') + '%';
+                } else {
+                    control.width = entity.get('gui.width') + 'px';
+                }
+            }
+            if (entity.has('gui.height')) {
+                if (entity.has('gui.heightType') && entity.get('gui.heightType') === 1) {
+                    control.height = entity.get('gui.height') + '%';
+                } else {
+                    control.height = entity.get('gui.height') + 'px';
+                }
+            }
+            if (entity.has('gui.scaleX')) {
+                control.scaleX = entity.get('gui.scaleX');
+            }
+            if (entity.has('gui.scaleY')) {
+                control.scaleY = entity.get('gui.scaleY');
+            }
+            if (entity.has('gui.horizontal_alignment')) {
+                control.horizontalAlignment = entity.get('gui.horizontal_alignment');
+            }
+            if (entity.has('gui.vertical_alignment')) {
+                control.verticalAlignment = entity.get('gui.vertical_alignment');
+            }
+            if (entity.has('gui.alpha')) {
+                control.alpha = entity.get('gui.alpha');
+            }
+            if (entity.has('gui.rotation')) {
+                control.rotation = Tools.eulerAngleFloatToRadian(entity.get('gui.rotation'));
+            }
+            if (entity.has('gui.isHighlighted')) {
+                control.isHighlighted = entity.get('gui.isHighlighted');
+            }
+
+        }
+
 
 
 
@@ -409,8 +647,10 @@ export class ViewportApplication {
                     loadingBabylonFlag[assetID] = true;
                     toLoadEntity[assetID] = [entity];
 
-                    getJsonAsset(Config.projectID,assetID,BabylonLoader.assetsData.assets[assetID].name,BabylonLoader.assetsData.assets[assetID].file.hash).then(response=>{
-                        dataBabylon=JSON.parse(response);
+
+
+                    getJsonAsset(Config.projectID, assetID, BabylonLoader.assetsData.assets[assetID].name, BabylonLoader.assetsData.assets[assetID].file.hash).then(response => {
+                        dataBabylon = JSON.parse(response);
                         BabylonLoader.babylonCacheData[assetID] = dataBabylon;
                         // BabylonLoader.parseBabylon(assetID, data);
                         BabylonLoader.parseBabylon(assetID, dataBabylon);
@@ -425,7 +665,7 @@ export class ViewportApplication {
         }
 
 
-        let assembleSceneMesh = async(entity: Observer, parsedBabylon: any) => {
+        let assembleSceneMesh = async (entity: Observer, parsedBabylon: any) => {
             // TODO: 暂时未考虑TransformNode数据的情况
             if (parsedBabylon) {
                 let assetID: string = entity.get('asset_id');
@@ -478,7 +718,38 @@ export class ViewportApplication {
                                     let matAssetID = mats[meshData.materialId].asset_id;
                                     if (BabylonLoader.assetsData.assets[matAssetID]) {
                                         let newMat = BabylonLoader.assetsData.assets[matAssetID].data;
-                                        BabylonLoader.loadMaterial(newMat, VeryEngine.viewScene, '');
+
+                                        // 检测texture
+                                        if (newMat.diffuseTexture && newMat.diffuseTexture.texture_id) {
+                                            newMat.diffuseTexture.name = BabylonLoader.prefix + newMat.diffuseTexture.texture_id + '/' + BabylonLoader.assetsData.assets[newMat.diffuseTexture.texture_id].name;
+
+                                        }
+                                        if (newMat.specularTexture && newMat.specularTexture.texture_id) {
+                                            newMat.specularTexture.name = BabylonLoader.prefix + newMat.specularTexture.texture_id + '/' + BabylonLoader.assetsData.assets[newMat.specularTexture.texture_id].name;
+                                        }
+                                        if (newMat.reflectionTexture && newMat.reflectionTexture.texture_id) {
+                                            newMat.reflectionTexture.name = BabylonLoader.prefix + newMat.reflectionTexture.texture_id + '/' + BabylonLoader.assetsData.assets[newMat.reflectionTexture.texture_id].name;
+                                        }
+                                        if (newMat.refractionTexture && newMat.refractionTexture.texture_id) {
+                                            newMat.refractionTexture.name = BabylonLoader.prefix + newMat.refractionTexture.texture_id + '/' + BabylonLoader.assetsData.assets[newMat.refractionTexture.texture_id].name;
+                                        }
+                                        if (newMat.emissiveTexture && newMat.emissiveTexture.texture_id) {
+                                            newMat.emissiveTexture.name = BabylonLoader.prefix + newMat.emissiveTexture.texture_id + '/' + BabylonLoader.assetsData.assets[newMat.emissiveTexture.texture_id].name;
+                                        }
+                                        if (newMat.bumpTexture && newMat.bumpTexture.texture_id) {
+                                            newMat.bumpTexture.name = BabylonLoader.prefix + newMat.bumpTexture.texture_id + '/' + BabylonLoader.assetsData.assets[newMat.bumpTexture.texture_id].name;
+                                        }
+                                        if (newMat.opacityTexture && newMat.opacityTexture.texture_id) {
+                                            newMat.opacityTexture.name = BabylonLoader.prefix + newMat.opacityTexture.texture_id + '/' + BabylonLoader.assetsData.assets[newMat.opacityTexture.texture_id].name;
+                                        }
+                                        if (newMat.ambientTexture && newMat.ambientTexture.texture_id) {
+                                            newMat.ambientTexture.name = BabylonLoader.prefix + newMat.ambientTexture.texture_id + '/' + BabylonLoader.assetsData.assets[newMat.ambientTexture.texture_id].name;
+                                        }
+                                        if (newMat.lightmapTexture && newMat.lightmapTexture.texture_id) {
+                                            newMat.lightmapTexture.name = BabylonLoader.prefix + newMat.lightmapTexture.texture_id + '/' + BabylonLoader.assetsData.assets[newMat.lightmapTexture.texture_id].name;
+                                        }
+
+                                        await BabylonLoader.loadMaterial(newMat, VeryEngine.viewScene, '');
                                     } else {
                                         console.warn('scene mesh warn');
                                     }

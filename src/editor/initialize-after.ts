@@ -5,6 +5,7 @@ import { EntityKeeper } from "./entity";
 import { ScenesKeeper } from "./scenes";
 import { CameraKeeper } from "./camera";
 import { SettingsKeeper } from "./settings";
+import { PickerKeeper } from "./pickers";
 
 
 export class InitializeAfter {
@@ -27,6 +28,9 @@ export class InitializeAfter {
     // toolbar
     let toolbar = new ToolbarKeeper();
     new SettingsKeeper();
+
+    // picker
+    new PickerKeeper();
 
     // viewport
     new ViewportKeeper();

@@ -1,9 +1,10 @@
-import { Events, EventHandle } from "../lib";
-import { Link } from "./link";
+import { Events, EventHandle } from '../lib';
+import { Link } from './link';
+import { TopElement } from './top';
 
 export class Element extends Events {
 
-    private _parent: Nullable<Element> = null;
+    private _parent: Nullable<Element> | Nullable<TopElement> = null;
     private _destroyed: boolean = false;
 
     // TODO
@@ -52,7 +53,7 @@ export class Element extends Events {
         // click 事件
         this._element.addEventListener('click', (evt) => {
             if (self.disabled && !self.disabledClick) return;
-            self.emit("click", evt);
+            self.emit('click', evt);
         }, false);
         // hover 事件
         this._element.addEventListener('mouseover', (evt) => {
@@ -66,41 +67,42 @@ export class Element extends Events {
         // if (!this.innerElement) this.innerElement = this._element;
     }
 
-    public get parent(): Nullable<Element> {
+    public get parent(): Nullable<Element> | Nullable<TopElement> {
         return this._parent;
     }
-    public set parent(val: Nullable<Element>) {
+    public set parent(val: Nullable<Element> | Nullable<TopElement>) {
         if (this._parent) {
             this._parent = null;
             this._evtParentDestroy!.unbind();
             this._evtParentDisable!.unbind();
             this._evtParentEnable!.unbind();
         }
+        // let self = this;
 
         if (val) {
             this._parent = val;
             this._evtParentDestroy = this._parent.once(
-                "destroy",
-                this._parentDestroy
+                'destroy',
+                this._parentDestroy.bind(this)
             );
-            this._evtParentDisable = this._parent.on("disable", this._parentDisable);
-            this._evtParentEnable = this._parent.on("enable", this._parentEnable);
+            this._evtParentDisable = this._parent.on('disable', this._parentDisable.bind(this));
+            this._evtParentEnable = this._parent.on('enable', this._parentEnable.bind(this));
 
             if (this._disabledParent !== this._parent.disabled) {
                 this._disabledParent = this._parent.disabled;
 
                 if (this._disabledParent) {
-                    this.class!.add("disabled");
-                    this.emit("disable");
+                    this.class!.add('disabled');
+                    this.emit('disable');
                 } else {
-                    this.class!.remove("disabled");
-                    this.emit("enable");
+                    this.class!.remove('disabled');
+                    this.emit('enable');
                 }
 
             }
         }
 
-        this.emit("parent");
+        this.emit('parent');
     }
 
     public get disabled(): boolean {
@@ -110,6 +112,7 @@ export class Element extends Events {
         if (this._disabled === val) return;
 
         this._disabled = !!val;
+        
         this.emit(this._disabled || this._disabledParent ? 'disable' : 'enable');
 
         if (this._disabled || this._disabledParent) {
@@ -230,16 +233,16 @@ export class Element extends Events {
         this._link = link;
         this.path = path;
 
-        this.emit("link", path);
+        this.emit('link', path);
 
         // add :set link
         if (this._onLinkChange) {
             let renderChanges = this.renderChanges;
             this.renderChanges = false;
-            this._linkOnSet = this._link.on(this.path + ":set", function (value: any) {
+            this._linkOnSet = this._link.on(this.path + ':set', function (value: any) {
                 self._onLinkChange(value);
             });
-            this._linkOnUnset = this._link.on(this.path + ":unset", function (value: any) {
+            this._linkOnUnset = this._link.on(this.path + ':unset', function (value: any) {
                 self._onLinkChange(value);
             });
             this._onLinkChange(this._link.get(this.path));
@@ -251,7 +254,7 @@ export class Element extends Events {
     public unlink(): void {
         if (!this._link) return;
 
-        this.emit("unlink", this.path);
+        this.emit('unlink', this.path);
 
         // remove :set link
         if (this._linkOnSet) {
@@ -263,7 +266,7 @@ export class Element extends Events {
         }
 
         this._link = null;
-        this.path = "";
+        this.path = '';
     };
 
     public _onLinkChange(value: any): void {
@@ -306,8 +309,8 @@ export class Element extends Events {
         this._disabledParent = true;
 
         if (!this._disabled) {
-            this.emit("disable");
-            this.class!.add("disabled");
+            this.emit('disable');
+            this.class!.add('disabled');
         }
     };
 
@@ -317,8 +320,8 @@ export class Element extends Events {
         this._disabledParent = false;
 
         if (!this._disabled) {
-            this.emit("enable");
-            this.class!.remove("disabled");
+            this.emit('enable');
+            this.class!.remove('disabled');
         }
     };
 

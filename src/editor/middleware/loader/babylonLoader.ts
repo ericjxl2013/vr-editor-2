@@ -4,7 +4,7 @@ import { VeryEngine } from "../../../engine";
 import { Config } from "../../../editor/global";
 import { VeryLight } from "../very-light";
 import { VeryCamera } from "../very-camera";
-import {getJsonAsset,uploadJsonAsset,getJsonConfig,getUrl, upLoadJsonConfig} from "../../../tools/ossfile";
+import { getJsonAsset, uploadJsonAsset, getJsonConfig, getUrl, upLoadJsonConfig } from "../../../tools/ossfile";
 
 export class BabylonLoader {
 
@@ -41,9 +41,9 @@ export class BabylonLoader {
         } else {
 
             // 直接返回babylon json格式内容数据
-            getJsonAsset(Config.projectID,assetID,asset.get('name'),asset.get('file.hash')).then(response=>{
-                var data=JSON.parse(response);
-                console.log(data);
+            getJsonAsset(Config.projectID, assetID, asset.get('name'), asset.get('file.hash')).then(response => {
+                var data = JSON.parse(response);
+                // console.log(data);
                 dataBabylon = data;
                 BabylonLoader.babylonCacheData[assetID] = dataBabylon;
                 BabylonLoader.parseBabylon(assetID, dataBabylon);
@@ -53,7 +53,7 @@ export class BabylonLoader {
     }
 
 
-    public static assembleBabylon=async(assetID: string, dataBabylon: any) =>{
+    public static assembleBabylon = async (assetID: string, dataBabylon: any) => {
         if (dataBabylon !== null) {
             // console.warn(dataBabylon);
             // console.log(dataBabylon.meshes);
@@ -79,7 +79,7 @@ export class BabylonLoader {
 
             // geometries assemble
             if (dataBabylon.geometries && dataBabylon.geometries.vertexData) {
-                dataBabylon.geometries.vertexData.array.forEach((parsedVertexData: any) => {
+                dataBabylon.geometries.vertexData.forEach((parsedVertexData: any) => {
                     BabylonLoader.loadGeometry(parsedVertexData, VeryEngine.viewScene, '');
                 });
             }
@@ -315,6 +315,9 @@ export class BabylonLoader {
                 type: 'mesh'
             }
 
+            // editor模式下，isPickable必须为true
+            mesh.isPickable = true;
+
             let entity = editor.call('entities:new', entityData);
             entities.push(entity);
             data.push(entity.origin);
@@ -393,10 +396,10 @@ export class BabylonLoader {
             //         }
             //     });
 
-            getJsonConfig(Config.projectID,'scenes').then(function(data){
-                var oldData=JSON.parse(data);
+            getJsonConfig(Config.projectID, 'scenes').then(function (data) {
+                var oldData = JSON.parse(data);
                 oldData.scenes[BabylonLoader.sceneIndex] = BabylonLoader.scenesData;
-                upLoadJsonConfig(JSON.stringify(oldData),Config.projectID,'scenes');
+                upLoadJsonConfig(JSON.stringify(oldData), Config.projectID, 'scenes');
                 editor.call('make:scene:clear');
             })
         }
@@ -435,62 +438,62 @@ export class BabylonLoader {
         return null;
     }
 
-    public static loadMaterial=async(newMat: any, scene: BABYLON.Scene, rootUrl: string) =>{
+    public static loadMaterial = async (newMat: any, scene: BABYLON.Scene, rootUrl: string) => {
         // Material
-        return new Promise<Nullable<BABYLON.Material>>(async (resolve, reject) =>{
+        return new Promise<Nullable<BABYLON.Material>>(async (resolve, reject) => {
             if (newMat !== undefined && newMat !== null) {
-                let textureUrl="";
+                let textureUrl = "";
                 if (newMat.diffuseTexture && newMat.diffuseTexture.texture_id) {
-                    let assetID=newMat.diffuseTexture.texture_id;
-                    textureUrl=await getUrl(Config.projectID,assetID,BabylonLoader.assetsData.assets[assetID].name,BabylonLoader.assetsData.assets[assetID].file.hash);
-                    newMat.diffuseTexture.name =textureUrl;
+                    let assetID = newMat.diffuseTexture.texture_id;
+                    textureUrl = await getUrl(Config.projectID, assetID, BabylonLoader.assetsData.assets[assetID].name, BabylonLoader.assetsData.assets[assetID].file.hash);
+                    newMat.diffuseTexture.name = textureUrl;
                 }
                 if (newMat.specularTexture && newMat.specularTexture.texture_id) {
-                    let assetID=newMat.specularTexture.texture_id;
-                    textureUrl=await getUrl(Config.projectID,assetID,BabylonLoader.assetsData.assets[assetID].name,BabylonLoader.assetsData.assets[assetID].file.hash)
-                    newMat.specularTexture.name =textureUrl;
+                    let assetID = newMat.specularTexture.texture_id;
+                    textureUrl = await getUrl(Config.projectID, assetID, BabylonLoader.assetsData.assets[assetID].name, BabylonLoader.assetsData.assets[assetID].file.hash)
+                    newMat.specularTexture.name = textureUrl;
                 }
                 if (newMat.reflectionTexture && newMat.reflectionTexture.texture_id) {
-                    let assetID=newMat.reflectionTexture.texture_id;
-                    textureUrl=await getUrl(Config.projectID,assetID,BabylonLoader.assetsData.assets[assetID].name,BabylonLoader.assetsData.assets[assetID].file.hash)
-                    newMat.reflectionTexture.name =textureUrl;
+                    let assetID = newMat.reflectionTexture.texture_id;
+                    textureUrl = await getUrl(Config.projectID, assetID, BabylonLoader.assetsData.assets[assetID].name, BabylonLoader.assetsData.assets[assetID].file.hash)
+                    newMat.reflectionTexture.name = textureUrl;
                 }
                 if (newMat.refractionTexture && newMat.refractionTexture.texture_id) {
-                    let assetID=newMat.refractionTexture.texture_id;
-                    textureUrl=await getUrl(Config.projectID,assetID,BabylonLoader.assetsData.assets[assetID].name,BabylonLoader.assetsData.assets[assetID].file.hash)
-                    newMat.refractionTexture.name =textureUrl;
+                    let assetID = newMat.refractionTexture.texture_id;
+                    textureUrl = await getUrl(Config.projectID, assetID, BabylonLoader.assetsData.assets[assetID].name, BabylonLoader.assetsData.assets[assetID].file.hash)
+                    newMat.refractionTexture.name = textureUrl;
                 }
                 if (newMat.emissiveTexture && newMat.emissiveTexture.texture_id) {
-                    let assetID=newMat.emissiveTexture.texture_id;
-                    textureUrl=await getUrl(Config.projectID,assetID,BabylonLoader.assetsData.assets[assetID].name,BabylonLoader.assetsData.assets[assetID].file.hash)
-                    newMat.emissiveTexture.name =textureUrl;
+                    let assetID = newMat.emissiveTexture.texture_id;
+                    textureUrl = await getUrl(Config.projectID, assetID, BabylonLoader.assetsData.assets[assetID].name, BabylonLoader.assetsData.assets[assetID].file.hash)
+                    newMat.emissiveTexture.name = textureUrl;
                 }
                 if (newMat.bumpTexture && newMat.bumpTexture.texture_id) {
-                    let assetID=newMat.bumpTexture.texture_id;
-                    textureUrl=await getUrl(Config.projectID,assetID,BabylonLoader.assetsData.assets[assetID].name,BabylonLoader.assetsData.assets[assetID].file.hash)
-                    newMat.bumpTexture.name =textureUrl;
+                    let assetID = newMat.bumpTexture.texture_id;
+                    textureUrl = await getUrl(Config.projectID, assetID, BabylonLoader.assetsData.assets[assetID].name, BabylonLoader.assetsData.assets[assetID].file.hash)
+                    newMat.bumpTexture.name = textureUrl;
                 }
                 if (newMat.opacityTexture && newMat.opacityTexture.texture_id) {
-                    let assetID=newMat.opacityTexture.texture_id;
-                    textureUrl=await getUrl(Config.projectID,assetID,BabylonLoader.assetsData.assets[assetID].name,BabylonLoader.assetsData.assets[assetID].file.hash)
-                    newMat.opacityTexture.name =textureUrl;
+                    let assetID = newMat.opacityTexture.texture_id;
+                    textureUrl = await getUrl(Config.projectID, assetID, BabylonLoader.assetsData.assets[assetID].name, BabylonLoader.assetsData.assets[assetID].file.hash)
+                    newMat.opacityTexture.name = textureUrl;
                 }
                 if (newMat.ambientTexture && newMat.ambientTexture.texture_id) {
-                    let assetID=newMat.ambientTexture.texture_id;
-                    textureUrl=await getUrl(Config.projectID,assetID,BabylonLoader.assetsData.assets[assetID].name,BabylonLoader.assetsData.assets[assetID].file.hash)
-                    newMat.ambientTexture.name =textureUrl;
+                    let assetID = newMat.ambientTexture.texture_id;
+                    textureUrl = await getUrl(Config.projectID, assetID, BabylonLoader.assetsData.assets[assetID].name, BabylonLoader.assetsData.assets[assetID].file.hash)
+                    newMat.ambientTexture.name = textureUrl;
                 }
                 if (newMat.lightmapTexture && newMat.lightmapTexture.texture_id) {
-                    let assetID=newMat.lightmapTexture.texture_id;
-                    textureUrl=await getUrl(Config.projectID,assetID,BabylonLoader.assetsData.assets[assetID].name,BabylonLoader.assetsData.assets[assetID].file.hash)
-                    newMat.lightmapTexture.name =textureUrl;
+                    let assetID = newMat.lightmapTexture.texture_id;
+                    textureUrl = await getUrl(Config.projectID, assetID, BabylonLoader.assetsData.assets[assetID].name, BabylonLoader.assetsData.assets[assetID].file.hash)
+                    newMat.lightmapTexture.name = textureUrl;
                 }
                 var mat = BABYLON.Material.Parse(newMat, scene, rootUrl);
                 resolve(mat);
             }
             resolve(null);
         })
-       
+
     }
 
     public static loadMultiMaterial(parsedMultiMaterial: any, scene: BABYLON.Scene): Nullable<BABYLON.MultiMaterial> {

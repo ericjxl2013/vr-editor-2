@@ -27,16 +27,16 @@ export class AttributesEntity {
             });
             panel.class.add('component', 'entity', name);
             // reference
-            editor.call('attributes:reference:' + name + ':attach', panel, panel.headerElementTitle);
+            // editor.call('attributes:reference:' + name + ':attach', panel, panel.headerElementTitle);
 
             // show/hide panel
-            var checkingPanel : boolean;
+            var checkingPanel: boolean;
             var checkPanel = function () {
                 checkingPanel = false;
 
-                var show = entities[0].has('components.' + name);
+                var show = entities[0].get('type') === name;
                 for (var i = 1; i < entities.length; i++) {
-                    if (show !== entities[i].has('components.' + name)) {
+                    if (show !== entities[i].get('type') === name) {
                         show = false;
                         break;
                     }
@@ -58,6 +58,7 @@ export class AttributesEntity {
                 events.push(entities[i].on('components.' + name + ':unset', queueCheckPanel));
             }
             panel.once('destroy', function () {
+                // console.log('panel destroy');
                 for (var i = 0; i < entities.length; i++)
                     events[i].unbind();
             });
@@ -85,55 +86,55 @@ export class AttributesEntity {
             //         entities[i].history.enabled = true;
             //     }
 
-                // editor.call('history:add', {
-                //     name: 'entities.set[components.' + name + ']',
-                //     undo: function () {
-                //         for (var i = 0; i < records.length; i++) {
-                //             var item = records[i].get();
-                //             if (!item)
-                //                 continue;
+            // editor.call('history:add', {
+            //     name: 'entities.set[components.' + name + ']',
+            //     undo: function () {
+            //         for (var i = 0; i < records.length; i++) {
+            //             var item = records[i].get();
+            //             if (!item)
+            //                 continue;
 
-                //             item.history.enabled = false;
-                //             item.set('components.' + name, records[i].value);
-                //             item.history.enabled = true;
-                //         }
-                //     },
-                //     redo: function () {
-                //         for (var i = 0; i < records.length; i++) {
-                //             var item = records[i].get();
-                //             if (!item)
-                //                 continue;
+            //             item.history.enabled = false;
+            //             item.set('components.' + name, records[i].value);
+            //             item.history.enabled = true;
+            //         }
+            //     },
+            //     redo: function () {
+            //         for (var i = 0; i < records.length; i++) {
+            //             var item = records[i].get();
+            //             if (!item)
+            //                 continue;
 
-                //             item.history.enabled = false;
-                //             item.unset('components.' + name);
-                //             item.history.enabled = true;
-                //         }
-                //     }
-                // });
+            //             item.history.enabled = false;
+            //             item.unset('components.' + name);
+            //             item.history.enabled = true;
+            //         }
+            //     }
+            // });
             // });
             // panel.headerAppend(fieldRemove);
 
             // enable/disable
-            var fieldEnabled = editor.call('attributes:addField', {
-                panel: panel,
-                type: 'checkbox',
-                link: entities,
-                path: 'components.' + name + '.enabled'
-            });
-            fieldEnabled.class.remove('tick');
-            fieldEnabled.class.add('component-toggle');
-            fieldEnabled.element.parentNode.removeChild(fieldEnabled.element);
-            panel.headerAppend(fieldEnabled);
+            // var fieldEnabled = editor.call('attributes:addField', {
+            //     panel: panel,
+            //     type: 'checkbox',
+            //     link: entities,
+            //     path: 'components.' + name + '.enabled'
+            // });
+            // fieldEnabled.class.remove('tick');
+            // fieldEnabled.class.add('component-toggle');
+            // fieldEnabled.element.parentNode.removeChild(fieldEnabled.element);
+            // panel.headerAppend(fieldEnabled);
 
-            // toggle-label
-            var labelEnabled = new Label();
-            labelEnabled.renderChanges = false;
-            labelEnabled.class!.add('component-toggle-label');
-            panel.headerAppend(labelEnabled);
-            labelEnabled.text = fieldEnabled.value ? 'On' : 'Off';
-            fieldEnabled.on('change', function (value: any) {
-                labelEnabled.text = value ? 'On' : 'Off';
-            });
+            // // toggle-label
+            // var labelEnabled = new Label();
+            // labelEnabled.renderChanges = false;
+            // labelEnabled.class!.add('component-toggle-label');
+            // panel.headerAppend(labelEnabled);
+            // labelEnabled.text = fieldEnabled.value ? 'On' : 'Off';
+            // fieldEnabled.on('change', function (value: any) {
+            //     labelEnabled.text = value ? 'On' : 'Off';
+            // });
 
             return panel;
         });
@@ -148,6 +149,8 @@ export class AttributesEntity {
         // initialize fields
         var initialize = function () {
             items = {};
+
+            // console.warn('initialize');
 
             // panel
             var panel = items.panel = editor.call('attributes:addPanel');
@@ -307,14 +310,20 @@ export class AttributesEntity {
                 argsList[i].link = null;
                 argsList[i].unlinkField();
             }
-            if (!items || !items.panel.parent)
+
+            // console.log('attributes:beforeClear');
+            // console.log(items.panel);
+            if (!items || !items.panel || !items.panel.parent)
                 return;
+            // console.log(items.panel.parent);
+            // console.log('attributes:beforeClear');
 
             // remove panel from inspector
             items.panel.parent.remove(items.panel);
 
             // clear components
             items.panelComponents.parent.remove(items.panelComponents);
+            // console.warn(items.panelComponents);
             items.panelComponents.clear();
 
 
@@ -324,6 +333,7 @@ export class AttributesEntity {
 
         // link data to fields when inspecting
         editor.on('attributes:inspect[entity]', function (entities: Observer[]) {
+            // console.log('attributes:inspect[entity]');
             if (entities.length > 1) {
                 editor.call('attributes:header', entities.length + '个物体');
             } else {
@@ -333,6 +343,8 @@ export class AttributesEntity {
             if (!items)
                 initialize();
             // console.warn(items);
+
+            // console.log('entity');
 
             var root = editor.call('attributes.rootPanel');
 
@@ -358,6 +370,12 @@ export class AttributesEntity {
 
             // disable fields if needed
             toggleFields(entities);
+
+            if (entities.length === 1 && entities[0].get('type') === '2d-gui') {
+                items.panel.element.style.display = 'none';
+            } else {
+                items.panel.element.style.display = 'block';
+            }
 
             onInspect(entities);
         });

@@ -1,5 +1,6 @@
 import { VeryEngine } from '../../engine';
 import { Observer } from '../../lib';
+import { GUIManager } from '../gui';
 import { GUID, Tools } from '../utility';
 
 export class EntityCreate {
@@ -274,76 +275,511 @@ export class EntityCreate {
                     }
                     return box;
                 } else if (subtype === 'sphere') {
-                    var box = BABYLON.MeshBuilder.CreateSphere(entity.get('name'), { segments: 20, diameter: 100 }, VeryEngine.viewScene);
-                    entity.node = box;
-                    box.id = entity.get('resource_id');
-                    box.position = BABYLON.Vector3.FromArray(entity.get('position'));
-                    box.rotation = Tools.eulerAngleToRadian(BABYLON.Vector3.FromArray(entity.get('rotation')));
-                    box.scaling = BABYLON.Vector3.FromArray(entity.get('scale'));
+                    var sphere = BABYLON.MeshBuilder.CreateSphere(entity.get('name'), { segments: 20, diameter: 100 }, VeryEngine.viewScene);
+                    entity.node = sphere;
+                    sphere.id = entity.get('resource_id');
+                    sphere.position = BABYLON.Vector3.FromArray(entity.get('position'));
+                    sphere.rotation = Tools.eulerAngleToRadian(BABYLON.Vector3.FromArray(entity.get('rotation')));
+                    sphere.scaling = BABYLON.Vector3.FromArray(entity.get('scale'));
                     if (entity.has('checkCollisions')) {
-                        box.checkCollisions = entity.get('checkCollisions');
+                        sphere.checkCollisions = entity.get('checkCollisions');
                     }
                     if (entity.has('pickable')) {
-                        box.isPickable = entity.get('pickable');
+                        sphere.isPickable = entity.get('pickable');
                     }
                     if (entity.has('isVisible')) {
-                        box.isVisible = entity.get('isVisible');
+                        sphere.isVisible = entity.get('isVisible');
                     }
-                    return box;
+                    return sphere;
                 } else if (subtype === 'plane') {
-                    var box = BABYLON.MeshBuilder.CreateGround(entity.get('name'), { width: 5000, height: 5000, subdivisions: 10 }, VeryEngine.viewScene);
-                    entity.node = box;
-                    box.id = entity.get('resource_id');
-                    box.position = BABYLON.Vector3.FromArray(entity.get('position'));
-                    box.rotation = Tools.eulerAngleToRadian(BABYLON.Vector3.FromArray(entity.get('rotation')));
-                    box.scaling = BABYLON.Vector3.FromArray(entity.get('scale'));
+                    var plane = BABYLON.MeshBuilder.CreateGround(entity.get('name'), { width: 5000, height: 5000, subdivisions: 10 }, VeryEngine.viewScene);
+                    entity.node = plane;
+                    plane.id = entity.get('resource_id');
+                    plane.position = BABYLON.Vector3.FromArray(entity.get('position'));
+                    plane.rotation = Tools.eulerAngleToRadian(BABYLON.Vector3.FromArray(entity.get('rotation')));
+                    plane.scaling = BABYLON.Vector3.FromArray(entity.get('scale'));
                     if (entity.has('checkCollisions')) {
-                        box.checkCollisions = entity.get('checkCollisions');
+                        plane.checkCollisions = entity.get('checkCollisions');
                     }
                     if (entity.has('pickable')) {
-                        box.isPickable = entity.get('pickable');
+                        plane.isPickable = entity.get('pickable');
                     }
                     if (entity.has('isVisible')) {
-                        box.isVisible = entity.get('isVisible');
+                        plane.isVisible = entity.get('isVisible');
                     }
-                    return box;
+                    return plane;
                 } else if (subtype === 'cylinder') {
-                    var box = BABYLON.MeshBuilder.CreateCylinder(entity.get('name'), { height: 200, diameter: 100 }, VeryEngine.viewScene);
-                    entity.node = box;
-                    box.id = entity.get('resource_id');
-                    box.position = BABYLON.Vector3.FromArray(entity.get('position'));
-                    box.rotation = Tools.eulerAngleToRadian(BABYLON.Vector3.FromArray(entity.get('rotation')));
-                    box.scaling = BABYLON.Vector3.FromArray(entity.get('scale'));
+                    var cylinder = BABYLON.MeshBuilder.CreateCylinder(entity.get('name'), { height: 200, diameter: 100 }, VeryEngine.viewScene);
+                    entity.node = cylinder;
+                    cylinder.id = entity.get('resource_id');
+                    cylinder.position = BABYLON.Vector3.FromArray(entity.get('position'));
+                    cylinder.rotation = Tools.eulerAngleToRadian(BABYLON.Vector3.FromArray(entity.get('rotation')));
+                    cylinder.scaling = BABYLON.Vector3.FromArray(entity.get('scale'));
                     if (entity.has('checkCollisions')) {
-                        box.checkCollisions = entity.get('checkCollisions');
+                        cylinder.checkCollisions = entity.get('checkCollisions');
                     }
                     if (entity.has('pickable')) {
-                        box.isPickable = entity.get('pickable');
+                        cylinder.isPickable = entity.get('pickable');
                     }
                     if (entity.has('isVisible')) {
-                        box.isVisible = entity.get('isVisible');
+                        cylinder.isVisible = entity.get('isVisible');
                     }
-                    return box;
+                    return cylinder;
                 }
             }
-            // // box
-            // var box = BABYLON.Mesh.CreateBox(entity.get('name'), 1, VeryEngine.viewScene);
-            // entity.node = box;
-            // entitiesIndex[entity.get('resource_id')] = box;
-            // box.id = entity.get('resource_id');
-            // box.position = BABYLON.Vector3.FromArray(entity.get('position'));
-            // box.rotation = Tools.eulerAngleToRadian(BABYLON.Vector3.FromArray(entity.get('rotation')));
-            // box.scaling = BABYLON.Vector3.FromArray(entity.get('scale'));
-            // box.isEnabled(entity.get('enabled'));
-            // box.checkCollisions = entity.get('checkCollisions');
-            // box.isVisible = entity.get('isVisible');
-            // // 加载自定义关联材质
-            // if (entity.get('material_id')) {
-
-            // }
-            // childAndParent(entity, box);
-
             return null;
+        }
+
+        editor.method('entities:2D-GUI:new', function (defaultData: any) {
+
+            defaultData = defaultData || {};
+
+            // console.log('type: ' + defaultData.type);
+            // console.warn(defaultData.parent);
+
+            let parent = defaultData.parent || editor.call('entities:root');
+
+            // 若为root
+            // // 若为sub root
+            // 直接创建sub root；
+            // // 若为其他element
+            if (parent.get('type') === 'root') {
+                if (defaultData.subtype === 'root') {
+                    let entityData = createEntityDataFor2DGUI(defaultData.type, defaultData.subtype, parent.get('resource_id'));
+                    var entity = new Observer(entityData);
+                    let instance = create2DGUIEntityInstance(defaultData.type, defaultData.subtype, entity);
+
+                    editor.call('entities:addEntity', entity, parent, !defaultData.noSelect);
+
+                    editor.call('selector:set', 'entity', [entity]);
+                } else {
+                    // 其他ui元素
+                    let activeCanvas = GUIManager.getActiveCanvas();
+                    if (activeCanvas) {
+                        let id = GUIManager.getActiveID();
+                        let newParent = editor.call('entities:get', id);
+                        let entityData = createEntityDataFor2DGUI(defaultData.type, defaultData.subtype, newParent.get('resource_id'));
+                        var entity = new Observer(entityData);
+                        let instance = create2DGUIEntityInstance(defaultData.type, defaultData.subtype, entity);
+
+                        editor.call('entities:addEntity', entity, newParent, !defaultData.noSelect);
+
+                        editor.call('selector:set', 'entity', [entity]);
+                    } else {
+                        // 先创建canvas
+                        editor.call('entities:2D-GUI:new', { parent: editor.call('entities:root'), type: '2d-gui', subtype: 'root' });
+                        let activeCanvas = GUIManager.getActiveCanvas();
+                        let id = GUIManager.getActiveID();
+                        let newParent = editor.call('entities:get', id);
+                        let entityData = createEntityDataFor2DGUI(defaultData.type, defaultData.subtype, newParent.get('resource_id'));
+                        var entity = new Observer(entityData);
+                        let instance = create2DGUIEntityInstance(defaultData.type, defaultData.subtype, entity);
+
+                        editor.call('entities:addEntity', entity, newParent, !defaultData.noSelect);
+
+                        editor.call('selector:set', 'entity', [entity]);
+                    }
+                }
+            } else {
+                if (defaultData.subtype === 'root') {
+                    let newParent = editor.call('entities:root');
+                    let entityData = createEntityDataFor2DGUI(defaultData.type, defaultData.subtype, newParent.get('resource_id'));
+                    var entity = new Observer(entityData);
+                    let instance = create2DGUIEntityInstance(defaultData.type, defaultData.subtype, entity);
+
+                    editor.call('entities:addEntity', entity, newParent, !defaultData.noSelect);
+
+                    editor.call('selector:set', 'entity', [entity]);
+                } else {
+                    if (parent.node instanceof BABYLON.Node) {
+                        // 其他ui元素
+                        let activeCanvas = GUIManager.getActiveCanvas();
+                        if (activeCanvas) {
+                            let id = GUIManager.getActiveID();
+                            let newParent = editor.call('entities:get', id);
+                            let entityData = createEntityDataFor2DGUI(defaultData.type, defaultData.subtype, newParent.get('resource_id'));
+                            var entity = new Observer(entityData);
+                            let instance = create2DGUIEntityInstance(defaultData.type, defaultData.subtype, entity);
+
+                            editor.call('entities:addEntity', entity, newParent, !defaultData.noSelect);
+
+                            editor.call('selector:set', 'entity', [entity]);
+                        } else {
+                            // 先创建canvas
+                            editor.call('entities:2D-GUI:new', { parent: editor.call('entities:root'), type: '2d-gui', subtype: 'root' });
+                            let activeCanvas = GUIManager.getActiveCanvas();
+                            let id = GUIManager.getActiveID();
+                            let newParent = editor.call('entities:get', id);
+                            let entityData = createEntityDataFor2DGUI(defaultData.type, defaultData.subtype, newParent.get('resource_id'));
+                            var entity = new Observer(entityData);
+                            let instance = create2DGUIEntityInstance(defaultData.type, defaultData.subtype, entity);
+
+                            editor.call('entities:addEntity', entity, newParent, !defaultData.noSelect);
+
+                            editor.call('selector:set', 'entity', [entity]);
+                        }
+                    } else if (parent.node instanceof BABYLON.GUI.AdvancedDynamicTexture) {
+                        let entityData = createEntityDataFor2DGUI(defaultData.type, defaultData.subtype, parent.get('resource_id'));
+                        var entity = new Observer(entityData);
+                        let instance = create2DGUIEntityInstance(defaultData.type, defaultData.subtype, entity);
+
+                        editor.call('entities:addEntity', entity, parent, !defaultData.noSelect);
+
+                        editor.call('selector:set', 'entity', [entity]);
+                    } else if (parent.node instanceof BABYLON.GUI.Control) {
+                        if (parent.node instanceof BABYLON.GUI.Rectangle && !(parent.node instanceof BABYLON.GUI.Button)) {
+                            let entityData = createEntityDataFor2DGUI(defaultData.type, defaultData.subtype, parent.get('resource_id'));
+                            var entity = new Observer(entityData);
+                            let instance = create2DGUIEntityInstance(defaultData.type, defaultData.subtype, entity);
+
+                            editor.call('entities:addEntity', entity, parent, !defaultData.noSelect);
+
+                            editor.call('selector:set', 'entity', [entity]);
+                        } else {
+                            // 获取父物体，只允许rectangle，button不允许，根据ui container元素获取entity
+                            // console.error((<BABYLON.GUI.Control>(parent.node)).parent);
+                            let container = getContainerParent(<BABYLON.GUI.Control>(parent.node));
+                            // console.warn(container);
+                            if (container) {
+                                let parentID = GUIManager.getResourceID(container.uniqueId);
+                                // console.log(parentID);
+                                if (parentID) {
+                                    let newParent = editor.call('entities:get', parentID);
+                                    if (newParent) {
+                                        let entityData = createEntityDataFor2DGUI(defaultData.type, defaultData.subtype, newParent.get('resource_id'));
+                                        var entity = new Observer(entityData);
+                                        let instance = create2DGUIEntityInstance(defaultData.type, defaultData.subtype, entity);
+
+                                        editor.call('entities:addEntity', entity, newParent, !defaultData.noSelect);
+
+                                        editor.call('selector:set', 'entity', [entity]);
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        console.error('当前类型还未考虑');
+                        console.error(parent.node);
+                    }
+                }
+            }
+
+        });
+
+        let getContainerParent = (control: BABYLON.GUI.Control): BABYLON.GUI.Rectangle | BABYLON.GUI.AdvancedDynamicTexture | null => {
+            if (control.parent === null) return null;
+            if (control.parent instanceof BABYLON.GUI.Container && control.parent.name === 'root' && !control.parent.parent) {
+                return control.parent.host;
+            } else if (control.parent instanceof BABYLON.GUI.Rectangle && !(control.parent instanceof BABYLON.GUI.Button)) {
+                return control.parent;
+            } else {
+                return getContainerParent(control.parent!);
+            }
+        }
+
+        let typeToName2DGui: { [key: string]: string } = {
+            'root': '2D画布',
+            'panel': '容器',
+            'button': '按钮',
+            'image': '图片',
+            'text': '文字',
+            'input': '输入框',
+            'checkbox': '复选框'
+        }
+
+        let createEntityDataFor2DGUI = (type: string, subtype: string, parentResourceId: string) => {
+            var entityData: { [key: string]: any } = {
+                name: typeToName2DGui[type] || typeToName2DGui[subtype] || '2D画布',
+                type: type,
+                subtype: subtype,
+                resource_id: GUID.create(),
+                enabled: true,
+                parent: parentResourceId,
+                parent_gui: parentResourceId,
+                gui: {
+                    isVisible: true,
+                    xType: 0,
+                    x: 0,
+                    yType: 0,
+                    y: 0,
+                    widthType: 0,
+                    width: 100,
+                    heightType: 0,
+                    height: 30,
+                    scaleX: 1,
+                    scaleY: 1,
+                    horizontal_alignment: 2,
+                    vertical_alignment: 2,
+                    alpha: 1,
+                    color: [1, 1, 1, 1],
+                    rotation: 0,
+                    isHighlighted: false
+                },
+                children: Array<string>(),
+            };
+
+            if (subtype === 'root') {
+                entityData.gui.widthType = 1;
+                entityData.gui.width = 100;
+                entityData.gui.heightType = 1;
+                entityData.gui.height = 100;
+                // entityData.gui.zIndex = 0;
+            } else if (subtype === 'panel') {
+                entityData.gui.widthType = 1;
+                entityData.gui.width = 60;
+                entityData.gui.heightType = 1;
+                entityData.gui.height = 80;
+                entityData.gui.color = [1, 1, 1, 1];
+                entityData.gui.background = [1, 1, 1, 0.3922];
+                entityData.gui.thickness = 1;
+                entityData.gui.cornerRadius = 10;
+
+            } else if (subtype === 'button') {
+                entityData.gui.widthType = 0;
+                entityData.gui.width = 120;
+                entityData.gui.heightType = 0;
+                entityData.gui.height = 30;
+                entityData.gui.color = [1, 1, 1, 1];
+                entityData.gui.background = [1, 1, 1, 1];
+                entityData.gui.thickness = 1;
+                entityData.gui.cornerRadius = 4;
+                entityData.gui.text = '按钮';
+                entityData.gui.fontSize = 18;
+                entityData.gui.textColor = [0, 0, 0, 1];
+                entityData.gui.source = '';
+            } else if (subtype === 'image') {
+                entityData.gui.widthType = 0;
+                entityData.gui.width = 100;
+                entityData.gui.heightType = 0;
+                entityData.gui.height = 100;
+                entityData.gui.color = [1, 1, 1, 1];
+                entityData.gui.source = '';
+
+            } else if (subtype === 'text') {
+                entityData.gui.widthType = 0;
+                entityData.gui.width = 160;
+                entityData.gui.heightType = 0;
+                entityData.gui.height = 30;
+                entityData.gui.color = [0, 0, 0, 1];
+                entityData.gui.fontSize = 18;
+                entityData.gui.text = '文字';
+                entityData.gui.textHorizontalAlignment = 0;
+                entityData.gui.textVerticalAlignment = 2;
+                entityData.gui.textWrapping = 1;
+
+            } else if (subtype === 'input') {
+                entityData.gui.widthType = 0;
+                entityData.gui.width = 160;
+                entityData.gui.heightType = 0;
+                entityData.gui.height = 30;
+                entityData.gui.color = [0, 0, 0, 1];
+                entityData.gui.background = [1, 1, 1, 1];
+                entityData.gui.thickness = 1;
+                entityData.gui.fontSize = 18;
+                entityData.gui.placeholderColor = [0, 0, 0, 0.3922];
+                entityData.gui.placeholderText = '输入...';
+                entityData.gui.focusedBackground = [0.502, 0.502, 0.502, 1];
+                entityData.gui.text = '';
+
+            } else if (subtype === 'checkbox') {
+                entityData.gui.widthType = 0;
+                entityData.gui.width = 20;
+                entityData.gui.heightType = 0;
+                entityData.gui.height = 20;
+                entityData.gui.color = [0.502, 0.502, 0.502, 1];
+                entityData.gui.background = [1, 1, 1, 1];
+                entityData.gui.thickness = 2;
+                entityData.gui.isChecked = true;
+            }
+
+            return entityData;
+        };
+
+        let create2DGUIEntityInstance = (type: string, subtype: string, entity: Observer) => {
+
+            if (subtype === 'root') {
+                let canvas2D = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI(entity.get('name'));
+                GUIManager.add2DCanvas(entity.get('resource_id'), canvas2D);
+                entity.node = canvas2D;
+                // console.log(canvas2D.uniqueId + ': ' + entity.get('resource_id'));
+                // if (entity.has('gui.zIndex')) {
+                //     canvas2D.rootContainer.zIndex = entity.get('gui.zIndex');
+                // }
+                if (entity.has('gui.isHighlighted')) {
+                    canvas2D.rootContainer.isHighlighted = entity.get('gui.isHighlighted');
+                }
+                GUIManager.addUniqueIDIndex(canvas2D.uniqueId, entity.get('resource_id'));
+                return canvas2D;
+            } else if (subtype === 'panel') {
+                let panel = new BABYLON.GUI.Rectangle(entity.get('name'));
+                entity.node = panel;
+                if (entity.has('gui.color')) {
+                    panel.color = Tools.rgba2hsvString(entity.get('gui.color'));
+                }
+                if (entity.has('gui.background')) {
+                    panel.background = Tools.rgba2hsvString(entity.get('gui.background'));
+                }
+                set2DGUITransform(panel, entity);
+                if (entity.has('gui.thickness')) {
+                    panel.thickness = entity.get('gui.thickness')
+                }
+                if (entity.has('gui.cornerRadius')) {
+                    panel.cornerRadius = entity.get('gui.cornerRadius')
+                }
+                return panel;
+            } else if (subtype === 'button') {
+                let btn = BABYLON.GUI.Button.CreateImageWithCenterTextButton(entity.get('name'), '', '');
+                entity.node = btn;
+                if (entity.has('gui.color')) {
+                    btn.color = Tools.rgba2hsvString(entity.get('gui.color'));
+                }
+                if (entity.has('gui.background')) {
+                    btn.background = Tools.rgba2hsvString(entity.get('gui.background'));
+                }
+                set2DGUITransform(btn, entity);
+                if (entity.has('gui.thickness')) {
+                    btn.thickness = entity.get('gui.thickness')
+                }
+                if (entity.has('gui.cornerRadius')) {
+                    btn.cornerRadius = entity.get('gui.cornerRadius')
+                }
+                if (entity.has('gui.text')) {
+                    btn.textBlock!.text = entity.get('gui.text')
+                }
+                if (entity.has('gui.fontSize')) {
+                    btn.fontSize = entity.get('gui.fontSize');
+                    btn.textBlock!.fontSize = entity.get('gui.fontSize');
+                }
+                if (entity.has('gui.textColor')) {
+                    btn.textBlock!.color = Tools.rgba2hsvString(entity.get('gui.textColor'));
+                }
+                return btn;
+            } else if (subtype === 'image') {
+                let img = new BABYLON.GUI.Image(entity.get('name'), '');
+                entity.node = img;
+                if (entity.has('gui.color')) {
+                    img.color = Tools.rgba2hsvString(entity.get('gui.color'));
+                }
+                set2DGUITransform(img, entity);
+                return img;
+            } else if (subtype === 'text') {
+                let text = new BABYLON.GUI.TextBlock(entity.get('name'), '');
+                entity.node = text;
+                if (entity.has('gui.color')) {
+                    text.color = Tools.rgba2hsvString(entity.get('gui.color'));
+                }
+                set2DGUITransform(text, entity);
+                if (entity.has('gui.fontSize')) {
+                    text.fontSize = entity.get('gui.fontSize');
+                }
+                if (entity.has('gui.text')) {
+                    text.text = entity.get('gui.text');
+                }
+                if (entity.has('gui.textWrapping')) {
+                    text.textWrapping = entity.get('gui.textWrapping');
+                }
+                if (entity.has('gui.textHorizontalAlignment')) {
+                    text.textHorizontalAlignment = entity.get('gui.textHorizontalAlignment');
+                }
+                if (entity.has('gui.textVerticalAlignment')) {
+                    text.textVerticalAlignment = entity.get('gui.textVerticalAlignment');
+                }
+                return text;
+            } else if (subtype === 'input') {
+                let input = new BABYLON.GUI.InputText(entity.get('name'), '');
+                entity.node = input;
+                if (entity.has('gui.color')) {
+                    input.color = Tools.rgba2hsvString(entity.get('gui.color'));
+                }
+                if (entity.has('gui.background')) {
+                    input.background = Tools.rgba2hsvString(entity.get('gui.background'));
+                }
+                set2DGUITransform(input, entity);
+                if (entity.has('gui.thickness')) {
+                    input.thickness = entity.get('gui.thickness')
+                }
+                if (entity.has('gui.fontSize')) {
+                    input.fontSize = entity.get('gui.fontSize');
+                }
+                if (entity.has('gui.placeholderColor')) {
+                    input.placeholderColor = Tools.rgba2hsvString(entity.get('gui.placeholderColor'));
+                }
+                if (entity.has('gui.placeholderText')) {
+                    input.placeholderText = entity.get('gui.placeholderText');
+                }
+                if (entity.has('gui.focusedBackground')) {
+                    input.focusedBackground = Tools.rgba2hsvString(entity.get('gui.focusedBackground'));
+                }
+                if (entity.has('gui.text')) {
+                    input.text = entity.get('gui.text');
+                }
+                return input;
+            } else if (subtype === 'checkbox') {
+                let checkbox = new BABYLON.GUI.RadioButton(entity.get('name'));
+                entity.node = checkbox;
+                if (entity.has('gui.color')) {
+                    checkbox.color = Tools.rgba2hsvString(entity.get('gui.color'));
+                }
+                if (entity.has('gui.background')) {
+                    checkbox.background = Tools.rgba2hsvString(entity.get('gui.background'));
+                }
+
+                set2DGUITransform(checkbox, entity);
+                if (entity.has('gui.thickness')) {
+                    checkbox.thickness = entity.get('gui.thickness')
+                }
+                if (entity.has('gui.isChecked')) {
+                    checkbox.isChecked = entity.get('gui.isChecked')
+                }
+                return checkbox;
+            }
+            return null;
+        }
+
+        let set2DGUITransform = (control: BABYLON.GUI.Control, entity: Observer) => {
+            if (entity.has('gui.x')) {
+                if (entity.has('gui.xType') && entity.get('gui.xType') === 1) {
+                    control.left = entity.get('gui.x') + '%';
+                } else {
+                    control.left = entity.get('gui.x') + 'px';
+                }
+            }
+            if (entity.has('gui.y')) {
+                if (entity.has('gui.yType') && entity.get('gui.yType') === 1) {
+                    control.top = entity.get('gui.y') + '%';
+                } else {
+                    control.top = entity.get('gui.y') + 'px';
+                }
+            }
+            if (entity.has('gui.width')) {
+                if (entity.has('gui.widthType') && entity.get('gui.widthType') === 1) {
+                    control.width = entity.get('gui.width') + '%';
+                } else {
+                    control.width = entity.get('gui.width') + 'px';
+                }
+            }
+            if (entity.has('gui.height')) {
+                if (entity.has('gui.heightType') && entity.get('gui.heightType') === 1) {
+                    control.height = entity.get('gui.height') + '%';
+                } else {
+                    control.height = entity.get('gui.height') + 'px';
+                }
+            }
+            if (entity.has('gui.scaleX')) {
+                control.scaleX = entity.get('gui.scaleX');
+            }
+            if (entity.has('gui.scaleY')) {
+                control.scaleY = entity.get('gui.scaleY');
+            }
+            if (entity.has('gui.horizontal_alignment')) {
+                control.horizontalAlignment = entity.get('gui.horizontal_alignment');
+            }
+            if (entity.has('gui.vertical_alignment')) {
+                control.verticalAlignment = entity.get('gui.vertical_alignment');
+            }
+            if (entity.has('gui.isHighlighted')) {
+                control.isHighlighted = entity.get('gui.isHighlighted');
+            }
         }
 
     }

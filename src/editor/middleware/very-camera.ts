@@ -1,5 +1,6 @@
 import { VeryEngine } from "../../engine";
 import { Config } from "../global";
+import { Tools } from "../utility";
 import { Viewport } from "../viewport";
 
 
@@ -14,12 +15,16 @@ export class VeryCamera extends BABYLON.TransformNode {
     }
     public set mode(val: number) {
         this.camera.mode = val;
+        if (val === BABYLON.Camera.ORTHOGRAPHIC_CAMERA) {
+            this.orthoSize = this._orthoSize;
+        }
     }
 
     public get fov(): number {
         return this.camera.fov;
     }
     public set fov(val: number) {
+        // this.camera.fov = Tools.eulerAngleFloatToRadian(val);
         this.camera.fov = val;
     }
 
@@ -49,7 +54,42 @@ export class VeryCamera extends BABYLON.TransformNode {
         }
     }
 
-    public clearColor: Nullable<BABYLON.Color4> = null;
+    private _clearColor: Nullable<BABYLON.Color4> = null;
+    public get clearColor(): Nullable<BABYLON.Color4> {
+        return this._clearColor;
+    }
+    public set clearColor(val: Nullable<BABYLON.Color4>) {
+        this._clearColor = val;
+    }
+
+    public get minZ(): number {
+        return this.camera.minZ;
+    }
+    public set minZ(val: number) {
+        this.camera.minZ = val;
+    }
+
+    public get maxZ(): number {
+        return this.camera.minZ;
+    }
+    public set maxZ(val: number) {
+        this.camera.maxZ = val;
+    }
+
+    public get checkCollisions(): boolean {
+        return (<BABYLON.FreeCamera>this.camera).checkCollisions;
+    }
+    public set checkCollisions(val: boolean) {
+        (<BABYLON.FreeCamera>this.camera).checkCollisions = val;
+    }
+
+    public get applyGravity(): boolean {
+        return (<BABYLON.FreeCamera>this.camera).applyGravity;
+    }
+    public set applyGravity(val: boolean) {
+        (<BABYLON.FreeCamera>this.camera).applyGravity = val;
+    }
+    
 
     public camera: BABYLON.TargetCamera;
 
@@ -68,6 +108,7 @@ export class VeryCamera extends BABYLON.TransformNode {
         camera.position = BABYLON.Vector3.Zero();
         camera.rotation = BABYLON.Vector3.Zero();
         camera.inputs.clear();
+
 
     }
 
@@ -88,6 +129,7 @@ export class VeryCamera extends BABYLON.TransformNode {
     public resize(editor?: boolean): void {
         if (this.camera && this._canvas) {
             if (this._canvas.width !== this._width || this._canvas.height !== this._height) {
+
                 this._width = this._canvas.width;
                 this._height = this._canvas.height;
 
@@ -115,7 +157,7 @@ export class VeryCamera extends BABYLON.TransformNode {
                 }
 
                 // console.log('设置ortho参数: ' + this._orthoSize);
-                // console.warn(this.camera);
+                // console.warn(this.camera.viewport);
             }
 
         }

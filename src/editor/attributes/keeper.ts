@@ -5,6 +5,8 @@ import { AttributesAssets } from "./attributes-assets";
 import { AttributeHistory } from "./attributes-history";
 import { AttributeAssetsTexture } from "./assets/attributes-assets-texture";
 import { AttributeComponentCamera } from "./components/attributes-component-camera";
+import { AttributeComponentLight } from "./components/attributes-component-light";
+import { AttributeComponentGUI } from "./components/attributes-component-gui";
 
 export class AttributesKeeper {
     public constructor() {
@@ -22,6 +24,8 @@ export class AttributesKeeper {
         let attributesAssetsTexture = new AttributeAssetsTexture();
 
         new AttributeComponentCamera();
+        new AttributeComponentLight();
+        new AttributeComponentGUI();
 
     }
 }

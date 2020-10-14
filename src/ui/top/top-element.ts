@@ -296,7 +296,8 @@ export class TopElement extends Events {
             this._dom.removeEventListener('mouseout', this._domEventMouseOut);
 
             // remove ui reference
-            delete this._dom.ui;
+            if(this._dom.ui)
+                this._dom.ui.destroy();
 
             this._dom = null;
         }

@@ -4,4 +4,6 @@ export * from './attributes-history';
 export * from './attributes-reference';
 export * from './attributes-assets';
 export * from './components/attributes-component-camera';
+export * from './components/attributes-component-light';
+export * from './components/attributes-component-gui';
 export * from './keeper';

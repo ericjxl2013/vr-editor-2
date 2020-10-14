@@ -1,7 +1,11 @@
+import { getUrl } from "../../tools/ossfile";
 import { VeryEngine } from "../../engine";
 import { Observer } from "../../lib";
+import { VeryCamera } from "../middleware";
 import { BabylonLoader } from "../middleware/loader/babylonLoader";
 import { Tools } from "../utility";
+import { Config } from "../global";
+import { GUIManager } from "../gui";
 
 export class ViewportEntitiesObserverBinding {
 
@@ -60,6 +64,294 @@ export class ViewportEntitiesObserverBinding {
                     //     entity.model.asset = assetId;
                     // });
                 }
+                // 事件绑定到创建时
+                else if (path === 'clearColor') {
+                    if (entity instanceof VeryCamera) {
+                        entity.clearColor = BABYLON.Color4.FromArray(value);
+                    }
+                } else if (path === 'mode') {
+                    if (entity instanceof VeryCamera) {
+                        entity.mode = value;
+                    }
+                } else if (path === 'orthoSize') {
+                    if (entity instanceof VeryCamera) {
+                        entity.orthoSize = value;
+                    }
+                } else if (path === 'fov') {
+                    if (entity instanceof VeryCamera) {
+                        // entity.fov = Tools.eulerAngleFloatToRadian(value);
+                        entity.fov = value;
+                    }
+                } else if (path === 'minZ') {
+                    if (entity instanceof VeryCamera) {
+                        entity.minZ = value;
+                    }
+                } else if (path === 'maxZ') {
+                    if (entity instanceof VeryCamera) {
+                        entity.maxZ = value;
+                    }
+                } else if (path === 'applyGravity') {
+                    if (entity instanceof VeryCamera) {
+                        entity.applyGravity = value;
+                    }
+                }
+                // 2D-GUI
+                else if (path === 'gui.isVisible') {
+                    if (entity instanceof BABYLON.GUI.Control) {
+                        (<BABYLON.GUI.Control>entity).isVisible = value;
+                    } else if (entity instanceof BABYLON.GUI.AdvancedDynamicTexture) {
+                        (<BABYLON.GUI.AdvancedDynamicTexture>entity).rootContainer.isVisible = value;
+                    }
+                } else if (path === 'gui.xType') {
+                    if (entity instanceof BABYLON.GUI.Control) {
+                        if (value === 0) {
+                            (<BABYLON.GUI.Control>entity).left = obj.get('gui.x') + 'px';
+                        } else {
+                            (<BABYLON.GUI.Control>entity).left = obj.get('gui.x') + '%';
+                        }
+                    } else if (entity instanceof BABYLON.GUI.AdvancedDynamicTexture) {
+                        if (value === 0) {
+                            (<BABYLON.GUI.AdvancedDynamicTexture>entity).rootContainer.left = obj.get('gui.x') + 'px';
+                        } else {
+                            (<BABYLON.GUI.AdvancedDynamicTexture>entity).rootContainer.left = obj.get('gui.x') + '%';
+                        }
+                    }
+                } else if (path === 'gui.x') {
+                    if (entity instanceof BABYLON.GUI.Control) {
+                        if (obj.get('gui.xType') === 0) {
+                            (<BABYLON.GUI.Control>entity).left = value + 'px';
+                        } else {
+                            (<BABYLON.GUI.Control>entity).left = value + '%';
+                        }
+                    } else if (entity instanceof BABYLON.GUI.AdvancedDynamicTexture) {
+                        if (obj.get('gui.xType') === 0) {
+                            (<BABYLON.GUI.AdvancedDynamicTexture>entity).rootContainer.left = value + 'px';
+                        } else {
+                            (<BABYLON.GUI.AdvancedDynamicTexture>entity).rootContainer.left = value + '%';
+                        }
+                    }
+                } else if (path === 'gui.yType') {
+                    if (entity instanceof BABYLON.GUI.Control) {
+                        if (value === 0) {
+                            (<BABYLON.GUI.Control>entity).top = obj.get('gui.y') + 'px';
+                        } else {
+                            (<BABYLON.GUI.Control>entity).top = obj.get('gui.y') + '%';
+                        }
+                    } else if (entity instanceof BABYLON.GUI.AdvancedDynamicTexture) {
+                        if (value === 0) {
+                            (<BABYLON.GUI.AdvancedDynamicTexture>entity).rootContainer.top = obj.get('gui.y') + 'px';
+                        } else {
+                            (<BABYLON.GUI.AdvancedDynamicTexture>entity).rootContainer.top = obj.get('gui.y') + '%';
+                        }
+                    }
+                } else if (path === 'gui.y') {
+                    if (entity instanceof BABYLON.GUI.Control) {
+                        if (obj.get('gui.yType') === 0) {
+                            (<BABYLON.GUI.Control>entity).top = value + 'px';
+                        } else {
+                            (<BABYLON.GUI.Control>entity).top = value + '%';
+                        }
+                    } else if (entity instanceof BABYLON.GUI.AdvancedDynamicTexture) {
+                        if (obj.get('gui.yType') === 0) {
+                            (<BABYLON.GUI.AdvancedDynamicTexture>entity).rootContainer.top = value + 'px';
+                        } else {
+                            (<BABYLON.GUI.AdvancedDynamicTexture>entity).rootContainer.top = value + '%';
+                        }
+                    }
+                } else if (path === 'gui.widthType') {
+                    if (entity instanceof BABYLON.GUI.Control) {
+                        if (value === 0) {
+                            (<BABYLON.GUI.Control>entity).width = obj.get('gui.width') + 'px';
+                        } else {
+                            (<BABYLON.GUI.Control>entity).width = obj.get('gui.width') + '%';
+                        }
+                    } else if (entity instanceof BABYLON.GUI.AdvancedDynamicTexture) {
+                        if (value === 0) {
+                            (<BABYLON.GUI.AdvancedDynamicTexture>entity).rootContainer.width = obj.get('gui.width') + 'px';
+                        } else {
+                            (<BABYLON.GUI.AdvancedDynamicTexture>entity).rootContainer.width = obj.get('gui.width') + '%';
+                        }
+                    }
+                } else if (path === 'gui.width') {
+                    if (entity instanceof BABYLON.GUI.Control) {
+                        if (obj.get('gui.widthType') === 0) {
+                            (<BABYLON.GUI.Control>entity).width = value + 'px';
+                        } else {
+                            (<BABYLON.GUI.Control>entity).width = value + '%';
+                        }
+                    } else if (entity instanceof BABYLON.GUI.AdvancedDynamicTexture) {
+                        if (obj.get('gui.widthType') === 0) {
+                            (<BABYLON.GUI.AdvancedDynamicTexture>entity).rootContainer.width = value + 'px';
+                        } else {
+                            (<BABYLON.GUI.AdvancedDynamicTexture>entity).rootContainer.width = value + '%';
+                        }
+                    }
+                } else if (path === 'gui.heightType') {
+                    if (entity instanceof BABYLON.GUI.Control) {
+                        if (value === 0) {
+                            (<BABYLON.GUI.Control>entity).height = obj.get('gui.height') + 'px';
+                        } else {
+                            (<BABYLON.GUI.Control>entity).height = obj.get('gui.height') + '%';
+                        }
+                    } else if (entity instanceof BABYLON.GUI.AdvancedDynamicTexture) {
+                        if (value === 0) {
+                            (<BABYLON.GUI.AdvancedDynamicTexture>entity).rootContainer.height = obj.get('gui.height') + 'px';
+                        } else {
+                            (<BABYLON.GUI.AdvancedDynamicTexture>entity).rootContainer.height = obj.get('gui.height') + '%';
+                        }
+                    }
+                } else if (path === 'gui.height') {
+                    if (entity instanceof BABYLON.GUI.Control) {
+                        if (obj.get('gui.heightType') === 0) {
+                            (<BABYLON.GUI.Control>entity).height = value + 'px';
+                        } else {
+                            (<BABYLON.GUI.Control>entity).height = value + '%';
+                        }
+                    } else if (entity instanceof BABYLON.GUI.AdvancedDynamicTexture) {
+                        if (obj.get('gui.heightType') === 0) {
+                            (<BABYLON.GUI.AdvancedDynamicTexture>entity).rootContainer.height = value + 'px';
+                        } else {
+                            (<BABYLON.GUI.AdvancedDynamicTexture>entity).rootContainer.height = value + '%';
+                        }
+                    }
+                } else if (path === 'gui.horizontal_alignment') {
+                    if (entity instanceof BABYLON.GUI.Control) {
+                        (<BABYLON.GUI.Control>entity).horizontalAlignment = value;
+                    } else if (entity instanceof BABYLON.GUI.AdvancedDynamicTexture) {
+                        (<BABYLON.GUI.AdvancedDynamicTexture>entity).rootContainer.horizontalAlignment = value;
+                    }
+                } else if (path === 'gui.vertical_alignment') {
+                    if (entity instanceof BABYLON.GUI.Control) {
+                        (<BABYLON.GUI.Control>entity).verticalAlignment = value;
+                    } else if (entity instanceof BABYLON.GUI.AdvancedDynamicTexture) {
+                        (<BABYLON.GUI.AdvancedDynamicTexture>entity).rootContainer.verticalAlignment = value;
+                    }
+                } else if (path === 'gui.alpha') {
+                    if (entity instanceof BABYLON.GUI.Control) {
+                        (<BABYLON.GUI.Control>entity).alpha = value;
+                    } else if (entity instanceof BABYLON.GUI.AdvancedDynamicTexture) {
+                        (<BABYLON.GUI.AdvancedDynamicTexture>entity).rootContainer.alpha = value;
+                    }
+                } else if (path === 'gui.rotation') {
+                    if (entity instanceof BABYLON.GUI.Control) {
+                        (<BABYLON.GUI.Control>entity).rotation = Tools.eulerAngleFloatToRadian(value);
+                    } else if (entity instanceof BABYLON.GUI.AdvancedDynamicTexture) {
+                        (<BABYLON.GUI.AdvancedDynamicTexture>entity).rootContainer.rotation = Tools.eulerAngleFloatToRadian(value);
+                    }
+                } else if (path === 'gui.color') {
+                    if (entity instanceof BABYLON.GUI.Control) {
+                        (<BABYLON.GUI.Control>entity).color = Tools.rgba2hsvString(value);
+                    } else if (entity instanceof BABYLON.GUI.AdvancedDynamicTexture) {
+                        (<BABYLON.GUI.AdvancedDynamicTexture>entity).rootContainer.color = Tools.rgba2hsvString(value);
+                    }
+                } else if (path === 'gui.background') {
+                    if (entity instanceof BABYLON.GUI.Control) {
+                        (<any>entity).background = Tools.rgba2hsvString(value);
+                    }
+                } else if (path === 'gui.textColor') {
+                    if (entity instanceof BABYLON.GUI.Button) {
+                        (<BABYLON.GUI.Button>entity).textBlock!.color = Tools.rgba2hsvString(value);
+                    }
+                } else if (path === 'gui.text') {
+                    if (entity instanceof BABYLON.GUI.Button) {
+                        (<BABYLON.GUI.Button>entity).textBlock!.text = value;
+                    } else if (entity instanceof BABYLON.GUI.TextBlock) {
+                        (<BABYLON.GUI.TextBlock>entity).text = value;
+                    } else if (entity instanceof BABYLON.GUI.InputText) {
+                        (<BABYLON.GUI.InputText>entity).text = value;
+                    }
+                } else if (path === 'gui.thickness') {
+                    if (entity instanceof BABYLON.GUI.Button) {
+                        (<BABYLON.GUI.Button>entity).thickness = value;
+                    } else if (entity instanceof BABYLON.GUI.Rectangle) {
+                        (<BABYLON.GUI.Rectangle>entity).thickness = value;
+                    } else if (entity instanceof BABYLON.GUI.InputText) {
+                        (<BABYLON.GUI.InputText>entity).thickness = value;
+                    } else if (entity instanceof BABYLON.GUI.Checkbox) {
+                        (<BABYLON.GUI.Checkbox>entity).thickness = value;
+                    }
+                } else if (path === 'gui.cornerRadius') {
+                    if (entity instanceof BABYLON.GUI.Button) {
+                        (<BABYLON.GUI.Button>entity).cornerRadius = value;
+                    } else if (entity instanceof BABYLON.GUI.Rectangle) {
+                        (<BABYLON.GUI.Rectangle>entity).cornerRadius = value;
+                    }
+                } else if (path === 'gui.fontSize') {
+                    if (entity instanceof BABYLON.GUI.TextBlock) {
+                        (<BABYLON.GUI.TextBlock>entity).fontSize = value;
+                    } else if (entity instanceof BABYLON.GUI.InputText) {
+                        (<BABYLON.GUI.InputText>entity).fontSize = value;
+                    } else if (entity instanceof BABYLON.GUI.Button) {
+                        (<BABYLON.GUI.Button>entity).textBlock!.fontSize = value;
+                    }
+                } else if (path === 'gui.placeholderText') {
+                    if (entity instanceof BABYLON.GUI.InputText) {
+                        (<BABYLON.GUI.InputText>entity).placeholderText = value;
+                    }
+                } else if (path === 'gui.placeholderColor') {
+                    if (entity instanceof BABYLON.GUI.InputText) {
+                        (<BABYLON.GUI.InputText>entity).placeholderColor = Tools.rgba2hsvString(value);
+                    }
+                } else if (path === 'gui.focusedBackground') {
+                    if (entity instanceof BABYLON.GUI.InputText) {
+                        (<BABYLON.GUI.InputText>entity).focusedBackground = Tools.rgba2hsvString(value);
+                    }
+                } else if (path === 'gui.isChecked') {
+                    if (entity instanceof BABYLON.GUI.RadioButton) {
+                        (<BABYLON.GUI.RadioButton>entity).isChecked = value;
+                    }
+                } else if (path === 'gui.textWrapping') {
+                    if (entity instanceof BABYLON.GUI.TextBlock) {
+                        (<BABYLON.GUI.TextBlock>entity).textWrapping = value;
+                    }
+                } else if (path === 'gui.textHorizontalAlignment') {
+                    if (entity instanceof BABYLON.GUI.TextBlock) {
+                        (<BABYLON.GUI.TextBlock>entity).textHorizontalAlignment = value;
+                    }
+                } else if (path === 'gui.textVerticalAlignment') {
+                    if (entity instanceof BABYLON.GUI.TextBlock) {
+                        (<BABYLON.GUI.TextBlock>entity).textVerticalAlignment = value;
+                    }
+                } else if (path === 'gui.isHighlighted') {
+                    if (entity instanceof BABYLON.GUI.AdvancedDynamicTexture) {
+                        (<BABYLON.GUI.AdvancedDynamicTexture>entity).rootContainer.isHighlighted = value;
+                    } else if(entity instanceof BABYLON.GUI.Control) {
+                        (<BABYLON.GUI.Control>entity).isHighlighted = value;
+                    }
+                }  else if (path === 'gui.zIndex') {
+                    if (entity instanceof BABYLON.GUI.AdvancedDynamicTexture) {
+                        (<BABYLON.GUI.AdvancedDynamicTexture>entity).rootContainer.zIndex = value;
+                        (<BABYLON.GUI.AdvancedDynamicTexture>entity).rootContainer._markAllAsDirty();
+                    } else if(entity instanceof BABYLON.GUI.Control) {
+                        (<BABYLON.GUI.Control>entity).zIndex = value;
+                        (<BABYLON.GUI.Control>entity)._markAllAsDirty();
+                    }
+                } else if (path === 'gui.source') {
+                    // console.error(value);
+                    if(value) {
+                        let asset = editor.call('assets:get', value);
+                        if (asset) {
+                            if (entity instanceof BABYLON.GUI.Image) {
+                                getUrl(Config.projectID, asset.get('id'), asset.get('name'), asset.get('file.hash')).then(response => {
+                                    (<BABYLON.GUI.Image>entity).source = response;
+                                });
+                                // (<BABYLON.GUI.TextBlock>entity).textVerticalAlignment = value;
+                            } else if (entity instanceof BABYLON.GUI.Button) {
+                                getUrl(Config.projectID, asset.get('id'), asset.get('name'), asset.get('file.hash')).then(response => {
+                                    (<BABYLON.GUI.Button>entity).image!.source = response;
+                                });
+                            }
+                        }
+                    } else {
+                        if (entity instanceof BABYLON.GUI.Image) {
+                            (<BABYLON.GUI.Image>entity).source = '';
+                            (<BABYLON.GUI.Image>entity)._markAsDirty();
+                        } else if (entity instanceof BABYLON.GUI.Button) {
+                            (<BABYLON.GUI.Button>entity).image!.source = '';
+                            (<BABYLON.GUI.Button>entity)._markAsDirty();
+                        }
+                    }
+                }
 
 
                 BabylonLoader.updateSceneData(obj.get('resource_id'), obj._data2);
@@ -104,6 +396,35 @@ export class ViewportEntitiesObserverBinding {
                         childEntity.set('rotation.0', localRotation.x);
                         childEntity.set('rotation.1', localRotation.y);
                         childEntity.set('rotation.2', localRotation.z);
+                    } else if (childEntity.node instanceof BABYLON.GUI.Control) {
+                        if (obj.node instanceof BABYLON.GUI.AdvancedDynamicTexture) {
+                            if((<BABYLON.GUI.Control>(childEntity.node)).parent) {
+                                (<BABYLON.GUI.Control>(childEntity.node)).parent?.removeControl(<BABYLON.GUI.Control>(childEntity.node));
+                            }
+                            obj.node.addControl(childEntity.node);
+                            // console.error(childEntity.node.parent);
+                            // console.error(childEntity.node.parent.parent);
+                            // console.warn(index);
+                            // console.log(obj.node.rootContainer.children);
+                            let last = obj.node.rootContainer.children.pop();
+                            obj.node.rootContainer.children.splice(index, 0, last!);
+                            GUIManager.addUniqueIDIndex(childEntity.node.uniqueId, child);
+                        } else if (obj.node instanceof BABYLON.GUI.Container) {
+                            if((<BABYLON.GUI.Control>(childEntity.node)).parent) {
+                                (<BABYLON.GUI.Control>(childEntity.node)).parent?.removeControl(<BABYLON.GUI.Control>(childEntity.node));
+                            }
+                            obj.node.addControl(childEntity.node);
+                            let last = obj.node.children.pop();
+                            obj.node.children.splice(index, 0, last!);
+                            GUIManager.addUniqueIDIndex(childEntity.node.uniqueId, child);
+                        } else {
+                            // editor.call('', '');
+                            console.warn(childEntity.get('subtype'));
+                            console.warn(childEntity.node);
+                            console.log('2D界面未知情况，请截图报错信息并联系管理员！');
+                        }
+                    } else if (childEntity.node instanceof BABYLON.GUI.AdvancedDynamicTexture) {
+
                     } else {
                         console.error('当前类型还未考虑');
                         console.error(childEntity);

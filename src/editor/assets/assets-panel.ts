@@ -2,7 +2,7 @@ import { Panel, Progress, Tree, TreeItem, Grid, Label, Tooltip, GridItem, Menu, 
 import { VeryEngine } from '../../engine';
 import { Observer, ObserverList } from '../../lib';
 import { BabylonLoader } from '../middleware/loader/babylonLoader';
-import { getThumbnailUrl} from '../../tools/ossfile';
+import { getThumbnailUrl } from '../../tools/ossfile';
 import { Config } from '../global';
 
 export class AssetsPanel {
@@ -445,6 +445,9 @@ export class AssetsPanel {
         var scriptsIndex: { [key: string]: GridItem } = {};
         var assetsIndex: { [key: string]: GridItem } = {};
         var assetsChanged = false;
+        editor.method('assets:grid:assetsIndex', () => {
+            return assetsIndex;
+        });
         // grid.assetsIndex = assetsIndex;
 
         var gridDropBorder = document.createElement('div');
@@ -1222,9 +1225,9 @@ export class AssetsPanel {
                     //     // value = value.appendQuery('t=' + asset.get('file.hash'));
                     //     value = Tools.appendQuery(value, 't=' + asset.get('file.hash'));
                     // }
-                    getThumbnailUrl(Config.projectID,asset.get('id'),asset.get('name'),asset.get('file.hash')).then(response=>{
-                        thumbnail.style.backgroundImage = 'url("' + response+ '")';
-                    })
+                    getThumbnailUrl(Config.projectID, asset.get('id'), asset.get('name'), asset.get('file.hash')).then(response => {
+                        thumbnail.style.backgroundImage = 'url("' + response + '")';
+                    });
                     // thumbnail.style.backgroundImage = 'url(' + value + ')';
                     thumbnail.classList.remove('placeholder');
                 });
@@ -1331,9 +1334,9 @@ export class AssetsPanel {
 
             if (asset.has('has_thumbnail') && asset.get('has_thumbnail') === true && !asset.get('source')) {
 
-                getThumbnailUrl(Config.projectID,asset.get('id'),asset.get('name'),asset.get('file.hash')).then(response=>{
-                    thumbnail.style.backgroundImage = 'url("' + response+ '")';
-                })
+                getThumbnailUrl(Config.projectID, asset.get('id'), asset.get('name'), asset.get('file.hash')).then(response => {
+                    thumbnail.style.backgroundImage = 'url("' + response + '")';
+                });
             } else {
                 thumbnail.classList.add('placeholder');
             }
@@ -1402,7 +1405,7 @@ export class AssetsPanel {
                     }
 
                     if (currentFolder === asset) {
-                        console.error('emit');
+                        // console.error('emit');
                         editor.emit('assets:panel:currentFolder', currentFolder);
                     }
 

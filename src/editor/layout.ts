@@ -67,7 +67,7 @@ export class Layout {
             headerText: '层级菜单',
             id: 'layout-hierarchy',
             flex: true,
-            enabled: false,
+            enabled: true,
             width: editor.call('localStorage:get', 'editor:layout:hierarchy:width') || 256,
             panelType: 'normal',
             collapsible: true,
@@ -144,8 +144,8 @@ export class Layout {
         // attributes
         var attributesPanel = new TopElementPanel({
             id: 'layout-attributes',
-            headerText: 'INSPECTOR',
-            enabled: false,
+            headerText: '属性面板',
+            enabled: true,
             panelType: 'normal',
             width: editor.call('localStorage:get', 'editor:layout:attributes:width') || 320,
             collapsible: true,

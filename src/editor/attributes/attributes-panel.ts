@@ -1,6 +1,8 @@
 import { Panel, Label, Progress, Element, TextField, Button, TextAreaField, Slider, NumberField, Checkbox, ColorField, ImageField, Code, SelectField, TopElementPanel } from "../../ui";
 import { VeryEngine } from "../../engine";
 import { Observer } from "../../lib";
+import { getThumbnailUrl } from "../../tools/ossfile";
+import { Config } from "../global";
 
 export class AttributesPanel {
 
@@ -19,6 +21,7 @@ export class AttributesPanel {
         let clearPanel = () => {
             editor.emit('attributes:beforeClear');
             // console.warn(this.root);
+            // console.log('clear panel');
             this.root.clear();
             editor.emit('attributes:clear');
         };
@@ -232,6 +235,7 @@ export class AttributesPanel {
                     value = value.trim();
 
                 if (args.type === 'rgb') {
+                    // console.error(value);
                     value = value.map(function (v: number) {
                         return v / 255;
                     });
@@ -243,7 +247,7 @@ export class AttributesPanel {
 
                 // set link value
                 args.field._changing = true;
-                if (args.type === "string" && args.trim)
+                if (args.type === 'string' && args.trim)
                     args.field.value = value;
 
                 for (var i = 0; i < args.link.length; i++) {
@@ -414,6 +418,7 @@ export class AttributesPanel {
 
                     // picked color
                     var evtColorPick = editor.on('picker:color', function (color: any) {
+                        // console.error(color);
                         args.field.value = color;
                     });
 
@@ -431,7 +436,7 @@ export class AttributesPanel {
                     // color changed, update picker
                     var evtColorToPicker = args.field.on('change', function () {
                         // TODO
-                        // editor.call('picker:color:set', this.value);
+                        editor.call('picker:color:set', args.field.value);
                     });
 
                     // picker closed
@@ -1111,6 +1116,9 @@ export class AttributesPanel {
 
                     linkField();
 
+                    // console.log(field.channels);
+                    // console.log(field.value);
+
                     var colorPickerOn = false;
                     field.on('click', function () {
                         colorPickerOn = true;
@@ -1128,6 +1136,7 @@ export class AttributesPanel {
                         var evtColorPick = editor.on('picker:color', function (color: number[]) {
                             first = false;
                             field.value = color;
+                            // console.log(color);
                         });
 
                         // position picker
@@ -1160,8 +1169,9 @@ export class AttributesPanel {
                     break;
 
                 case 'asset':
-                    field = new ImageField(args.kind === 'material' || args.kind === 'model' || args.kind === 'cubemap' || args.kind === 'font' || args.kind === 'sprite'
-                    );
+                    // field = new ImageField(args.kind === 'material' || args.kind === 'model' || args.kind === 'cubemap' || args.kind === 'font' || args.kind === 'sprite'
+                    // );
+                    field = new ImageField();
                     var evtPick: any;
 
                     if (label !== null) {
@@ -1196,7 +1206,9 @@ export class AttributesPanel {
                     btnRemove.flexGrow = '0';
 
                     fieldTitle.on('click', function () {
+                        // console.log(field.value);
                         var asset = editor.call('assets:get', field.value);
+                        // console.log(asset);
                         editor.call('picker:asset', {
                             type: args.kind,
                             currentAsset: asset
@@ -1234,7 +1246,12 @@ export class AttributesPanel {
                         });
                     });
 
+                    // TODO: 改
                     field.on('click', function () {
+                        // fieldTitle.emit('click');
+                        // console.warn('click');
+                        // console.warn(field.value);
+
                         if (!field.value)
                             return;
 
@@ -1251,6 +1268,22 @@ export class AttributesPanel {
                     });
                     btnEdit.on('click', function () {
                         field.emit('click');
+                        // console.warn('click');
+                        // console.warn(field.value);
+
+                        // if (!field.value)
+                        //     return;
+
+                        // var asset = editor.call('assets:get', field.value);
+                        // if (!asset) return;
+                        // editor.call('selector:set', 'asset', [asset]);
+
+                        // var path = asset.get('path');
+                        // if (path.length) {
+                        //     editor.call('assets:panel:currentFolder', editor.call('assets:get', path[path.length - 1]));
+                        // } else {
+                        //     editor.call('assets:panel:currentFolder', null);
+                        // }
                     });
 
                     btnRemove.on('click', function () {
@@ -1258,7 +1291,291 @@ export class AttributesPanel {
                         field.value = null;
                     });
 
-                    // TODO
+                    var watch: any = null;
+                    var watchAsset: any = null;
+                    var renderQueued: any;
+                    var queueRender: any;
+
+                    var evtThumbnailChange: any;
+                    var updateThumbnail = function (empty?: any) {
+                        var asset = editor.call('assets:get', field.value);
+
+                        if (watch) {
+                            editor.call('assets:' + watchAsset.get('type') + ':unwatch', watchAsset, watch);
+                            watchAsset = watch = null;
+                        }
+
+                        if (empty) {
+                            field.image = '';
+                        } else if (!asset) {
+                            field.image = '/editor/static/asset-placeholder-texture.png';
+                        } else {
+                            // console.log(asset);
+                            getThumbnailUrl(Config.projectID, asset.get('id'), asset.get('name'), asset.get('file.hash')).then(response => {
+                                field.image = response;
+                            });
+
+                            // if (asset.has('thumbnails.m')) {
+                            //     var src = asset.get('thumbnails.m');
+                            //     if (src.startsWith('data:image/png;base64')) {
+                            //         field.image = asset.get('thumbnails.m');
+                            //     } else {
+                            //         field.image = asset.get('thumbnails.m').appendQuery('t=' + asset.get('file.hash'));
+                            //     }
+                            // } else {
+                            //     field.image = '/editor/static/asset-placeholder-' + asset.get('type') + '.png';
+                            // }
+
+                            if (args.kind === 'material' || args.kind === 'model' || args.kind === 'cubemap' || args.kind == 'font' || args.kind === 'sprite') {
+                                watchAsset = asset;
+                                watch = editor.call('assets:' + args.kind + ':watch', {
+                                    asset: watchAsset,
+                                    autoLoad: true,
+                                    callback: queueRender
+                                });
+                            }
+                        }
+
+                        if (queueRender)
+                            queueRender();
+                    };
+
+                    if (args.kind === 'material' || args.kind === 'model' || args.kind === 'font' || args.kind === 'sprite') {
+                        if (args.kind !== 'sprite') {
+                            field.elementImage.classList.add('flipY');
+                        }
+
+                        var renderPreview = function () {
+                            renderQueued = false;
+
+                            if (watchAsset) {
+                                // render
+                                editor.call('preview:render', watchAsset, 128, 128, field.elementImage);
+                            } else {
+                                var ctx = field.elementImage.ctx;
+                                if (!ctx)
+                                    ctx = field.elementImage.ctx = field.elementImage.getContext('2d');
+
+                                ctx.clearRect(0, 0, field.elementImage.width, field.elementImage.height);
+                            }
+                        };
+
+                        renderPreview();
+
+                        queueRender = function () {
+                            if (renderQueued) return;
+                            renderQueued = true;
+                            requestAnimationFrame(renderPreview);
+                        };
+
+                        var evtSceneSettings: any = editor.on('preview:scene:changed', queueRender);
+
+                        field.once('destroy', function () {
+                            evtSceneSettings.unbind();
+                            evtSceneSettings = null;
+
+                            if (watch) {
+                                editor.call('assets:' + watchAsset.get('type') + ':unwatch', watchAsset, watch);
+                                watchAsset = watch = null;
+                            }
+                        });
+                    } else if (args.kind === 'cubemap') {
+                        field.elementImage.width = 60;
+                        field.elementImage.height = 60;
+
+                        var positions = [[30, 22], [0, 22], [15, 7], [15, 37], [15, 22], [45, 22]];
+                        var images: any = [null, null, null, null, null, null];
+
+                        var renderPreview = function () {
+                            renderQueued = false;
+
+                            var ctx = field.elementImage.ctx;
+                            if (!ctx)
+                                ctx = field.elementImage.ctx = field.elementImage.getContext('2d');
+
+                            ctx.clearRect(0, 0, field.elementImage.width, field.elementImage.height);
+
+                            if (watchAsset) {
+                                for (var i = 0; i < 6; i++) {
+                                    var id = watchAsset.get('data.textures.' + i);
+                                    var image: any = null;
+
+                                    if (id) {
+                                        var texture = editor.call('assets:get', id);
+                                        if (texture) {
+                                            var hash = texture.get('file.hash');
+                                            if (images[i] && images[i].hash === hash) {
+                                                image = images[i];
+                                            } else {
+                                                var url = texture.get('thumbnails.s');
+
+                                                if (images[i])
+                                                    images[i].onload = null;
+
+                                                images[i] = null;
+
+                                                if (url) {
+                                                    image = images[i] = new Image();
+                                                    image.hash = hash;
+                                                    image.onload = queueRender;
+                                                    image.src = url.appendQuery('t=' + hash);
+                                                }
+                                            }
+                                        } else if (images[i]) {
+                                            images[i].onload = null;
+                                            images[i] = null;
+                                        }
+                                    } else if (images[i]) {
+                                        images[i].onload = null;
+                                        images[i] = null;
+                                    }
+
+                                    if (image) {
+                                        ctx.drawImage(image, positions[i][0], positions[i][1], 15, 15);
+                                    } else {
+                                        ctx.beginPath();
+                                        ctx.rect(positions[i][0], positions[i][1], 15, 15);
+                                        ctx.fillStyle = '#000';
+                                        ctx.fill();
+                                    }
+                                }
+                            }
+                        };
+
+                        renderPreview();
+
+                        queueRender = function () {
+                            if (renderQueued) return;
+                            renderQueued = true;
+                            requestAnimationFrame(renderPreview);
+                        };
+
+                        field.once('destroy', function () {
+                            if (watch) {
+                                editor.call('assets:cubemap:unwatch', watchAsset, watch);
+                                watchAsset = watch = null;
+                            }
+                        });
+                    }
+
+                    linkField();
+
+                    var updateField = function () {
+                        var value = field.value;
+
+                        fieldTitle.text = field.class.contains('null') ? 'various' : 'Empty';
+
+                        btnEdit.disabled = !value;
+                        btnRemove.disabled = !value && !field.class.contains('null');
+
+                        if (evtThumbnailChange) {
+                            evtThumbnailChange.unbind();
+                            evtThumbnailChange = null;
+                        }
+
+                        if (!value) {
+                            if (field.class.contains('star'))
+                                fieldTitle.text = '* ' + fieldTitle.text;
+
+                            field.empty = true;
+                            updateThumbnail(true);
+
+                            return;
+                        }
+
+                        field.empty = false;
+
+                        var asset = editor.call('assets:get', value);
+
+                        if (!asset)
+                            return updateThumbnail();
+
+                        evtThumbnailChange = asset.on('file.hash.m:set', updateThumbnail);
+                        updateThumbnail();
+
+                        fieldTitle.text = asset.get('name');
+
+                        if (field.class.contains('star'))
+                            fieldTitle.text = '* ' + fieldTitle.text;
+                    };
+                    field.on('change', updateField);
+
+                    if (args.value)
+                        field.value = args.value;
+
+                    updateField();
+
+                    var dropRef = editor.call('drop:target', {
+                        ref: panel.element,
+                        filter: function (type: string, data: any) {
+                            var rectA = self.root.innerElement!.getBoundingClientRect();
+                            var rectB = panel.element.getBoundingClientRect();
+                            return data.id && (args.kind === '*' || type === 'asset.' + args.kind) && parseInt(data.id, 10) !== field.value && !editor.call('assets:get', parseInt(data.id, 10)).get('source') && rectB.top > rectA.top && rectB.bottom < rectA.bottom;
+                        },
+                        drop: function (type: string, data: any) {
+                            if ((args.kind !== '*' && type !== 'asset.' + args.kind) || editor.call('assets:get', parseInt(data.id, 10)).get('source'))
+                                return;
+
+                            var oldValues: any = {};
+                            if (args.onSet && args.link && args.link instanceof Array) {
+                                for (var i = 0; i < args.link.length; i++) {
+                                    var id = 0;
+                                    if (args.link[i]._type === 'asset') {
+                                        id = args.link[i].get('id');
+                                    } else if (args.link[i]._type === 'entity') {
+                                        id = args.link[i].get('resource_id');
+                                    } else {
+                                        continue;
+                                    }
+
+                                    oldValues[id] = args.link[i].get(pathAt(args, i));
+                                }
+                            }
+
+                            field.emit('beforechange', parseInt(data.id, 10));
+                            field.value = parseInt(data.id, 10);
+
+                            if (args.onSet) {
+                                var asset = editor.call('assets:get', parseInt(data.id, 10));
+                                if (asset) args.onSet(asset, oldValues);
+                            }
+                        },
+                        over: function (type: string, data: any) {
+                            if (args.over)
+                                args.over(type, data);
+                        },
+                        leave: function () {
+                            if (args.leave)
+                                args.leave();
+                        }
+                    });
+                    field.on('destroy', function () {
+                        dropRef.unregister();
+                        if (evtThumbnailChange) {
+                            evtThumbnailChange.unbind();
+                            evtThumbnailChange = null;
+                        }
+                    });
+
+                    // thumbnail
+                    panel.append(field);
+                    // right side
+                    panel.append(panelFields);
+                    // controls
+                    panelFields.appendChild(panelControls);
+                    // label
+                    if (label) {
+                        panel.innerElement.removeChild(label.element);
+                        panelControls.appendChild(label.element!);
+                    }
+                    panelControls.classList.remove('label-field');
+                    // edit
+                    panelControls.appendChild(btnEdit.element!);
+                    // remove
+                    panelControls.appendChild(btnRemove.element!);
+
+                    // title
+                    panelFields.appendChild(fieldTitle.element!);
                     break;
 
                 // entity picker

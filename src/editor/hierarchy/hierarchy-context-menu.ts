@@ -8,7 +8,7 @@ export class HierarchyContextMenu {
     public menu!: Menu;
     public customMenuItems: MenuItemArgs[] = [];
     public entity!: Observer;
-    public items = [];
+    public items: Observer[] = [];
 
 
     public constructor() {
@@ -102,7 +102,7 @@ export class HierarchyContextMenu {
                 'add-new-directional': {
                     title: '平行光',
                     className: 'menu-item-add-directional-light',
-                    icon: '&#57748;',
+                    icon: '&#57746;',
                     select: () => {
                         editor.call('entities:editor:new', { parent: that.items[0], type: 'light', subtype: 'directional' });
                     }
@@ -110,7 +110,7 @@ export class HierarchyContextMenu {
                 'add-new-point': {
                     title: '点光源',
                     className: 'menu-item-add-point-light',
-                    icon: '&#57748;',
+                    icon: '&#57745;',
                     select: () => {
                         editor.call('entities:editor:new', { parent: that.items[0], type: 'light', subtype: 'point' });
                     }
@@ -118,7 +118,7 @@ export class HierarchyContextMenu {
                 'add-new-spot': {
                     title: '聚光灯',
                     className: 'menu-item-add-spot-light',
-                    icon: '&#57748;',
+                    icon: '&#57747;',
                     select: () => {
                         editor.call('entities:editor:new', { parent: that.items[0], type: 'light', subtype: 'spot' });
                     }
@@ -138,19 +138,71 @@ export class HierarchyContextMenu {
             }
         };
 
-        menuData['add-new-gui'] = {
-            title: '创建GUI',
-            className: 'menu-item-add-camera',
-            icon: '&#58232;',
-            filter: () => {
-                return false;
-            },
+        menuData['add-new-2d-gui'] = {
+            title: '创建2D界面',
+            className: 'menu-item-add-2d-gui',
+            icon: '&#58371;',
+            // filter: () => {
+            //     return false;
+            // },
             items: {
-                'add-new-button': {
-                    title: 'To Be Continued',
-                    className: 'menu-item-add-directional-light',
-                    icon: '&#58373;',
+                'add-new-2d-canvas': {
+                    title: '2D画布',
+                    className: 'menu-item-add-2d-canvas',
+                    icon: '&#58232;',
+                    select: () => {
+                        editor.call('entities:2D-GUI:new', { parent: that.items[0], type: '2d-gui', subtype: 'root' });
+                    }
                 },
+                'add-new-panel': {
+                    title: '容器',
+                    className: 'menu-item-add-panel',
+                    icon: '&#58232;',
+                    select: () => {
+                        // 使用rectangle充当panel，比container多了圆角；
+                        editor.call('entities:2D-GUI:new', { parent: that.items[0], type: '2d-gui', subtype: 'panel' });
+                    }
+                },
+                'add-new-button': {
+                    title: '按钮',
+                    className: 'menu-item-add-button',
+                    icon: '&#58373;',
+                    select: () => {
+                        editor.call('entities:2D-GUI:new', { parent: that.items[0], type: '2d-gui', subtype: 'button' });
+                    }
+                },
+                'add-new-image': {
+                    title: '图片',
+                    className: 'menu-item-add-image',
+                    icon: '&#58005;',
+                    select: () => {
+                        editor.call('entities:2D-GUI:new', { parent: that.items[0], type: '2d-gui', subtype: 'image' });
+                    }
+                },
+                'add-new-text': {
+                    title: '文字',
+                    className: 'menu-item-add-text',
+                    icon: '&#58374;',
+                    select: () => {
+                        editor.call('entities:2D-GUI:new', { parent: that.items[0], type: '2d-gui', subtype: 'text' });
+                    }
+                },
+                'add-new-input': {
+                    title: '输入框',
+                    className: 'menu-item-add-input',
+                    icon: '&#58374;',
+                    select: () => {
+                        editor.call('entities:2D-GUI:new', { parent: that.items[0], type: '2d-gui', subtype: 'input' });
+                    }
+                },
+                'add-new-checkbox': {
+                    title: '复选框',
+                    className: 'menu-item-add-checkbox',
+                    icon: '&#57910;',
+                    select: () => {
+                        editor.call('entities:2D-GUI:new', { parent: that.items[0], type: '2d-gui', subtype: 'checkbox' });
+                    }
+                }
             }
         };
 

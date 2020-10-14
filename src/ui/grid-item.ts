@@ -53,8 +53,11 @@ export class GridItem extends Element {
         this.emit(this.selected ? 'select' : 'deselect');
         this.emit('change', this.selected);
 
-        if (this.parent)
+        if (this.parent) {
+            // console.warn('select');
             this.parent.emit(this.selected ? 'select' : 'deselect', this, this._clicked);
+        }
+            
     }
 
 

@@ -1,8 +1,9 @@
 import { VeryEngine } from '../../engine';
 import { Observer } from '../../lib';
 import { Config } from '../global';
-import {UUid} from '../utility/uuid';
-import {uploadFile,getJsonConfig,uploadJsonAsset,upLoadJsonConfig} from "../../tools/ossfile";
+import { UUid } from '../utility/uuid';
+import { uploadFile, getJsonConfig, uploadJsonAsset, upLoadJsonConfig } from '../../tools/ossfile';
+import { BabylonLoader } from '../middleware/loader/babylonLoader';
 
 
 export class AssetsUpload {
@@ -11,9 +12,9 @@ export class AssetsUpload {
 
         // 当前任务记录
         var uploadJobs = 0;
-        var assetFile:any={};
-        var fileIndex=0;
-        var fileCount=0;
+        var assetFile: any = {};
+        var fileIndex = 0;
+        var fileCount = 0;
         var userSettings: any = editor.call('settings:projectUser');
         // var legacyScripts = editor.call('settings:project').get('useLegacyScripts');
         var legacyScripts = false;
@@ -81,83 +82,83 @@ export class AssetsUpload {
             // parent folder
             if (args.parent) {
                 if (args.parent instanceof Observer) {
-                    form.parent=args.parent.get('id');
+                    form.parent = args.parent.get('id');
                 } else {
                     var id = parseInt(args.parent, 10);
                     if (!isNaN(id))
-                        form.parent=(id + '');
+                        form.parent = (id + '');
                 }
             }
 
             // filename
             if (args.filename) {
-                form.filename=args.filename;
+                form.filename = args.filename;
             }
 
             // file
             if (args.file && args.file.size) {
-                form.file= args.file, (args.filename || args.name);
+                form.file = args.file, (args.filename || args.name);
             }
 
             return form;
         };
 
-        var create=function(args:any){
-            var formData:any={};
+        var create = function (args: any) {
+            var formData: any = {};
             if (!args.type) {
                 console.error('\'type\' required for upload request');
             }
-            formData.type=args.type;
+            formData.type = args.type;
             if (args.name) {
-                formData.name=args.name;
+                formData.name = args.name;
             }
             if (args.tags) {
-                formData.tags=args.tags.join('\n');
+                formData.tags = args.tags.join('\n');
             }
-             if (args.source_asset_id) {
-                formData.source_asset_id=args.source_asset_id;
+            if (args.source_asset_id) {
+                formData.source_asset_id = args.source_asset_id;
             }
             if (args.data) {
-                formData.data= JSON.stringify(args.data);
+                formData.data = JSON.stringify(args.data);
             }
             if (args.meta) {
-                formData.meta=JSON.stringify(args.meta);
+                formData.meta = JSON.stringify(args.meta);
             }
-            formData.preload=args.preload === undefined ? true : args.preload;
+            formData.preload = args.preload === undefined ? true : args.preload;
             formData = appendCommon(formData, args);
             return formData;
         }
 
         var update = function (assetId: string, args: any) {
-            var form :any={};
-            form.assetId=assetId;
+            var form: any = {};
+            form.assetId = assetId;
             form = appendCommon(form, args);
             return form;
         };
 
-        editor.method('assets:uploadFile',  async  (args: any, fn?: Function)=> {
-            //单独处理创建表格或者文件夹类，不需要等待所有文件上传完毕后再修改asset josn
-            if(fileCount==0){
-                fileCount=1;
-                var assetJson=await getJsonConfig(Config.projectID,"assets");
-                assetFile=JSON.parse(assetJson);
+        editor.method('assets:uploadFile', async (args: any, fn?: Function) => {
+            // 单独处理创建表格或者文件夹类，不需要等待所有文件上传完毕后再修改asset josn
+            if (fileCount == 0) {
+                fileCount = 1;
+                var assetJson = await getJsonConfig(Config.projectID, 'assets');
+                assetFile = JSON.parse(assetJson);
             }
-            var form:any ={};
+            var form: any = {};
             let replaceMode: boolean = false;
             if (args.asset && args.type && args.type !== 'model') {
                 var assetId = args.asset.get('id');
                 form = update(assetId, args);
                 replaceMode = true;
-                form.replaceAsset=assetId;
-                if(args.type) {
-                    form.type=args.type;
+                form.replaceAsset = assetId;
+                if (args.type) {
+                    form.type = args.type;
                 }
             } else {
                 form = create(args);
             }
 
-            form.projectID=Config.projectID;
-            form.path=args.path;
+            form.projectID = Config.projectID;
+            form.path = args.path;
 
             var job = ++uploadJobs;
             editor.call('status:job', 'asset-upload:' + job, 0);
@@ -165,13 +166,15 @@ export class AssetsUpload {
             // 上传新资源
             if (!replaceMode) {
                 var backData = [];
-                var assetData :any={};
-                if(form.file){
-                    if(form.file.length==undefined)
-                    {
-                        var hash=await UUid.getmd5(form.file);
+                var assetData: any = {};
+                if (form.file) {
+                    if (form.file.length == undefined) {
+                        var hash = await UUid.getmd5(form.file);
                         var assetID = UUid.createAssetID();
-                        await uploadFile(form.file,Config.projectID,assetID,form.name,hash);
+
+                        // TODO: 上传文件入口，异常处理？？？
+                        await uploadFile(form.file, Config.projectID, assetID, form.name, hash);
+
                         var createdAt = UUid.createdAtTime();
                         assetData = {
                             id: assetID,
@@ -182,7 +185,7 @@ export class AssetsUpload {
                             preload: form.preload,
                             has_thumbnail: false,
                             scope: {
-                                type: "project",
+                                type: 'project',
                                 id: form.projectID,
                             },
                             file: {
@@ -191,16 +194,16 @@ export class AssetsUpload {
                                 hash: hash,
                             },
                             data: null,
-                            path:form.path === "" ? [] : form.path.split(","),
+                            path: form.path === '' ? [] : form.path.split(','),
                         };
-                           // 最近的文件夹path值
-                        var closestPath =!assetData.path || assetData.path.length === 0? "root": assetData.path[assetData.path.length - 1];
+                        // 最近的文件夹path值
+                        var closestPath = !assetData.path || assetData.path.length === 0 ? 'root' : assetData.path[assetData.path.length - 1];
                         if (!assetFile.assets) {
-                            assetFile["assets"] = {};
+                            assetFile['assets'] = {};
                         }
                         // 与babylon文件进行索引
-                        if (form.type === "texture") {
-                            assetData["has_thumbnail"] = true;
+                        if (form.type === 'texture') {
+                            assetData['has_thumbnail'] = true;
 
                             if (assetFile.assets[assetID] === undefined) {
                                 assetFile.assets[assetID] = assetData;
@@ -209,7 +212,7 @@ export class AssetsUpload {
 
                             // 添加resource 信息
                             if (!assetFile.babylon_resource) {
-                                assetFile["babylon_resource"] = {};
+                                assetFile['babylon_resource'] = {};
                             }
                             // babylon_resource path信息
                             if (!assetFile.babylon_resource[closestPath]) {
@@ -218,7 +221,7 @@ export class AssetsUpload {
                             assetFile.babylon_resource[closestPath][assetID] = true;
                             // 关联babylon material
                             if (!assetFile.babylon) {
-                                assetFile["babylon"] = { path: {} };
+                                assetFile['babylon'] = { path: {} };
                             }
                             if (assetFile.babylon.path[closestPath]) {
                                 var babylons = assetFile.babylon.path[closestPath];
@@ -231,7 +234,7 @@ export class AssetsUpload {
                                             assetFile.babylon[babylonKey].materials;
                                         for (var matKey in itemData) {
                                             for (var itemKey in itemData[matKey]) {
-                                                if (itemKey === "asset_id") {
+                                                if (itemKey === 'asset_id') {
                                                     continue;
                                                 }
                                                 // 关联判断,bingo
@@ -241,15 +244,15 @@ export class AssetsUpload {
                                                 ) {
                                                     // 修改material参数
                                                     if (
-                                                        itemData[matKey]["asset_id"] &&
+                                                        itemData[matKey]['asset_id'] &&
                                                         assetFile.assets[
-                                                            itemData[matKey]["asset_id"]
+                                                        itemData[matKey]['asset_id']
                                                         ]
                                                     ) {
                                                         assetFile.assets[
-                                                            itemData[matKey]["asset_id"]
+                                                            itemData[matKey]['asset_id']
                                                         ].data[itemKey][
-                                                            "texture_id"
+                                                            'texture_id'
                                                         ] = assetID;
                                                     }
                                                 }
@@ -258,24 +261,24 @@ export class AssetsUpload {
                                     }
                                 }
                             }
-                        } 
-                        else if (form.type === "model") {
+                        }
+                        else if (form.type === 'model') {
                             if (assetFile.assets[assetID] === undefined) {
                                 assetFile.assets[assetID] = assetData;
                             }
                             backData.push(assetData);
-            
-                            var ext1 = form.file.name.split(".");
+
+                            var ext1 = form.file.name.split('.');
                             var ext = ext1[ext1.length - 1].toLowerCase();
-            
+
                             // babylon文件解析
-                            if (ext === "babylon") {
+                            if (ext === 'babylon') {
                                 if (!assetFile.babylon) {
-                                    assetFile["babylon"] = { path: {} };
+                                    assetFile['babylon'] = { path: {} };
                                 }
                                 // resource 信息
                                 if (!assetFile.babylon_resource) {
-                                    assetFile["babylon_resource"] = {};
+                                    assetFile['babylon_resource'] = {};
                                 }
                                 // babylon path信息
                                 if (!assetFile.babylon.path[closestPath]) {
@@ -286,7 +289,7 @@ export class AssetsUpload {
                                 assetFile.babylon[assetID] = { materials: {} };
                                 // 读取文件
                                 var babylonFile;
-                                babylonFile= await new Promise<string>((resolve, reject)=>{
+                                babylonFile = await new Promise<string>((resolve, reject) => {
                                     var reader = new FileReader();
                                     reader.readAsText(form.file, 'utf-8');
                                     reader.onload = function (e) {
@@ -307,14 +310,14 @@ export class AssetsUpload {
                                         var matData = babylonFile.materials[i];
                                         var matAssetData = {
                                             id: matID,
-                                            type: "material",
+                                            type: 'material',
                                             createdAt: createdAt,
                                             modifiedAt: createdAt,
                                             name: matData.name,
                                             preload: false,
                                             has_thumbnail: false,
                                             scope: {
-                                                type: "project",
+                                                type: 'project',
                                                 id: form.projectID,
                                             },
                                             file: null,
@@ -327,76 +330,76 @@ export class AssetsUpload {
                                         }
                                         backData.push(matAssetData);
                                         // 更新
-                                        assetFile.babylon[assetID]["materials"][
+                                        assetFile.babylon[assetID]['materials'][
                                             matData.id
                                         ] = {
                                             asset_id: matID,
                                         };
                                         // 检测texture
                                         if (matData.diffuseTexture) {
-                                            assetFile.babylon[assetID]["materials"][
+                                            assetFile.babylon[assetID]['materials'][
                                                 matData.id
-                                            ]["diffuseTexture"] =
+                                            ]['diffuseTexture'] =
                                                 matData.diffuseTexture.name;
                                         }
                                         if (matData.specularTexture) {
-                                            assetFile.babylon[assetID]["materials"][
+                                            assetFile.babylon[assetID]['materials'][
                                                 matData.id
-                                            ]["specularTexture"] =
+                                            ]['specularTexture'] =
                                                 matData.specularTexture.name;
                                         }
                                         if (matData.reflectionTexture) {
-                                            assetFile.babylon[assetID]["materials"][
+                                            assetFile.babylon[assetID]['materials'][
                                                 matData.id
-                                            ]["reflectionTexture"] =
+                                            ]['reflectionTexture'] =
                                                 matData.reflectionTexture.name;
                                         }
                                         if (matData.refractionTexture) {
-                                            assetFile.babylon[assetID]["materials"][
+                                            assetFile.babylon[assetID]['materials'][
                                                 matData.id
-                                            ]["refractionTexture"] =
+                                            ]['refractionTexture'] =
                                                 matData.refractionTexture.name;
                                         }
                                         if (matData.emissiveTexture) {
-                                            assetFile.babylon[assetID]["materials"][
+                                            assetFile.babylon[assetID]['materials'][
                                                 matData.id
-                                            ]["emissiveTexture"] =
+                                            ]['emissiveTexture'] =
                                                 matData.emissiveTexture.name;
                                         }
                                         if (matData.bumpTexture) {
-                                            assetFile.babylon[assetID]["materials"][
+                                            assetFile.babylon[assetID]['materials'][
                                                 matData.id
-                                            ]["bumpTexture"] = matData.bumpTexture.name;
+                                            ]['bumpTexture'] = matData.bumpTexture.name;
                                         }
                                         if (matData.opacityTexture) {
-                                            assetFile.babylon[assetID]["materials"][
+                                            assetFile.babylon[assetID]['materials'][
                                                 matData.id
-                                            ]["opacityTexture"] =
+                                            ]['opacityTexture'] =
                                                 matData.opacityTexture.name;
                                         }
                                         if (matData.ambientTexture) {
-                                            assetFile.babylon[assetID]["materials"][
+                                            assetFile.babylon[assetID]['materials'][
                                                 matData.id
-                                            ]["ambientTexture"] =
+                                            ]['ambientTexture'] =
                                                 matData.ambientTexture.name;
                                         }
                                         if (matData.lightmapTexture) {
-                                            assetFile.babylon[assetID]["materials"][
+                                            assetFile.babylon[assetID]['materials'][
                                                 matData.id
-                                            ]["lightmapTexture"] =
+                                            ]['lightmapTexture'] =
                                                 matData.lightmapTexture.name;
                                         }
                                     }
                                 }
-            
+
                                 // texture关联
                                 if (assetFile.babylon_resource[closestPath]) {
                                     var resourceData =
                                         assetFile.babylon_resource[closestPath];
-                                    var matData = assetFile.babylon[assetID]["materials"];
+                                    var matData = assetFile.babylon[assetID]['materials'];
                                     for (var mat_id in matData) {
                                         for (var item_id in matData[mat_id]) {
-                                            if (item_id === "asset_id") continue;
+                                            if (item_id === 'asset_id') continue;
                                             for (var resource_id in resourceData) {
                                                 // 条件成立
                                                 if (
@@ -404,9 +407,9 @@ export class AssetsUpload {
                                                     matData[mat_id][item_id]
                                                 ) {
                                                     assetFile.assets[
-                                                        matData[mat_id]["asset_id"]
+                                                        matData[mat_id]['asset_id']
                                                     ].data[item_id][
-                                                        "texture_id"
+                                                        'texture_id'
                                                     ] = resource_id;
                                                 }
                                             }
@@ -418,13 +421,13 @@ export class AssetsUpload {
                     }
                     else {
                         for (var i = 0; i < form.file.length; i++) {
-                            console.error("上传资源未知情况！！！！！");
+                            console.error('上传资源未知情况！！！！！');
                             console.error(form.file[i]);
                         }
                     }
                 }
                 else {
-                    if (form.type === "folder") {
+                    if (form.type === 'folder') {
                         var assetID = UUid.createAssetID();
                         var createdAt = UUid.createdAtTime();
                         assetData = {
@@ -436,27 +439,27 @@ export class AssetsUpload {
                             preload: form.preload,
                             has_thumbnail: false,
                             scope: {
-                                type: "project",
+                                type: 'project',
                                 id: form.projectID,
                             },
                             file: null,
                             data: null,
                             path:
-                                form.path === "" ? [] : form.path.split(","),
+                                form.path === '' ? [] : form.path.split(','),
                         };
                         if (!assetFile.assets) {
-                            assetFile["assets"] = {};
+                            assetFile['assets'] = {};
                         }
                         if (assetFile.assets[assetID] === undefined) {
                             assetFile.assets[assetID] = assetData;
                         }
                         backData.push(assetData);
                     }
-                    else if (form.type === "table") {
+                    else if (form.type === 'table') {
                         var assetID = UUid.createAssetID();
                         var createdAt = UUid.createdAtTime();
-                        await uploadJsonAsset(Config.tableStandard,form.projectID,assetID,"table");
-            
+                        await uploadJsonAsset(Config.tableStandard, form.projectID, assetID, 'table');
+
                         var createdAt = UUid.createdAtTime();
                         assetData = {
                             id: assetID,
@@ -467,7 +470,7 @@ export class AssetsUpload {
                             preload: form.preload !== undefined ? form.preload : false,
                             has_thumbnail: false,
                             scope: {
-                                type: "project",
+                                type: 'project',
                                 id: form.projectID,
                             },
                             file: {
@@ -477,10 +480,10 @@ export class AssetsUpload {
                             },
                             data: null,
                             path:
-                                form.path === "" ? [] : form.path.split(","),
+                                form.path === '' ? [] : form.path.split(','),
                         };
                         if (!assetFile.assets) {
-                            assetFile["assets"] = {};
+                            assetFile['assets'] = {};
                         }
                         if (assetFile.assets[assetID] === undefined) {
                             assetFile.assets[assetID] = assetData;
@@ -488,40 +491,50 @@ export class AssetsUpload {
                         backData.push(assetData);
                     }
                 }
+                // 更新asset data关联数据
+                BabylonLoader.assetsData.babylon = assetFile.babylon;
+                BabylonLoader.assetsData.babylon_resource = assetFile.babylon_resource;
+
                 for (let i = 0, len = backData.length; i < len; i++) {
+                    // asset data也要更新
+                    BabylonLoader.assetsData.assets[backData[i].id] = backData[i];
                     var asset = new Observer(backData[i]);
                     editor.call('assets:add', asset);
                 }
-            } 
+
+                // TODO：简易更新material preview数据
+                editor.call('material:preview:assemble', BabylonLoader.assetsData);
+                editor.call('material:preview:start');
+            }
             else {
-                var assetData :any={};
-                if(form.type === "texture" && form.file) {
-                    var hash=await UUid.getmd5(form.file);
-                    await uploadFile(form.file,Config.projectID,form.assetID,form.name,hash);
+                var assetData: any = {};
+                if (form.type === 'texture' && form.file) {
+                    var hash = await UUid.getmd5(form.file);
+                    await uploadFile(form.file, Config.projectID, form.assetID, form.name, hash);
                     assetFile.assets[form.assetID].modifiedAt = UUid.createdAtTime();
-                    assetFile.assets[form.assetID].file["size"] = form.file.size;
-                    assetFile.assets[form.assetID].file["hash"] = hash;
+                    assetFile.assets[form.assetID].file['size'] = form.file.size;
+                    assetFile.assets[form.assetID].file['hash'] = hash;
                     assetData = assetFile.assets[form.assetID];
-                } else if (form.type === "model") {
+                } else if (form.type === 'model') {
                     // 待定，先不覆盖，直接上传新的数据
                 }
-                if(assetData){
+                if (assetData) {
                     let asset: Observer = editor.call('assets:get', assetData.id);
-                    if(asset && asset.get('type') === 'texture') {
+                    if (asset && asset.get('type') === 'texture') {
                         asset.set('modifiedAt', assetData.modifiedAt);
                         asset.set('file.size', assetData.file.size);
                         asset.set('file.hash', assetData.file.hash);
                         asset.emit('thumbnails.m:set', assetData.name + '?' + assetData.file.hash);
-                        console.log('更新图片');
+                        // console.log('更新图片');
                     }
                 }
             }
             fileIndex++;
-            if(fileIndex==fileCount){
+            if (fileIndex === fileCount) {
                 console.log('所有文件上传完成');
-                upLoadJsonConfig(JSON.stringify(assetFile),Config.projectID,"assets");
-                fileIndex=0;fileCount=0;
-                assetFile={};
+                upLoadJsonConfig(JSON.stringify(assetFile), Config.projectID, 'assets');
+                fileIndex = 0; fileCount = 0;
+                assetFile = {};
             }
 
             // Ajax.post(url, form);
@@ -551,7 +564,7 @@ export class AssetsUpload {
         });
 
         editor.method('assets:upload:files', function (files: FileList) {
-            if(fileCount!=0){
+            if (fileCount != 0) {
                 console.error('上一次上传指令还未执行完成');
                 return;
             }
@@ -565,8 +578,8 @@ export class AssetsUpload {
             var currentFolder = editor.call('assets:panel:currentFolder');
 
             // 遍历每一个文件
-            fileCount=files.length;
-            fileIndex=0;
+            fileCount = files.length;
+            fileIndex = 0;
             for (var i = 0; i < files.length; i++) {
                 var path: string[] = [];
 
@@ -695,8 +708,8 @@ export class AssetsUpload {
             VeryEngine.assets.append(fileInput);
 
             var onChange = function () {
-                getJsonConfig(Config.projectID,"assets").then(assetJsonStr=>{
-                    assetFile=JSON.parse(assetJsonStr);
+                getJsonConfig(Config.projectID, 'assets').then(assetJsonStr => {
+                    assetFile = JSON.parse(assetJsonStr);
                     editor.call('assets:upload:files', fileInput.files);
                     // 上传文件以后，开始做一些处理
                     // 解析.babylon文件，初步处理以后上传给服务器
@@ -707,9 +720,9 @@ export class AssetsUpload {
                     while (i < fl) {
                         // localize file var in the loop
                         var file = fileInput.files![i];
-                        console.log('name: ' + file.name);
-                        console.warn('type: ' + file.type);
-                        console.warn('size: ' + file.size);
+                        // console.log('name: ' + file.name);
+                        // console.warn('type: ' + file.type);
+                        // console.warn('size: ' + file.size);
                         // console.warn('lastModified: ' + file.lastModified);
                         i++;
                     }

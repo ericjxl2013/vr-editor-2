@@ -214,60 +214,15 @@ export class AssetsFilter {
         // options
         var filterOptions;
 
-        if (editor.call('users:hasFlag', 'hasBundles')) {
-            filterOptions = {
-                options: {
-                    all: 'All',
-                    animation: 'Animation',
-                    audio: 'Audio',
-                    bundle: 'Asset Bundle',
-                    binary: 'Binary',
-                    cubemap: 'Cubemap',
-                    css: 'Css',
-                    fontTarget: 'Font',
-                    fontSource: 'Font (source)',
-                    json: 'Json',
-                    html: 'Html',
-                    material: 'Material',
-                    model: 'Model',
-                    scene: 'Model (source)',
-                    script: 'Script',
-                    shader: 'Shader',
-                    sprite: 'Sprite',
-                    text: 'Text',
-                    textureTarget: 'Texture',
-                    textureSource: 'Texture (source)',
-                    textureAtlasTarget: 'Texture Atlas',
-                    textureAtlasSource: 'Texture Atlas (source)'
-                }
-            };
-        } else {
-            filterOptions = {
-                options: {
-                    all: 'All',
-                    animation: 'Animation',
-                    audio: 'Audio',
-                    binary: 'Binary',
-                    cubemap: 'Cubemap',
-                    css: 'Css',
-                    fontTarget: 'Font',
-                    fontSource: 'Font (source)',
-                    json: 'Json',
-                    html: 'Html',
-                    material: 'Material',
-                    model: 'Model',
-                    scene: 'Model (source)',
-                    script: 'Script',
-                    shader: 'Shader',
-                    sprite: 'Sprite',
-                    text: 'Text',
-                    textureTarget: 'Texture',
-                    textureSource: 'Texture (source)',
-                    textureAtlasTarget: 'Texture Atlas',
-                    textureAtlasSource: 'Texture Atlas (source)'
-                }
-            };
-        }
+        filterOptions = {
+            options: {
+                all: '所有资源',
+                material: '材质',
+                model: '模型',
+                textureTarget: '贴图',
+                table: '表格'
+            }
+        };
 
         var filterField = new SelectField(filterOptions);
 
@@ -282,12 +237,13 @@ export class AssetsFilter {
             } else {
                 filterField.class!.remove('not-empty');
             }
+            // console.warn(value);
             editor.call('assets:panel:filter', filter);
         });
 
         var tooltipFilter = Tooltip.attach({
             target: filterField.element!,
-            text: 'Filter Assets',
+            text: '资源过滤器',
             align: 'bottom',
             root: root
         });

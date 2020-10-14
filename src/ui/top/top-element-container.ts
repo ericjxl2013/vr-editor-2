@@ -307,6 +307,8 @@ export class TopElementContainer extends TopElement {
     private _onAppendChild(element: HTMLElement | TopElement | Element) {
         if (element instanceof TopElement)
             (<TopElement>element).parent = this;
+        else if (element instanceof Element)
+            (<Element>element).parent = this;
         this.emit('append', element);
     };
 

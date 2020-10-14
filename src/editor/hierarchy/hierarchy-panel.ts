@@ -205,27 +205,36 @@ export class HierarchyPanel {
                     parentIdOld: (<TreeItem>items[i].old!).entity.get('resource_id')
                 };
 
-                if (preserveTransform && record.entity) {
-                    record.position = record.entity.node.position.clone();
-                    record.rotation = record.entity.node.rotation.clone();
+                if (record.entity.get('type') === '2d-gui') {
+                    // relative entity
+                    record.indOld = record.parentOld.get('children').indexOf(record.resourceId);
+
+                    record.indNew = Array.prototype.indexOf.call(record.item.parent.element.childNodes, record.item.element) - 1;
+
+                    records.push(record);
+                } else {
+                    if (preserveTransform && record.entity) {
+                        record.position = record.entity.node.position.clone();
+                        record.rotation = record.entity.node.rotation.clone();
+                    }
+
+                    // relative entity
+                    record.indOld = record.parentOld.get('children').indexOf(record.resourceId);
+
+                    // console.error(record.parent);
+                    // console.error(record.entity);
+                    // console.error(record.parentOld);
+                    // console.warn(record.item);
+                    // console.warn(record.item.parent);
+                    // console.warn(record.item.parent.element);
+                    // console.warn(record.item.parent.element.childNodes);
+
+                    record.indNew = Array.prototype.indexOf.call(record.item.parent.element.childNodes, record.item.element) - 1;
+
+                    // console.warn(record.indNew);
+
+                    records.push(record);
                 }
-
-                // relative entity
-                record.indOld = record.parentOld.get('children').indexOf(record.resourceId);
-
-                // console.error(record.parent);
-                // console.error(record.entity);
-                // console.error(record.parentOld);
-                // console.warn(record.item);
-                // console.warn(record.item.parent);
-                // console.warn(record.item.parent.element);
-                // console.warn(record.item.parent.element.childNodes);
-
-                record.indNew = Array.prototype.indexOf.call(record.item.parent.element.childNodes, record.item.element) - 1;
-
-                // console.warn(record.indNew);
-
-                records.push(record);
             }
 
             for (var i = 0; i < records.length; i++) {
@@ -361,6 +370,8 @@ export class HierarchyPanel {
                     element.class?.add('c-camera');
                 } else if (entity.get('type') === 'light') {
                     element.class?.add('c-light');
+                } else if (entity.get('type') === '2d-gui') {
+                    element.class?.add('c-element');
                 } else {
                     element.class?.add('c-model');
                 }
@@ -368,7 +379,12 @@ export class HierarchyPanel {
 
 
             element.entity = entity;
-            element.enabled = entity.get('enabled');
+
+            if (entity.get('type') === '2d-gui') {
+                element.enabled = entity.get('gui.isVisible');
+            } else {
+                element.enabled = entity.get('enabled');
+            }
 
 
             if (!componentList)
@@ -386,6 +402,14 @@ export class HierarchyPanel {
             });
 
             entity.on('enabled:set', function (value: boolean) {
+                // console.log('enabled:set');
+                // console.log(value);
+                element.enabled = value;
+            });
+
+            entity.on('gui.isVisible:set', function (value: boolean) {
+                // console.warn('gui.isVisible:set');
+                // console.warn(value);
                 element.enabled = value;
             });
 

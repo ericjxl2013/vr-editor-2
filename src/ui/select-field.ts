@@ -120,7 +120,7 @@ export class SelectField extends Element {
 
         this.elementOptions = document.createElement('ul');
         this.element.appendChild(this.elementOptions);
-        
+
 
         this.optionElements = {};
 
@@ -142,15 +142,14 @@ export class SelectField extends Element {
     }
 
 
-    private _onHoldSelect(target: HTMLElement, x: number, y: number, evt?: TouchEvent) {
+    private _onHoldSelect(target: HTMLElement, x: number, y: number, evt: TouchEvent | MouseEvent) {
         if (target && target.uiElement && target.uiElement === this && target.classList.contains('selected'))
             return;
-
         if ((Math.abs(x - this.evtMouseDist[0]) + Math.abs(y - this.evtMouseDist[1])) < 8)
             return;
-
-        if (target && target.uiElement && target.uiElement === this && evt !== undefined)
-            this._onOptionSelect.call(target, evt);
+        if (target && target.uiElement && target.uiElement === this && evt !== undefined) {
+            this._onOptionSelect(evt);
+        }
         // console.log(target.textContent);
         this.close(target.textContent!);
     };
@@ -269,7 +268,7 @@ export class SelectField extends Element {
     private evtMouseUp(evt: MouseEvent): void {
         evt.preventDefault();
         evt.stopPropagation();
-        this._onHoldSelect(<HTMLElement>evt.target, evt.pageX, evt.pageY);
+        this._onHoldSelect(<HTMLElement>evt.target, evt.pageX, evt.pageY, evt);
     };
 
     private evtTouchEnd(evt: TouchEvent): void {
@@ -438,7 +437,7 @@ export class SelectField extends Element {
         }
     };
 
-    private _onOptionSelect(evt: TouchEvent): void {
+    private _onOptionSelect(evt: TouchEvent | MouseEvent): void {
         this.value = (<HTMLElement>evt.target).uiValue;
     };
 

@@ -10,6 +10,7 @@ export class EntityEdit {
         // 为回退作准备
         let deletedCache: { [key: string]: any } = {};
 
+        // 更新entity数据，不做具体实例处理
         editor.on('entities:add', function (entity: Observer) {
             // console.log('entity-edit-children');
             var children = entity.get('children');
@@ -23,6 +24,7 @@ export class EntityEdit {
                 editor.call('make:scene:dirty');
             });
             entity.on('children:remove', function (value: string) {
+                // console.warn('children:remove in entity-edit');
                 delete childToParent[value];
                 BabylonLoader.updateSceneData(entity.get('resource_id'), entity._data2);
                 editor.call('make:scene:dirty');
@@ -60,7 +62,7 @@ export class EntityEdit {
 
             // console.error(entity);
 
-            
+
 
             // TODO: 上传到服务器
             // shareDb 
@@ -76,7 +78,7 @@ export class EntityEdit {
             // console.warn(parent);
 
 
-            
+
             // parent.history.enabled = true;
 
             // if (select) {
@@ -137,13 +139,17 @@ export class EntityEdit {
             // updateEntityReferenceFields(entityReferencesMap, entity.get('resource_id'), null);
 
             // remove children
-            entity.get('children').forEach(function (child: string) {
-                var entity = editor.call('entities:get', child);
-                if (!entity)
-                    return;
-
-                removeEntity(entity, entityReferencesMap);
-            });
+            // console.log(entity.get('children'));
+            let childrenIDs = entity.get('children');
+            if (childrenIDs && childrenIDs.length > 0) {
+                childrenIDs = childrenIDs.slice(0);
+                for (let i = 0, len = childrenIDs.length; i < len; i++) {
+                    var childEntity = editor.call('entities:get', childrenIDs[i]);
+                    if (!childEntity)
+                        return;
+                    removeEntity(childEntity, entityReferencesMap);
+                }
+            }
 
             if (editor.call('selector:type') === 'entity' && editor.call('selector:items').indexOf(entity) !== -1) {
                 editor.call('selector:history', false);
@@ -171,7 +177,7 @@ export class EntityEdit {
             // 更新scene数据
             BabylonLoader.removeSceneData(removeEntityID);
             editor.call('make:scene:dirty');
-            
+
         };
 
 
