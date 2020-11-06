@@ -1,4 +1,3 @@
-import { getUrl } from "../../tools/ossfile";
 import { VeryEngine } from "../../engine";
 import { Observer } from "../../lib";
 import { VeryCamera } from "../middleware";
@@ -332,12 +331,12 @@ export class ViewportEntitiesObserverBinding {
                         let asset = editor.call('assets:get', value);
                         if (asset) {
                             if (entity instanceof BABYLON.GUI.Image) {
-                                getUrl(Config.projectID, asset.get('id'), asset.get('name'), asset.get('file.hash')).then(response => {
+                                ossfile.getUrl(Config.projectID, asset.get('id'), asset.get('name'), asset.get('file.hash')).then(response => {
                                     (<BABYLON.GUI.Image>entity).source = response;
                                 });
                                 // (<BABYLON.GUI.TextBlock>entity).textVerticalAlignment = value;
                             } else if (entity instanceof BABYLON.GUI.Button) {
-                                getUrl(Config.projectID, asset.get('id'), asset.get('name'), asset.get('file.hash')).then(response => {
+                                ossfile.getUrl(Config.projectID, asset.get('id'), asset.get('name'), asset.get('file.hash')).then(response => {
                                     (<BABYLON.GUI.Button>entity).image!.source = response;
                                 });
                             }

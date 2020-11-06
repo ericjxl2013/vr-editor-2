@@ -1,7 +1,6 @@
 import { Panel, Button } from "../../ui";
 import { Observer } from "../../lib";
 import { BabylonLoader } from "../middleware/loader/babylonLoader";
-import {donwLoad} from "../../tools/ossfile";
 import { Config } from "../global";
 
 export class AttributesAssets {
@@ -272,7 +271,7 @@ export class AttributesAssets {
 
                         // 下载
                         if (assets[0].get('source') || assets[0].get('type') === 'texture' || assets[0].get('type') === 'audio'||assets[0].get('type') === 'model') {
-                            donwLoad(Config.projectID,assets[0].get('id'),assets[0].get('name'),assets[0].get('file.hash'));
+                            ossfile.donwLoad(Config.projectID,assets[0].get('id'),assets[0].get('name'),assets[0].get('file.hash'));
                         } else {
                             window.open('/api/assets/' + assets[0].get('id') + '/download?branchId=' + 'id');
                         }

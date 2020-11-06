@@ -1,7 +1,6 @@
 import { Observer } from '../../lib';
 import { AjaxRequest, Ajax } from '../utility';
 import { Config } from '../global';
-import {getJsonConfig,upLoadJsonConfig} from "../../tools/ossfile";
 import {UUid} from '../utility/uuid'
 
 export class AssetsRename {
@@ -9,7 +8,7 @@ export class AssetsRename {
     public constructor() {
 
         var changeName = async (assetId: string, assetName: string)=> {
-            var assetJsonStr = await getJsonConfig(Config.projectID,"assets");
+            var assetJsonStr = await ossfile.getJsonConfig(Config.projectID,"assets");
             var assetFile=JSON.parse(assetJsonStr);
             assetFile.assets[assetId].name = assetName;
             if (assetFile.assets[assetId].file !== null &&assetFile.assets[assetId].file !== undefined)
@@ -26,7 +25,7 @@ export class AssetsRename {
 
                 assetFile.assets[assetId].modifiedAt = UUid.createdAtTime();
             }
-            upLoadJsonConfig(JSON.stringify(assetFile),Config.projectID,"assets");
+            ossfile.upLoadJsonConfig(JSON.stringify(assetFile),Config.projectID,"assets");
             let asset = editor.call('assets:get',assetId);
             // console.log(asset);
             if(asset) {

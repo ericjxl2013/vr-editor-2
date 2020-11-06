@@ -1,7 +1,6 @@
 import { Observer } from "../../../lib";
 import { Button } from "../../../ui";
 import { BabylonLoader } from "../../middleware/loader/babylonLoader";
-import {getUrl} from "../../../tools/ossfile"
 import { Config } from "../../global/config";
 
 export class AttributeAssetsTexture {
@@ -245,7 +244,7 @@ export class AttributeAssetsTexture {
                     // }
 
                     if (assets[0].get('file')) {
-                        getUrl(Config.projectID,assets[0].get('id'),assets[0].get('name'),assets[0].get('file.hash')).then(response=>{
+                        ossfile.getUrl(Config.projectID,assets[0].get('id'),assets[0].get('name'),assets[0].get('file.hash')).then(response=>{
                             image.src = response;
                             previewContainer.style.display = '';
                         })

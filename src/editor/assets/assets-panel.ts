@@ -2,7 +2,6 @@ import { Panel, Progress, Tree, TreeItem, Grid, Label, Tooltip, GridItem, Menu, 
 import { VeryEngine } from '../../engine';
 import { Observer, ObserverList } from '../../lib';
 import { BabylonLoader } from '../middleware/loader/babylonLoader';
-import { getThumbnailUrl } from '../../tools/ossfile';
 import { Config } from '../global';
 
 export class AssetsPanel {
@@ -1225,7 +1224,7 @@ export class AssetsPanel {
                     //     // value = value.appendQuery('t=' + asset.get('file.hash'));
                     //     value = Tools.appendQuery(value, 't=' + asset.get('file.hash'));
                     // }
-                    getThumbnailUrl(Config.projectID, asset.get('id'), asset.get('name'), asset.get('file.hash')).then(response => {
+                    ossfile.getThumbnailUrl(Config.projectID, asset.get('id'), asset.get('name'), asset.get('file.hash')).then(response => {
                         thumbnail.style.backgroundImage = 'url("' + response + '")';
                     });
                     // thumbnail.style.backgroundImage = 'url(' + value + ')';
@@ -1334,7 +1333,7 @@ export class AssetsPanel {
 
             if (asset.has('has_thumbnail') && asset.get('has_thumbnail') === true && !asset.get('source')) {
 
-                getThumbnailUrl(Config.projectID, asset.get('id'), asset.get('name'), asset.get('file.hash')).then(response => {
+                ossfile.getThumbnailUrl(Config.projectID, asset.get('id'), asset.get('name'), asset.get('file.hash')).then(response => {
                     thumbnail.style.backgroundImage = 'url("' + response + '")';
                 });
             } else {

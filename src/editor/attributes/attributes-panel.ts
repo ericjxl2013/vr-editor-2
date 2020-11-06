@@ -1,7 +1,6 @@
 import { Panel, Label, Progress, Element, TextField, Button, TextAreaField, Slider, NumberField, Checkbox, ColorField, ImageField, Code, SelectField, TopElementPanel } from "../../ui";
 import { VeryEngine } from "../../engine";
 import { Observer } from "../../lib";
-import { getThumbnailUrl } from "../../tools/ossfile";
 import { Config } from "../global";
 
 export class AttributesPanel {
@@ -1311,7 +1310,7 @@ export class AttributesPanel {
                             field.image = '/editor/static/asset-placeholder-texture.png';
                         } else {
                             // console.log(asset);
-                            getThumbnailUrl(Config.projectID, asset.get('id'), asset.get('name'), asset.get('file.hash')).then(response => {
+                            ossfile.getThumbnailUrl(Config.projectID, asset.get('id'), asset.get('name'), asset.get('file.hash')).then(response => {
                                 field.image = response;
                             });
 

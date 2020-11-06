@@ -1,6 +1,5 @@
 import { Observer } from '../../lib';
 import { Config } from '../global';
-import { getJsonConfig, upLoadJsonConfig } from '../../tools/ossfile';
 import {UUid} from '../utility/uuid'
 
 export class AssetsFs {
@@ -39,7 +38,7 @@ export class AssetsFs {
 
             var move=ids.join(',')
             var froms = move.split(",");
-            var assetJsonStr = await getJsonConfig(Config.projectID,"assets");
+            var assetJsonStr = await ossfile.getJsonConfig(Config.projectID,"assets");
             var assetData :any={};
             var assetFile=JSON.parse(assetJsonStr);
             for (var i = 0; i < froms.length; i++) {
@@ -116,7 +115,7 @@ export class AssetsFs {
                     }
                 }
             }
-            upLoadJsonConfig(JSON.stringify(assetFile),Config.projectID,"assets");
+            ossfile.upLoadJsonConfig(JSON.stringify(assetFile),Config.projectID,"assets");
             let assetKeys = Object.keys(assetData);
             for (let i = 0, len = assetKeys.length; i < len; i++) {
                 let asset = editor.call('assets:get', assetKeys[i]);

@@ -5,7 +5,6 @@ import { Config } from '../global';
 import { VeryLight } from '../middleware';
 import { BabylonLoader } from '../middleware/loader/babylonLoader';
 import { Tools } from '../utility';
-import { getJsonAsset, getUrl } from "../../tools/ossfile";
 import { GUIManager } from '../gui';
 
 export class ViewportApplication {
@@ -384,7 +383,7 @@ export class ViewportApplication {
                     if (entity.has('gui.source') && entity.get('gui.source')) {
                         let asset = editor.call('assets:get', entity.get('gui.source'));
                         if (asset) {
-                            getUrl(Config.projectID, asset.get('id'), asset.get('name'), asset.get('file.hash')).then(response => {
+                            ossfile.getUrl(Config.projectID, asset.get('id'), asset.get('name'), asset.get('file.hash')).then(response => {
                                 btn.image!.source = response;
                             });
                         }
@@ -403,7 +402,7 @@ export class ViewportApplication {
                     if (entity.has('gui.source') && entity.get('gui.source')) {
                         let asset = editor.call('assets:get', entity.get('gui.source'));
                         if (asset) {
-                            getUrl(Config.projectID, asset.get('id'), asset.get('name'), asset.get('file.hash')).then(response => {
+                            ossfile.getUrl(Config.projectID, asset.get('id'), asset.get('name'), asset.get('file.hash')).then(response => {
                                 img.source = response;
                             });
                         }
@@ -649,7 +648,7 @@ export class ViewportApplication {
 
 
 
-                    getJsonAsset(Config.projectID, assetID, BabylonLoader.assetsData.assets[assetID].name, BabylonLoader.assetsData.assets[assetID].file.hash).then(response => {
+                    ossfile.getJsonAsset(Config.projectID, assetID, BabylonLoader.assetsData.assets[assetID].name, BabylonLoader.assetsData.assets[assetID].file.hash).then(response => {
                         dataBabylon = JSON.parse(response);
                         BabylonLoader.babylonCacheData[assetID] = dataBabylon;
                         // BabylonLoader.parseBabylon(assetID, data);

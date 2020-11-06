@@ -284,7 +284,7 @@ export class AttributesEntity {
             panelComponents = items.panelComponents = editor.call('attributes:addPanel');
 
             // add component
-            var btnAddComponent = items.btnAddComponent = new Button();
+            // var btnAddComponent = items.btnAddComponent = new Button();
 
             // btnAddComponent.hidden = !editor.call('permissions:write');
             // editor.on('permissions:writeState', function (state: boolean) {
@@ -292,14 +292,14 @@ export class AttributesEntity {
             // });
 
             // btnAddComponent.text = 'Add Component';
-            btnAddComponent.text = 'To Be Continued';
-            btnAddComponent.class!.add('add-component');
-            btnAddComponent.style!.textAlign = 'center';
+            // btnAddComponent.text = 'To Be Continued';
+            // btnAddComponent.class!.add('add-component');
+            // btnAddComponent.style!.textAlign = 'center';
             // btnAddComponent.on('click', function (evt: MouseEvent) {
             //     menuAddComponent.position(evt.clientX, evt.clientY);
             //     menuAddComponent.open = true;
             // });
-            panel.append(btnAddComponent);
+            // panel.append(btnAddComponent);
         };
 
         // before clearing inspector, preserve elements

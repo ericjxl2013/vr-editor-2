@@ -153,7 +153,7 @@ export class AttributeComponentCamera {
             // camera.rect
             var fieldRect = editor.call('attributes:addField', {
                 parent: panel,
-                name: 'Viewport',
+                name: '视窗大小',
                 placeholder: ['X', 'Y', 'W', 'H'],
                 type: 'vec4',
                 precision: 3,
